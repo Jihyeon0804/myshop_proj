@@ -1,0 +1,36 @@
+@charset "UTF-8";
+#wrap {height: 1000px;}
+
+header {height: 100px}
+nav {height: 70px;}
+section {min-height: 700px;}
+footer {height: 100px;}
+
+.sign-in-input {
+	height: 50px;
+	border-style: none;
+	background-color: transparent;
+	outline: none;
+}
+
+ul {list-style: none;}
+ul li {
+	float: left;
+	margin-right: 5px;
+}
+ul li::before {
+	padding: 10px;
+	content: "|";
+}
+
+ul li:first-child::before{
+	position: absolute;
+	content: "";
+	top: 0;
+	right: 0;
+	width: 1px;
+	height: 20px;
+	background-color: black;
+}
+
+ul li:
