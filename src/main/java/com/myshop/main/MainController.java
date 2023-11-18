@@ -20,4 +20,12 @@ public class MainController {
 		model.addAttribute("viewName", "user/signIn");
 		return "template/layout";
 	}
+	
+	@GetMapping("/sign-up-view")
+	public String signUpView(Model model) {
+		model.addAttribute("viewName", "user/signUp");
+		return "template/layout";
+	}
+	
+	
 }
