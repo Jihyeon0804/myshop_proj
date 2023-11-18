@@ -1,36 +1,83 @@
 @charset "UTF-8";
-#wrap {height: 1000px;}
 
-header {height: 100px}
-nav {height: 70px;}
-section {min-height: 700px;}
-footer {height: 100px;}
+#wrap {
+	height: 1000px;
+}
+
+header {
+	height: 100px
+}
+
+nav {
+	height: 70px;
+}
+
+section {
+	min-height: 900px;
+}
+
+footer {
+	height: 100px;
+}
+
+.login-box, .sign-up-box {
+	width: 850px;
+	height: inherit;
+	padding: 90px 0px 0px 0px;
+	margin: 0px 0px 0px 130px;
+}
+
+.loginArea, .signUpArea {
+	width: 510px;
+}
+
 
 .sign-in-input {
-	height: 50px;
+	margin: 5px;
+	height: 40px;
 	border-style: none;
 	background-color: transparent;
 	outline: none;
 }
 
-ul {list-style: none;}
-ul li {
+.loginNag, .signUpNag {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.linkArea {width : 510px; height: 30px;}
+
+.linkArea ul {
+	list-style: none;
+	padding:0px ;
+}
+
+.linkArea ul li {
 	float: left;
 	margin-right: 5px;
 }
-ul li::before {
-	padding: 10px;
+
+.linkArea ul li::after {
 	content: "|";
+	float: right;
+	display: block;
+	color: #999;
 }
 
-ul li:first-child::before{
-	position: absolute;
+.linkArea ul li:last-child::after {
 	content: "";
-	top: 0;
-	right: 0;
-	width: 1px;
-	height: 20px;
-	background-color: black;
 }
 
-ul li:
+.linkArea ul li a {
+	padding: 0 10px;
+	color: #999;
+}
+
+.signUpArea label {
+	display: block;
+	font-size: 15px;
+}
+
+.userInfo {margin-top: 20px;}
+
+.userInfo span {font-size: 20px; margin : 0px 11px 0px 11px;}
