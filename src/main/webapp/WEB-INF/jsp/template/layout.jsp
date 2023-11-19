@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>쇼핑몰</title>
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -13,13 +12,19 @@
 
 <!-- 내가 만든 스타일시트 -->
 <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+<!-- favicon 설정 -->
+<link rel="icon" type="image/png" sizes="32x32" href="/static/img/coffee-icon.png">
 </head>
 <body>
 	<div id="wrap" class="bg-primary">
-		<header class="bg-warning d-flex">
+		<header class="bg-warning">
 			<jsp:include page="../include/header.jsp" />
 		</header>
-		<section class="bg-light">
+		<div class="gnb-area d-flex justify-content-center">
+			<jsp:include page="../include/gnb.jsp" />
+		</div>
+		<section class="bg-white">
 			<jsp:include page="../${viewName}.jsp" />
 		</section>
 		<footer class="bg-success">
