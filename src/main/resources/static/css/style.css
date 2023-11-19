@@ -5,12 +5,81 @@
 }
 
 header {
-	height: 100px
+	height: 130px;
 }
 
-nav {
-	height: 70px;
+
+.header-area {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin : 20px 650px 0px 100px;
 }
+
+.search-box {
+	display: flex;
+	justify-content: space-between;
+	background-color: #fff;
+	width: 400px; 
+	height: 40px; 
+	border-radius: 15px; 
+	border-style: solid;
+	border-color: cadetblue;
+	border-width: 2px;
+}
+
+.input-box {
+	background-color: transparent;
+	border: none;
+	margin: 0px 0px 0px 15px;
+	padding: 0px;
+}
+
+.button-area {
+	width: 60px;
+	height: inherit;
+}
+
+.search-btn {
+	background-color: transparent;
+	border: none;
+	margin-top: 3px;
+}
+
+.util-area {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	height: 30px;
+}
+
+.util-area ul {
+	list-style: none;
+	padding:0px ;
+	margin: 10px 0px 0px 0px;
+}
+
+.util-area ul li {
+	float: left;
+}
+
+.util-area ul li::after {
+	content: "|";
+	float: right;
+	display: block;
+	color: #999;
+}
+
+.util-area ul li:last-child::after {
+	content: "";
+}
+
+.util-area ul li a {
+	padding: 0 10px;
+	color: #999;
+}
+
+.gnb-area {height: 45px; background-color: cadetblue;}
 
 section {
 	min-height: 900px;
@@ -19,6 +88,10 @@ section {
 footer {
 	height: 100px;
 }
+
+.logo-area {font-size: 45px; font-weight: bolder;}
+
+
 
 .login-box, .sign-up-box {
 	width: 850px;
@@ -81,3 +154,36 @@ footer {
 .userInfo {margin-top: 20px;}
 
 .userInfo span {font-size: 20px; margin : 0px 11px 0px 11px;}
+
+.gnb-area nav {width: 1080px; height: 45px;}
+
+.gnb-area ul {
+    width: 100%;
+    height: 45px;
+    justify-content: space-around;
+}
+
+.gnb-area ul li {
+	list-style: none;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px 0px 0px 0px;
+}
+
+.gnb-area ul li a {
+	vertical-align: middle;
+	
+	}
+	
+
+#carousel {width: 1200px; height: 400px;}
+
+.carousel-indicators li {border-radius: 50%; width: 10px; height: 10px; margin: 0px 5px;}
+.carousel-indicators .active {background-color: lemonchiffon;}
+
+.prod-list-area {width: 1200px; margin-top: 30px;}
+.prod-list-area ul {list-style: none; padding: 0px; display: grid; grid-template-columns: repeat(4, 1fr);}
+.prod-area {height: 390px; width: 300px;}
+.prod {margin: 0px 10px; width: 280px;}
+.prod_detail {padding: 20px 0px;}
+.prod_detail > * {display: block;}
