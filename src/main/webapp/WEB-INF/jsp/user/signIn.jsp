@@ -22,7 +22,7 @@
 			</div>
 			<button type="button" class="btn btn-lg btn-primary w-100 my-3">로그인</button>
 			<!-- 카카오 로그인 API -->
-			<div class="linkArea  d-flex justify-content-center">
+			<div class="linkArea d-flex justify-content-center">
 				<ul>
 					<li><a href="#">아이디 찾기</a></li>
 					<li><a href="#">비밀번호 찾기</a></li>
