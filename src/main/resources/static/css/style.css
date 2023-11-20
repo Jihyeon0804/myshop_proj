@@ -151,6 +151,8 @@ footer {
 	font-size: 15px;
 }
 
+#isDuplicatedBtn {height: 38px;}
+
 .userInfo {margin-top: 20px;}
 
 .userInfo span {font-size: 20px; margin : 0px 11px 0px 11px;}
