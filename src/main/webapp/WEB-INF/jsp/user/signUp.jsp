@@ -8,12 +8,31 @@
 			</div>
 			<div class="userInfo">
 				<label>이름</label>
-				<input type="text" id="name" placeholder="이름을 입력해주세요." class="form-control">
+				<div class="form-row">
+					<input type="text" id="name" placeholder="이름을 입력해주세요." class="form-control">
+					<div id="blankName" class="invalid-feedback d-none">
+						이름을 입력해주세요.
+					</div>
+				</div>
 			</div>
 			<div class="userInfo">
 				<label>아이디</label>
 				<div class="d-flex justify-content-between">
-					<input type="text" id="userId" placeholder="아이디를 입력해주세요." class="form-control col-9">
+					<div class="form-row w-75">
+						<input type="text" id="loginId" placeholder="아이디를 입력해주세요." class="form-control">
+				      	<div id="blankId" class="invalid-feedback d-none">
+				        	아이디를 입력해주세요.
+				      	</div>
+				      	<div id="invalidLength" class="invalid-feedback d-none">
+				        	아이디는 최소 6자 이상으로 입력해주세요.
+				      	</div>
+				      	<div id="isDuplicatedFeedback" class="invalid-feedback d-none">
+				        	이미 사용 중인 아이디입니다.
+				      	</div>
+				      	<div id="duplicatedCheckFeedback" class="invalid-feedback d-none">
+				        	아이디 중복확인을 해주세요.
+				      	</div>
+				     </div>
 					<button class="btn btn-primary" id="isDuplicatedBtn">중복확인</button>
 				</div>
 			</div>
@@ -23,7 +42,12 @@
 			</div>
 			<div class="userInfo">
 				<label>비밀번호 확인</label>
-				<input type="password" id="passwordChk" placeholder="비밀번호를 입력해주세요." class="form-control">
+				<div class="form-row">
+					<input type="password" id="passwordChk" placeholder="비밀번호를 입력해주세요." class="form-control is-invalid">
+				    <div id="notMatchFeedback" class="invalid-feedback">
+				    	비밀번호가 일치하지 않습니다.
+				    </div>
+				</div>
 			</div>
 			<div class="userInfo">
 				<label>휴대폰 번호</label>
@@ -56,14 +80,41 @@
 <script>
 $(document).ready(function() {
 	
-	
-	let name = $('#name').val();
-	let userId = $('#userId').val();
-	let password = $('#password').val();
-	let passwordChk = $('#passwordChk').val();
-	let email = $('#email').val();
-	let phoneNumber = $('#phoneNumber').val();
-	let birth = $('#birth').val();
+	// 아이디 중복확인 버튼 클릭 시
+	$('#isDuplicatedBtn').on('click', function() {
+		let name = $('#name').val();
+		$('#name').removeClass('is-invalid');
+		$('#name').removeClass('is-valid');
+		
+		if (name == '') {
+			$('#name').addClass('is-invalid');
+			$('#blankName').removeClass('d-none');
+			return;
+		} else {
+			$('#name').addClass('is-valid');
+		}
+		
+		let loginId = $('#loginId').val();
+		$('#loginId').removeClass('is-invalid');
+		$('#loginId').removeClass('is-valid');
+		$('#blankId').addClass('d-none');
+		$('#invalidLength').addClass('d-none');
+		$('#isDuplicatedFeedback').addClass('d-none');
+		$('#duplicatedCheckFeedback').addClass('d-none');
+		
+		if (loginId == '') {
+			$('#loginId').addClass('is-invalid');
+			$('#blankId').removeClass('d-none');
+			return;
+		}
+		
+		if (loginId.length < 8) {
+			$('#loginId').addClass('is-invalid');
+			$('#blankId').addClass('d-none');
+			$('#invalidLength').removeClass('d-none');
+		}
+	});
+
 	
 	$('#name').change(function() {
 		if ($('#name').val() != '') {
@@ -71,8 +122,5 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('#signUpBtn').on('click', function() {
-		
-	});
 });
 </script>
