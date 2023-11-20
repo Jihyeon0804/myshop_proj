@@ -20,7 +20,7 @@
 					<input type="password" id="password" class="sign-in-input" placeholder="비밀번호">
 				</div>
 			</div>
-			<button type="button" class="btn btn-lg btn-primary w-100 my-3">로그인</button>
+			<button type="button" id="loginBtn" class="btn btn-lg btn-primary w-100 my-3">로그인</button>
 			<!-- 카카오 로그인 API -->
 			<div class="linkArea d-flex justify-content-center">
 				<ul>
@@ -32,3 +32,33 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$(document).ready(function() {
+	$('#loginBtn').on('click', function() {
+		let loginId = $('#id').val();
+		let password = $('#password').val();
+		
+		if (loginId == '' || password == '') {
+			return;
+		}
+		
+		
+		$.ajax({
+			// request
+			type:"post"
+			,url:"/user/sign-in"
+			,data:{"loginId":loginId, "password":password}
+		
+			// response
+			,success:function(data) {
+				if (data.code == 200) {
+					location.href="/site-name"
+				} else {
+					alert(data.result);
+				}
+			}
+		});
+	});
+});
+</script>

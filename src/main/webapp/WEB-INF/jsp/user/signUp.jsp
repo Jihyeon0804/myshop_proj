@@ -77,15 +77,16 @@
 			<div class="userInfo">
 				<label>이메일</label>
 				<div class="d-flex align-items-center">
-					<input type="text" id="email" placeholder="이메일" class="form-control col-6">
+					<input type="text" id="email" placeholder="이메일" class="form-control col-3">
 					<span>@</span>
-					<input type="text" id="emailAddress" class="form-control col-5 d-none">
-					<select class="form-control col-5" id="emailAddress">
-					  <option selected>메일 주소 선택</option>
+					<input type="text" id="emailAddress" class="form-control col-4 mr-2">
+					<select class="form-control col-4" id="emailSelect">
+					  <option>메일 주소 선택</option>
 					  <option>naver.com</option>
-					  <option>google.com</option>
+					  <option>gmail.com</option>
+					  <option>daum.com</option>
 					  <option>kakao.com</option>
-					  <option>직접입력</option>
+					  <option>직접 입력</option>
 					</select>
 				</div>
 			</div>
@@ -107,7 +108,7 @@
 <script>
 $(document).ready(function() {
 	
-	$('#name').on('input', function() {
+	$('#name').on('change', function() {
 		let name = $('#name').val();
 		if (name == '') {
 			$('#name').addClass('is-invalid');
@@ -221,10 +222,30 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('#email').on('input', function() {
+	$('#emailSelect').on('change', function() {
+		$('#emailAddress').removeClass('is-invalid');
+		$('#emailAddress').removeClass('is-valid');
+		let email = $('#email').val();
+		let selectedEmail = $('#emailSelect option:selected').val();
+		if (selectedEmail == '메일 주소 선택' || selectedEmail == '직접 입력') {
+			$('#emailAddress').val('');
+		} else {
+			$('#emailAddress').val(selectedEmail);
+		}
 		
+		if (email == '' || $('#emailAddress').val() == '') {
+			$('#emailAddress').addClass('is-invalid');
+			$('#emailAddress').removeClass('is-valid');
+		} else {
+			$('#emailAddress').removeClass('is-invalid');
+			$('#emailAddress').addClass('is-valid');
+		}
 	});
-	let email = $('#email').val();
+	
+	
+	
+	
+	
 	
 	$('#birth').datepicker({
 		dateFormat:"yy-mm-dd",
@@ -254,6 +275,12 @@ $(document).ready(function() {
 		} 
 		
 		
+		let loginId = $('#loginId').val();
+		let password = $('#password').val();
+		let name = $('#name').val();
+		let email = $('#email').val() + '@' +  $('#emailSelect option:selected').val();
+		let phoneNumber = $('#phoneNumber').val();
+		let birth = $('#birth').val();
 		// 모든 요소가 is-valid인 경우 ajax 통신
 		$.ajax({
 			// request

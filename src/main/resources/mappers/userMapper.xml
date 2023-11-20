@@ -15,4 +15,39 @@
 		WHERE
 			`loginId` = #{loginId}
 	</select>
+	
+	<select id="existUserByLoginIdAndPassword" parameterType="map" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM 
+			`user`
+		WHERE
+			`loginId` = #{loginId} AND `password` = #{password}
+	</select>
+	
+	<insert id="insertUser" parameterType="map">
+		INSERT INTO
+			`user`
+		(
+			`loginId`,
+			`password`,
+			`name`,
+			`email`,
+			`phoneNumber`,
+			`birth`,
+			`createdAt`,
+			`updatedAt`
+		)
+		VALUES
+		(
+			#{loginId},
+			#{password},
+			#{name},
+			#{email},
+			#{phoneNumber},
+			#{birth},
+			NOW(),
+			NOW()
+		)
+	</insert>
 </mapper>

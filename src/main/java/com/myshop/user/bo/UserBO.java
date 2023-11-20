@@ -16,4 +16,26 @@ public class UserBO {
 	public int getUserCountByLoginId(String loginId) {
 		return userMapper.selectUserCountByLoginId(loginId);
 	}
+	
+	
+	// input : params
+	// output : void
+	public void addUser(
+			String loginId, String password,
+			String name, String email,
+			String phoneNumber, String birth) {
+		
+		userMapper.insertUser(loginId, password, name, email, phoneNumber, birth);
+	}
+	
+	
+	// input : params
+	// output : boolean
+	public boolean existUserByLoginIdAndPassword(String loginId, String password) {
+		if (userMapper.existUserByLoginIdAndPassword(loginId, password) > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
