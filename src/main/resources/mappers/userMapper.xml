@@ -6,4 +6,13 @@
 	<select id="selectUserList" resultType="map">
 		select * from `user`;
 	</select>
+	
+	<select id="selectUserCountByLoginId" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM 
+			`user`
+		WHERE
+			`loginId` = #{loginId}
+	</select>
 </mapper>
