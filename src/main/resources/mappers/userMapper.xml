@@ -16,9 +16,14 @@
 			`loginId` = #{loginId}
 	</select>
 	
-	<select id="existUserByLoginIdAndPassword" parameterType="map" resultType="int">
+	<select id="selectUserByLoginIdAndPassword" parameterType="map" resultType="com.myshop.user.domain.User">
 		SELECT
-			COUNT(*)
+			`loginId`,
+			`password`,
+			`name`,
+			`email`,
+			`phoneNumber`,
+			`birth`
 		FROM 
 			`user`
 		WHERE

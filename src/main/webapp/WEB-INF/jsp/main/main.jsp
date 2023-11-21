@@ -37,7 +37,9 @@
 				<li class="prod-area">
 					<div class="prod">
 						<div class="prod_thumbnail">
-							<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지" width="280">
+							<a href="/site-name/product">
+								<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지" width="280">
+							</a>
 						</div>
 						<div class="prod_detail">
 							<b>상품명</b>

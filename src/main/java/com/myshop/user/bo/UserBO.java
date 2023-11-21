@@ -3,6 +3,7 @@ package com.myshop.user.bo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myshop.user.domain.User;
 import com.myshop.user.mapper.UserMapper;
 
 @Service
@@ -31,11 +32,7 @@ public class UserBO {
 	
 	// input : params
 	// output : boolean
-	public boolean existUserByLoginIdAndPassword(String loginId, String password) {
-		if (userMapper.existUserByLoginIdAndPassword(loginId, password) > 0) {
-			return true;
-		} else {
-			return false;
-		}
+	public User existUserByLoginIdAndPassword(String loginId, String password) {
+		return userMapper.selectUserByLoginIdAndPassword(loginId, password);
 	}
 }

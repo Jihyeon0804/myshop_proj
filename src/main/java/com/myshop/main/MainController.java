@@ -21,6 +21,13 @@ public class MainController {
 		return "template/layout";
 	}
 	
+	@GetMapping("/product")
+	public String productDetailView(Model model) {
+		model.addAttribute("viewName", "product/productDetails");
+		return "template/layout";
+	}
+	
+	
 	@GetMapping("/sign-up-view")
 	public String signUpView(Model model) {
 		model.addAttribute("viewName", "user/signUp");
