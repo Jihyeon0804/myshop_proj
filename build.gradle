@@ -36,6 +36,7 @@ dependencies {
 	implementation 'javax.servlet:jstl:1.2'  // springboot ver 2.x
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.7'	// p6spy 라이브러리 의존성 추가
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher' 	// JUnit Test
+	implementation 'com.google.code.gson:gson:2.8.7'	// Gson
 }
 
 tasks.named('bootBuildImage') {
