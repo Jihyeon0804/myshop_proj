@@ -191,12 +191,20 @@ footer {
 .prod_detail > * {display: block;}
 
 
-.prod-info-area {width: 1200px; height: 500px; margin-top: 30px;}
-.prod-image {margin: 0px 20px;}
+.prod-info-area {
+	width: 1200px;
+	height: 500px;
+	margin: 30px 0px;
+	display: flex;
+	justify-content: center;
+}
+
+.prod-info {padding: 25px 0px 0px 0px;}
+.prod-image {margin: 0px 20px; display: flex; align-items: center;}
 .prod-name {font-size: 25px; font-weight: bold;}
 .prod-price {width: 450px; height: 40px; align-items: end;}
 .origin-price {font-size: 20px; color: #aaa;}
-.discount-price {font-size: 28px; color: #e02020; -webkit-box-pack: center}
+.discount-price {font-size: 28px; color: #e02020;}
 
 .prod-amount-area {
 	width: 450px;
@@ -207,7 +215,59 @@ footer {
 	border-width: 1px;
 	border-radius: 5px;
 	display: flex;
-	align-items: center;}
+	align-items: center;
+	justify-content: center;
+	padding: 10px 10px;
+	margin: 100px 0px 0px 0px;}
 .prod-amount-box {width: 410px; height: 30px; display: flex; justify-content: space-between;}
-.amount-minus, .amount-plus {width: 29px; height: 28px;}
-#amount {width: 60px; height: 28px; padding: 0px 10px; text-align: center;}
+.title {display: flex; align-items: center;}
+.amount-minus, .amount-plus {width: 32px; height: 32px; padding: 0px;}
+#amount {width: 60px; height: 32px; padding: 0px 10px; text-align: center;}
+
+.prod-total-price {
+	font-size: 24px;
+	display: flex;
+	justify-content: space-between;
+	padding: 0px 10px 10px 10px;
+	margin: 40px 0px 0px 0px;
+	border-style: solid;
+	border-width: 0px 0px 2px 0px;
+	border-color: rgb(235, 65, 65);
+	color: rgb(235, 65, 65);}
+	
+.order-price {
+	font-size: 28px;
+	font-weight: bolder;
+	color: rgb(235, 65, 65);
+}
+.order-button-box {
+	width: 450px;
+	height: 60px;
+	display: flex;
+	justify-content: space-between;
+	margin: 50px 0px 0px 0px;
+}
+	
+#addLikeBtn {
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgb(235, 65, 65);
+}
+
+#orderBtn {
+	width: 180px;
+}
+
+#addCartBtn {
+	width: 190px;
+}
+
+.prod-description-area {
+	width: 1200px;
+	border-style: solid;
+	border-width: 2px 0px 0px 0px;
+	border-color: rgb(192, 192, 192);
+}
+
+.description-button-area {display: flex; justify-content: center;}
+.description-button-area > button {width : 390px;}
