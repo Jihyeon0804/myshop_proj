@@ -64,9 +64,12 @@
 				<button type="button" class="btn btn-light btn-lg">Q&amp;A</button>
 			</div>
 			
+			<!-- 상품 상세 영역 -->
 			<div class="description-area d-none">
 				description
 			</div>
+			
+			<!-- 상품 리뷰 영역 -->
 			<div class="review-area">
 				<div>
 					<h2>상품 리뷰</h2>
@@ -108,6 +111,8 @@
 					</div>
 				</div>
 			</div>
+			
+			<!-- 상품 문의 영역 -->
 			<div class="qna-area d-none">
 				description
 			</div>
