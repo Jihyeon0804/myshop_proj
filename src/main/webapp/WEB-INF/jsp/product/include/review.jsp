@@ -4,10 +4,12 @@
 	<div>
 		<h2>상품 리뷰</h2>
 	</div>
-	<div class="d-flex">
-		<div>리뷰 평점</div>
-		<div>리뷰 수</div>
-		<div>평점 비율</div>
+	<div class="review-info d-flex justify-content-center">
+		<div class="review-info-box d-flex">
+			<div class="review-point">리뷰 평점</div>
+			<div class="review-cnt">리뷰 수</div>
+			<div class="review-ratio">평점 비율</div>
+		</div>
 	</div>
 	<div class="photo-review">
 		<div>포토 N건</div>
@@ -46,6 +48,7 @@
 			</div>
 			<div>사진</div>
 			<div>리뷰 내용</div>
+			<hr>
 		</div>
 	</div>
 </div>

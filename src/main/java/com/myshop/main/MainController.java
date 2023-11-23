@@ -24,7 +24,7 @@ public class MainController {
 	@GetMapping("/product")
 	public String productDetailView(Model model) {
 		model.addAttribute("viewName", "product/productDetails");
-		model.addAttribute("detailviewName", "product/include/review");
+		model.addAttribute("detailviewName", "product/include/qna");
 		
 		return "template/layout";
 	}
