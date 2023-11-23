@@ -59,9 +59,9 @@
 		<!-- 상품 설명, 리뷰, 문의 영역 -->
 		<div class="prod-description-area">
 			<div class="description-button-area">
-				<button type="button" class="btn btn-light btn-lg">상품 설명</button>
-				<button type="button" class="btn btn-light btn-lg">리뷰</button>
-				<button type="button" class="btn btn-light btn-lg">Q&amp;A</button>
+				<a type="button" id="descriptionBtn" class="btn btn-light btn-lg">상품 설명</a>
+				<a href="/site-name/product/review" type="button" id="reviewBtn" class="btn btn-light btn-lg">리뷰</a>
+				<a type="button" id="qnaBtn" class="btn btn-light btn-lg">Q&amp;A</a>
 			</div>
 			
 			<!-- 상품 상세 영역 -->
@@ -69,53 +69,15 @@
 				description
 			</div>
 			
-			<!-- 상품 리뷰 영역 -->
-			<div class="review-area">
-				<div>
-					<h2>상품 리뷰</h2>
-				</div>
-				<div class="d-flex">
-					<div>리뷰 평점</div>
-					<div>리뷰 수</div>
-					<div>평점 비율</div>
-				</div>
-				<div class="photo-review">
-					<div>포토 N건</div>
-					<div>사진 리뷰</div>
-				</div>
-				<hr>
-				<div>
-					<div>리뷰</div>
-					<!-- 한 사용자의 리뷰 -->
-					<div>
-						<div class="d-flex">
-							<div>
-								<img src="/static/img/user-profile-icon.png" alt="사용자 기본 프로필 이미지" width="30">
-							</div>
-							<div class="review-info d-flex">
-								<div>
-									<div class="d-flex">
-										<img src="/static/img/full-star-icon.png" alt="별점" width="30">
-										<img src="/static/img/full-star-icon.png" alt="별점" width="30">
-										<img src="/static/img/full-star-icon.png" alt="별점" width="30">
-										<img src="/static/img/empty-star-icon.png" alt="별점" width="30">
-										<img src="/static/img/empty-star-icon.png" alt="별점" width="30">
-									</div>
-									<div>userId</div>
-								</div>
-							</div>
-							<div>리뷰 작성 날짜</div>
-						</div>
-						<div>사진</div>
-						<div>리뷰 내용</div>
-					</div>
-				</div>
-			</div>
 			
 			<!-- 상품 문의 영역 -->
 			<div class="qna-area d-none">
 				description
 			</div>
+			
+			
+			<!-- dd -->
+			<jsp:include page="../${detailviewName}.jsp" />
 		</div>
 	</div>
 </div>

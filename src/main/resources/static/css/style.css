@@ -264,10 +264,14 @@ footer {
 
 .prod-description-area {
 	width: 1200px;
+	min-height: 600px;
 	border-style: solid;
 	border-width: 2px 0px 0px 0px;
 	border-color: rgb(192, 192, 192);
 }
 
 .description-button-area {display: flex; justify-content: center;}
-.description-button-area > button {width : 390px;}
+.description-button-area > a {width : 390px;}
+
+
+.user-id-box, .review-created-date {color: #999;}
