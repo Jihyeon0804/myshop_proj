@@ -30,9 +30,29 @@
 			</div>
 			<div class="hr-sect">또는</div>
 			<!-- 카카오 로그인 -->
-			<a href="https://kauth.kakao.com/oauth/authorize?client_id=5fe0b7f721365d472ac1462d40d94415&redirect_uri=
-http://localhost/kakao/login/result&response_type=code">
-				<img src="/static/img/kakao_login_large_wide.png" width="510">
+			<a href="https://kauth.kakao.com/oauth/authorize?
+			client_id=5fe0b7f721365d472ac1462d40d94415&
+			redirect_uri=http://localhost/kakao/login/result&response_type=code" class="btn" id="kakaoLoginBtn">
+				<img src="/static/img/kakao_logo.png" width="30">
+				<span>카카오 로그인</span>
+			</a>
+			
+			<!-- 구글 로그인 -->
+			<a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=87909384582
+			-c9e49ssd4i0r6p8c1j680n4iuls7puk3.apps.googleusercontent.com
+			&redirect_uri=http://localhost/google/login/result
+			&response_type=code&scope=email profile" class="btn" id="googleLoginBtn">
+				<img src="/static/img/google_logo.png" width="30">
+				<span>구글 로그인</span>
+			</a>
+			
+			<!-- 네이버 로그인 -->
+			<a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=87909384582
+			-c9e49ssd4i0r6p8c1j680n4iuls7puk3.apps.googleusercontent.com
+			&redirect_uri=http://localhost/google/login/result
+			&response_type=code&scope=email profile" class="btn" id="naverLoginBtn">
+				<img src="/static/img/naver_logo.png" width="30">
+				<span>네이버 로그인</span>
 			</a>
 		</div>
 	</div>
