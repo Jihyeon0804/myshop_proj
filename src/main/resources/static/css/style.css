@@ -89,8 +89,7 @@ footer {
 	height: 100px;
 }
 
-.logo-area > a, a:hover {font-size: 45px; font-weight: bolder; color: #000; text-decoration: none;}
-
+#logoTitle, #logoTitle:hover {font-size: 45px; font-weight: bolder; color: #000; text-decoration: none;}
 
 
 .login-box, .sign-up-box {
@@ -290,7 +289,7 @@ footer {
 }
 
 .description-button-area {display: flex; justify-content: center;}
-.description-button-area > a {width : 390px;}
+#descriptionBtn, #reviewBtn, #qnaBtn {width : 390px;}
 
 .review-info-box {
 	width: 1100px;
@@ -347,11 +346,20 @@ footer {
 .qna-box {
 	width: 920px;
 }
-#qnaBtn {
+#inquireBtn {
 	width: 1100px;
 	height: 60px;
 }
 
 #qnaContent {
 	resize: none;
+}
+
+.inquire-list-box {
+	width: 920px;
+}
+
+
+.inquire-title {
+	width: 650px;
 }
