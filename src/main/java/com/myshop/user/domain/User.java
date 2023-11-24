@@ -16,6 +16,7 @@ public class User {
 	private String birth;
 	private String address;
 	private String grade;
+	private String joinType;
 	private Date createdAt;
 	private Date updatedAt;
 }

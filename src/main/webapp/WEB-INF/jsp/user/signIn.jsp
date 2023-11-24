@@ -31,7 +31,7 @@
 			<div class="hr-sect">또는</div>
 			<!-- 카카오 로그인 -->
 			<a href="https://kauth.kakao.com/oauth/authorize?client_id=5fe0b7f721365d472ac1462d40d94415&redirect_uri=
-http://localhost/oauth/kakao/login&response_type=code">
+http://localhost/kakao/login/result&response_type=code">
 				<img src="/static/img/kakao_login_large_wide.png" width="510">
 			</a>
 		</div>
