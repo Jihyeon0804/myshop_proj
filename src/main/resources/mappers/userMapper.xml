@@ -40,6 +40,7 @@
 			`email`,
 			`phoneNumber`,
 			`birth`,
+			`joinType`,
 			`createdAt`,
 			`updatedAt`
 		)
@@ -51,6 +52,7 @@
 			#{email},
 			#{phoneNumber},
 			#{birth},
+			#{joinType},
 			NOW(),
 			NOW()
 		)

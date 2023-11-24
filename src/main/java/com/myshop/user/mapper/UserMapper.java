@@ -26,7 +26,8 @@ public interface UserMapper {
 			@Param("name") String name,
 			@Param("email") String email,
 			@Param("phoneNumber") String phoneNumber,
-			@Param("birth") String birth);
+			@Param("birth") String birth,
+			@Param("joinType") String joinType);
 	
 	
 	public User selectUserByLoginIdAndPassword(

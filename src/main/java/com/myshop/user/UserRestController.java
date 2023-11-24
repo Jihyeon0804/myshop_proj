@@ -49,7 +49,8 @@ public class UserRestController {
 			@RequestParam("birth") String birth) {
 		
 		// insert
-		userBO.addUser(loginId, password, name, email, phoneNumber, birth);
+		String joinType = "일반";
+		userBO.addUser(loginId, password, name, email, phoneNumber, birth, joinType);
 		
 		// 응답
 		Map<String, Object> result = new HashMap<>();
@@ -61,13 +62,10 @@ public class UserRestController {
 	
 	
 	@PostMapping("/sign-in")
-	public Map<String, Object> signIp(
+	public Map<String, Object> signIn(
 			@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
 			HttpSession session) {
-		
-		
-		
 		
 		Map<String, Object> result = new HashMap<>();
 		User user = userBO.existUserByLoginIdAndPassword(loginId, password);

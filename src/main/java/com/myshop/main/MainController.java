@@ -1,8 +1,11 @@
 package com.myshop.main;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/site-name")
@@ -33,6 +36,14 @@ public class MainController {
 	@GetMapping("/sign-up-view")
 	public String signUpView(Model model) {
 		model.addAttribute("viewName", "user/signUp");
+		return "template/layout";
+	}
+	
+	
+	
+	@GetMapping("/my-page/{userName}")
+	public String myPageView(@PathVariable String userName, Model model, HttpSession session) {
+		model.addAttribute("viewName", "user/myPage");
 		return "template/layout";
 	}
 	

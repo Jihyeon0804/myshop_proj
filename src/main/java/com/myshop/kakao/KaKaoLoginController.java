@@ -3,6 +3,9 @@ package com.myshop.kakao;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myshop.kakao.bo.KaKaoBO;
+import com.myshop.user.bo.UserBO;
 
 import lombok.AllArgsConstructor;
 
@@ -23,8 +27,14 @@ public class KaKaoLoginController {
 	@Autowired
 	private KaKaoBO kakaoBO;
 	
+	@Autowired
+	private UserBO userBO;
+	
+	@Transactional
 	@GetMapping("/login/result")
-	public String kakaoConnect(@RequestParam("code") String code) {
+	public void kakaoConnect(
+			@RequestParam("code") String code,
+			HttpSession session) {
 		Logger logger = LoggerFactory.getLogger(this.getClass());
 		logger.info("################## code : {}", code);
 		
@@ -39,10 +49,17 @@ public class KaKaoLoginController {
 		logger.info("################## kakao_name : {}", userInfo.get("name"));
 		logger.info("################## kakao_id : {}", userInfo.get("loginId"));
 		logger.info("################## kakao_email : {}", userInfo.get("email"));
+		String loginId = (String)userInfo.get("loginId");
+		String name = (String)userInfo.get("name");
+		String email = (String)userInfo.get("email");
+		String password = "kakao1122";
+		String phoneNumber = null;
+		String birth = null;
+		String joinType = "소셜";
 		
-        
-		return "test/test";
-    	
+		
+		userBO.addUser(loginId, password, name, email, phoneNumber, birth, joinType);
+		
+		
 	}
-	
 }

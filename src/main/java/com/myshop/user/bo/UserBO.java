@@ -24,9 +24,9 @@ public class UserBO {
 	public void addUser(
 			String loginId, String password,
 			String name, String email,
-			String phoneNumber, String birth) {
+			String phoneNumber, String birth, String joinType) {
 		
-		userMapper.insertUser(loginId, password, name, email, phoneNumber, birth);
+		userMapper.insertUser(loginId, password, name, email, phoneNumber, birth, joinType);
 	}
 	
 	
