@@ -3,22 +3,23 @@
 <div class="qna-area">
 	<div>
 		<div class="qna-btn-area">
-			<button type="button" id="qnaBtn" class="btn btn-lg btn-secondary">문의하기</button>
+			<button type="button" id="inquireBtn" class="btn btn-lg btn-secondary">문의하기</button>
 		</div>
 		
 		<!-- 문의 목록 -->
-		<div>
-			<div class="d-flex">
-				<div class="exist-comment">답변 완료</div>
-				<div class="col-8">문의 제목</div>
-				<div>작성자 아이디</div>
+		<div class="d-flex justify-content-center">
+			<div class="inquire-list-box">
+				<div class="d-flex justify-content-between mt-3">
+					<div class="exist-comment">답변 완료</div>
+					<div class="inquire-title">문의 제목</div>
+					<div>작성자 아이디</div>
+				</div>
+				<div class="d-flex justify-content-between mt-3">
+					<div class="non-comment">답변 예정</div>
+					<div class="inquire-title">문의 제목</div>
+					<div>작성자 아이디</div>
+				</div>
 			</div>
-			<div class="d-flex">
-				<div class="non-comment">답변 예정</div>
-				<div class="col-8">문의 제목</div>
-				<div>작성자 아이디</div>
-			</div>
-			
 		</div>
 		
 		<!-- 문의 하기 -->
