@@ -8,7 +8,7 @@
 			<li><a href="/site-name/sign-up-view">회원가입</a></li>
 		</c:if>
 		<c:if test="${not empty userName}">
-			<li><a href="/site-name/${userName}">${userName} 님</a></li>
+			<li><a href="/site-name/my-page/${userName}">${userName} 님</a></li>
 			<li><a href="/user/sign-out">로그아웃</a></li>
 			<li><a href="/site-name/#">장바구니</a></li>
 		</c:if>
