@@ -37,16 +37,13 @@ public class GoogleLoginController {
 		logger.info("################## code : {}", code);
 
 		String access_Token = googleBO.getAccessToken(code);
-		logger.info("################## code : {}", code);
-		System.out.println("###access_Token#### : " + access_Token);
-		
+		logger.info("################## access_Token : {}", access_Token);
 		
 		Map<String, Object> userInfo = new HashMap<>();
 		userInfo = googleBO.getUserInfo(access_Token);
-		logger.info("################## access_Token : {}", access_Token);
-		logger.info("################## kakao_name : {}", userInfo.get("name"));
-		logger.info("################## kakao_id : {}", userInfo.get("loginId"));
-		logger.info("################## kakao_email : {}", userInfo.get("email"));
+		logger.info("################## google_name : {}", userInfo.get("name"));
+		logger.info("################## google_id : {}", userInfo.get("loginId"));
+		logger.info("################## google_email : {}", userInfo.get("email"));
 		String loginId = (String) userInfo.get("loginId");
 		String name = (String) userInfo.get("name");
 		String email = (String) userInfo.get("email");
