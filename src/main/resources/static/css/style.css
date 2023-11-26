@@ -445,3 +445,8 @@ footer {
 	text-align: center;
 	align-self: center;
 }
+
+
+#includeArea {
+	min-height: 600px;
+}
