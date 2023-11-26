@@ -1,4 +1,4 @@
-package com.myshop.naver.bo;
+package com.myshop.naver;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.myshop.naver.bo.NaverBO;
 import com.myshop.user.bo.UserBO;
 import com.myshop.user.domain.User;
 
@@ -46,7 +47,7 @@ public class NaverLoginController {
 		String name = (String) userInfo.get("name");
 		String email = (String) userInfo.get("email");
 		String password = "naver1122";
-		String phoneNumber = null;
+		String phoneNumber = (String) userInfo.get("phoneNumber");
 		String birth = null;
 		String joinType = "소셜";
 
@@ -54,6 +55,7 @@ public class NaverLoginController {
 		if (user == null) {
 			userBO.addUser(loginId, password, name, email, phoneNumber, birth, joinType);
 			user = userBO.existUserByLoginIdAndPassword(loginId, password);
+			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userName", user.getName());
 			session.setAttribute("email", user.getEmail());
@@ -62,6 +64,7 @@ public class NaverLoginController {
 			session.setAttribute("address", user.getAddress());
 			session.setAttribute("grade", user.getGrade());
 		} else {
+			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userName", user.getName());
 			session.setAttribute("email", user.getEmail());

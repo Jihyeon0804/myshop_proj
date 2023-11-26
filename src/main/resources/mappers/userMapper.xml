@@ -18,6 +18,7 @@
 	
 	<select id="selectUserByLoginIdAndPassword" parameterType="map" resultType="com.myshop.user.domain.User">
 		SELECT
+			`id`,
 			`loginId`,
 			`password`,
 			`name`,

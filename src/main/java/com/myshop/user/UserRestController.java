@@ -72,6 +72,7 @@ public class UserRestController {
 //		password = user.getPassword();
 		
 		if (user != null) {
+			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userName", user.getName());
 			session.setAttribute("email", user.getEmail());

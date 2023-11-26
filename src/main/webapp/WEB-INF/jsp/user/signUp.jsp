@@ -171,8 +171,6 @@ $(document).ready(function() {
 					$('#loginId').addClass('is-valid');
 					$('#validFeedback').removeClass('d-none');
 				}
-				
-				
 			}
 		});
 	});

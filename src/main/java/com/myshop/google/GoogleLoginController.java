@@ -56,6 +56,7 @@ public class GoogleLoginController {
 		if (user == null) {
 			userBO.addUser(loginId, password, name, email, phoneNumber, birth, joinType);
 			user = userBO.existUserByLoginIdAndPassword(loginId, password);
+			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userName", user.getName());
 			session.setAttribute("email", user.getEmail());
@@ -64,6 +65,7 @@ public class GoogleLoginController {
 			session.setAttribute("address", user.getAddress());
 			session.setAttribute("grade", user.getGrade());
 		} else {
+			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userName", user.getName());
 			session.setAttribute("email", user.getEmail());

@@ -27,7 +27,7 @@ public class MainController {
 	@GetMapping("/product")
 	public String productDetailView(Model model) {
 		model.addAttribute("viewName", "product/productDetails");
-		model.addAttribute("detailviewName", "product/include/qna");
+		model.addAttribute("detailviewName", "product/include/description");
 		
 		return "template/layout";
 	}
@@ -46,6 +46,4 @@ public class MainController {
 		model.addAttribute("viewName", "user/myPage");
 		return "template/layout";
 	}
-	
-	
 }
