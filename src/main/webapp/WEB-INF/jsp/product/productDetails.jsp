@@ -59,63 +59,94 @@
 		<!-- 상품 설명, 리뷰, 문의 영역 -->
 		<div class="prod-description-area">
 			<div class="description-button-area">
-				<a type="button" id="descriptionBtn" class="btn btn-light btn-lg">상품 설명</a>
-				<a href="/site-name/product/review" type="button" id="reviewBtn" class="btn btn-light btn-lg">리뷰</a>
-				<a type="button" id="qnaBtn" class="btn btn-light btn-lg">Q&amp;A</a>
+				<button type="button" id="descriptionBtn" class="btn btn-light btn-lg">상품 설명</button>
+				<button type="button" id="reviewBtn" class="btn btn-light btn-lg">리뷰</button>
+				<button type="button" id="qnaBtn" class="btn btn-light btn-lg">Q&amp;A</button>
 			</div>
 			
 			<!-- 상품 상세 영역 -->
-			<div class="description-area d-none">
-				description
+			<div id="includeArea">
+				<jsp:include page="../${detailviewName}.jsp"/>
 			</div>
-			
-			
-			<!-- 상품 문의 영역 -->
-			<div class="qna-area d-none">
-				description
-			</div>
-			
-			
-			<!-- dd -->
-			<jsp:include page="../${detailviewName}.jsp" />
 		</div>
 	</div>
 </div>
 
 <script>
 $(document).ready(function() {
+	
+	// 마이너스 버튼 클릭 시
+	$('.amount-minus').on('click', function() {
+		let amount = $('#amount').val();
+		let prodPrice = $('#price').data('price');
+		let changedPrice = $('#price').text();
+		if (amount > 1) {
+			// 수량 감소
+			amount--;
+			$('#amount').val(amount);
 
-		// 마이너스 버튼 클릭 시
-		$('.amount-minus').on('click', function() {
-			let amount = $('#amount').val();
-			let prodPrice = $('#price').data('price');
-			let changedPrice = $('#price').text();
-			if (amount > 1) {
-				// 수량 감소
-				amount--;
-				$('#amount').val(amount);
+			// 가격 변동
+			changedPrice = prodPrice * amount
+			$('#price').text(changedPrice);
 
-				// 가격 변동
-				changedPrice = prodPrice * amount
-				$('#price').text(changedPrice);
+		}
+	});
 
-			}
-		});
+	// 플러스 버튼 클릭 시
+	$('.amount-plus').on('click', function() {
+		let amount = $('#amount').val();
+		let prodPrice = $('#price').data('price');
+		let changedPrice = $('#price').text();
+		if (amount < 10) {
+			// 수량 증가
+			amount++;
+			$('#amount').val(amount);
 
-		// 플러스 버튼 클릭 시
-		$('.amount-plus').on('click', function() {
-			let amount = $('#amount').val();
-			let prodPrice = $('#price').data('price');
-			let changedPrice = $('#price').text();
-			if (amount < 10) {
-				// 수량 증가
-				amount++;
-				$('#amount').val(amount);
+			// 가격 변동
+			changedPrice = prodPrice * amount
+			$('#price').text(changedPrice);
+		}
+	});
+	
+	// 상품 설명 클릭 시
+	$('#descriptionBtn').on('click', function() {
+		
+		$.ajax({
+			// request
+			url:"/include/product-detail-view"
 
-				// 가격 변동
-				changedPrice = prodPrice * amount
-				$('#price').text(changedPrice);
+			// response
+			,success:function(data) {
+				$('#includeArea').html(data);
 			}
 		});
 	});
+	// 상품 설명 클릭 시
+	$('#reviewBtn').on('click', function() {
+		
+		$.ajax({
+			// request
+			url:"/include/product-review-view"
+
+			// response
+			,success:function(data) {
+				$('#includeArea').html(data);
+			}
+		});
+	});
+	// 상품 설명 클릭 시
+	$('#qnaBtn').on('click', function() {
+		
+		$.ajax({
+			// request
+			url:"/include/product-qna-view"
+
+			// response
+			,success:function(data) {
+				$('#includeArea').html(data);
+			}
+		});
+	});
+
+});
 </script>
