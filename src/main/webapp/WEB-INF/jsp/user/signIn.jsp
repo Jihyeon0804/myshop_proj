@@ -47,10 +47,9 @@
 			</a>
 			
 			<!-- 네이버 로그인 -->
-			<a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=87909384582
-			-c9e49ssd4i0r6p8c1j680n4iuls7puk3.apps.googleusercontent.com
-			&redirect_uri=http://localhost/google/login/result
-			&response_type=code&scope=email profile" class="btn" id="naverLoginBtn">
+			<a href="https://nid.naver.com/oauth2.0/authorize?&client_id=vD9bvsK1LSuUMv2nK4i9
+			&redirect_uri=http://localhost/naver/login/result
+			&&response_type=code&status=1234" class="btn" id="naverLoginBtn">
 				<img src="/static/img/naver_logo.png" width="30">
 				<span>네이버 로그인</span>
 			</a>
