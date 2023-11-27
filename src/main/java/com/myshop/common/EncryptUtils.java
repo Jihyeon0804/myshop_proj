@@ -6,38 +6,34 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class EncryptUtils {
 
-	
+	public static String alg = "AES/CBC/PKCS5Padding";
+	private final String key = "12345678910111213";
+	private final String iv = key.substring(0, 16); // 16byte
 
-	public static String encrypt(String message) throws Exception {
-		
-		String alg = "AES/CBC/PKCS5Padding";
-		String key = "01234567890123456789012345678901";
-		String iv = key.substring(0, 16);
-		
+	public String encrypt(String text) throws Exception {
 		Cipher cipher = Cipher.getInstance(alg);
-		SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(), "AES");
+		SecretKeySpec keySpec = new SecretKeySpec(iv.getBytes(), "AES");
 		IvParameterSpec ivParamSpec = new IvParameterSpec(iv.getBytes());
 		cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivParamSpec);
 
-		byte[] encrypted = cipher.doFinal(message.getBytes("UTF-8"));
+		byte[] encrypted = cipher.doFinal(text.getBytes("UTF-8"));
 		return Base64.getEncoder().encodeToString(encrypted);
 	}
 
-	public static String decrypt(String ciphermessage) throws Exception {
-		
-		String alg = "AES/CBC/PKCS5Padding";
-		String key = "01234567890123456789012345678901";
-		String iv = key.substring(0, 16);
-		
+	public String decrypt(String cipherText) throws Exception {
 		Cipher cipher = Cipher.getInstance(alg);
-		SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(), "AES");
+		SecretKeySpec keySpec = new SecretKeySpec(iv.getBytes(), "AES");
 		IvParameterSpec ivParamSpec = new IvParameterSpec(iv.getBytes());
 		cipher.init(Cipher.DECRYPT_MODE, keySpec, ivParamSpec);
 
-		byte[] decodedBytes = Base64.getDecoder().decode(ciphermessage);
+		byte[] decodedBytes = Base64.getDecoder().decode(cipherText);
 		byte[] decrypted = cipher.doFinal(decodedBytes);
 		return new String(decrypted, "UTF-8");
 	}
+
 }

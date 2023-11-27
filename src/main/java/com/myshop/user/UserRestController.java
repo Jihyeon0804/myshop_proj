@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myshop.common.EncryptUtils;
 import com.myshop.user.bo.UserBO;
 import com.myshop.user.domain.User;
 
@@ -20,6 +21,9 @@ public class UserRestController {
 
 	@Autowired
 	private UserBO userBO;
+	
+	@Autowired
+	private EncryptUtils encryptUtils;
 	
 	@PostMapping("/is-duplicated-id")
 	public Map<String, Object> isDuplicatedId(
@@ -48,9 +52,16 @@ public class UserRestController {
 			@RequestParam("phoneNumber") String phoneNumber,
 			@RequestParam("birth") String birth) {
 		
+		String hashedpw = "";
+		try {
+			hashedpw = encryptUtils.encrypt(password);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// insert
 		String joinType = "일반";
-		userBO.addUser(loginId, password, name, email, phoneNumber, birth, joinType);
+		userBO.addUser(loginId, hashedpw, name, email, phoneNumber, birth, joinType);
 		
 		// 응답
 		Map<String, Object> result = new HashMap<>();
@@ -68,7 +79,14 @@ public class UserRestController {
 			HttpSession session) {
 		
 		Map<String, Object> result = new HashMap<>();
-		User user = userBO.existUserByLoginIdAndPassword(loginId, password);
+		String hashedpw = "";
+		try {
+			hashedpw = encryptUtils.encrypt(password);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		User user = userBO.existUserByLoginIdAndPassword(loginId, hashedpw);
 //		password = user.getPassword();
 		
 		if (user != null) {

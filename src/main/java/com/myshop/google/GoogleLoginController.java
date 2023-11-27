@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.myshop.common.EncryptUtils;
 import com.myshop.google.bo.GoogleBO;
 import com.myshop.user.bo.UserBO;
 import com.myshop.user.domain.User;
@@ -29,6 +30,9 @@ public class GoogleLoginController {
 	
 	@Autowired
 	private UserBO userBO;
+	
+	@Autowired
+	private EncryptUtils encryptUtils;
 	
 	@GetMapping("/login/result")
 	public String googleLogin(@RequestParam("code") String code, HttpSession session) {
@@ -47,13 +51,19 @@ public class GoogleLoginController {
 		String loginId = (String) userInfo.get("loginId");
 		String name = (String) userInfo.get("name");
 		String email = (String) userInfo.get("email");
-		String password = "google1122";
+		String password = "";
+		try {
+			password = encryptUtils.encrypt("google11122");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String phoneNumber = null;
 		String birth = null;
 		String joinType = "소셜";
-
 		User user = userBO.existUserByLoginIdAndPassword(loginId, password);
 		if (user == null) {
+			
 			userBO.addUser(loginId, password, name, email, phoneNumber, birth, joinType);
 			user = userBO.existUserByLoginIdAndPassword(loginId, password);
 			session.setAttribute("userId", user.getId());

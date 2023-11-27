@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.myshop.common.EncryptUtils;
 import com.myshop.kakao.bo.KaKaoBO;
 import com.myshop.user.bo.UserBO;
 import com.myshop.user.domain.User;
@@ -30,6 +31,9 @@ public class KaKaoLoginController {
 
 	@Autowired
 	private UserBO userBO;
+	
+	@Autowired
+	private EncryptUtils encryptUtils;
 
 	@Transactional
 	@GetMapping("/login/result")
@@ -49,7 +53,13 @@ public class KaKaoLoginController {
 		String loginId = (String) userInfo.get("loginId");
 		String name = (String) userInfo.get("name");
 		String email = (String) userInfo.get("email");
-		String password = "kakao1122";
+		String password = "";
+		try {
+			password = encryptUtils.encrypt("kakao11122");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String phoneNumber = null;
 		String birth = null;
 		String joinType = "소셜";

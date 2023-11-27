@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.myshop.common.EncryptUtils;
 import com.myshop.naver.bo.NaverBO;
 import com.myshop.user.bo.UserBO;
 import com.myshop.user.domain.User;
@@ -30,6 +31,9 @@ public class NaverLoginController {
 	@Autowired
 	private UserBO userBO;
 	
+	@Autowired
+	private EncryptUtils encryptUtils;
+	
 	@GetMapping("/login/result")
 	public String naverLogin(@RequestParam("code") String code, HttpSession session) {
 		Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -46,7 +50,13 @@ public class NaverLoginController {
 		String loginId = (String) userInfo.get("loginId");
 		String name = (String) userInfo.get("name");
 		String email = (String) userInfo.get("email");
-		String password = "naver1122";
+		String password = "";
+		try {
+			password = encryptUtils.encrypt("naver11122");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String phoneNumber = (String) userInfo.get("phoneNumber");
 		String birth = null;
 		String joinType = "소셜";
