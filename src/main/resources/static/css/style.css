@@ -435,7 +435,7 @@ footer {
 }
 
 .user-info-box {
-	width: 800px;
+	width: 950px;
 	height: 150px;
 	background-color: gainsboro;
 }
@@ -449,4 +449,14 @@ footer {
 
 #includeArea {
 	min-height: 600px;
+}
+
+#cartTable {
+	text-align: center;
+}
+
+#cartTable td {
+	height: 130px;
+	text-align: center;
+	vertical-align: middle;
 }

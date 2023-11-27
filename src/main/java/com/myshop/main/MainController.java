@@ -46,4 +46,29 @@ public class MainController {
 		model.addAttribute("viewName", "user/myPage");
 		return "template/layout";
 	}
+	
+	@GetMapping("/my-page/order-view")
+	public String orderView() {
+		return "user/include/myOrder";
+	}
+	
+	@GetMapping("/my-page/cart-view")
+	public String cartView() {
+		return "user/include/myCart";
+	}
+	
+	@GetMapping("/my-page/like-view")
+	public String likeView() {
+		return "user/include/myPick";
+	}
+	
+	@GetMapping("/my-page/review-view")
+	public String ReviewView() {
+		return "user/include/myReview";
+	}
+	
+	@GetMapping("/my-page/info-revise-view")
+	public String infoReviseView() {
+		return "user/include/myInfoRevise";
+	}
 }
