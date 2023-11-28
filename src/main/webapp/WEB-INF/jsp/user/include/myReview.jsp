@@ -28,6 +28,5 @@
 			<button class="btn btn-ligth">리뷰 수정</button>
 			<button class="btn btn-ligth">리뷰 삭제</button>
 		</div>
-		
 	</div>
 </div>

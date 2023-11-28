@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,12 @@ public class UserRestController {
 	
 	@Autowired
 	private EncryptUtils encryptUtils;
+	
+	@Value("${my.admin-id}")
+	private String adminId;
+	
+	@Value("${my.admin-pw}")
+	private String adminPw;
 	
 	@PostMapping("/is-duplicated-id")
 	public Map<String, Object> isDuplicatedId(
@@ -53,10 +60,10 @@ public class UserRestController {
 			@RequestParam("birth") String birth) {
 		
 		String hashedpw = "";
+		
 		try {
 			hashedpw = encryptUtils.encrypt(password);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// insert
@@ -82,30 +89,37 @@ public class UserRestController {
 		String hashedpw = "";
 		try {
 			hashedpw = encryptUtils.encrypt(password);
+			adminPw = encryptUtils.encrypt(adminPw);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		User user = userBO.existUserByLoginIdAndPassword(loginId, hashedpw);
-//		password = user.getPassword();
 		
 		if (user != null) {
-			session.setAttribute("userId", user.getId());
-			session.setAttribute("userLoginId", user.getLoginId());
-			session.setAttribute("userName", user.getName());
-			session.setAttribute("email", user.getEmail());
-			session.setAttribute("phoneNumber", user.getPhoneNumber());
-			session.setAttribute("birth", user.getBirth());
-			session.setAttribute("address", user.getAddress());
-			session.setAttribute("grade", user.getGrade());
-			
-			result.put("code", 200);
-			result.put("result", "로그인 성공");
+			if (loginId.equals(adminId) || hashedpw.equals(adminPw)) {
+				session.setAttribute("userId", user.getId());
+				session.setAttribute("userLoginId", user.getLoginId());
+				session.setAttribute("userName", user.getName());
+				
+				result.put("code", 00);
+				result.put("result", "admin");
+			} else {
+				session.setAttribute("userId", user.getId());
+				session.setAttribute("userLoginId", user.getLoginId());
+				session.setAttribute("userName", user.getName());
+				session.setAttribute("email", user.getEmail());
+				session.setAttribute("phoneNumber", user.getPhoneNumber());
+				session.setAttribute("birth", user.getBirth());
+				session.setAttribute("address", user.getAddress());
+				session.setAttribute("grade", user.getGrade());
+				
+				result.put("code", 200);
+				result.put("result", "로그인 성공");
+			}
 		} else {
 			result.put("code", 500);
 			result.put("errorMessage", "일치하는 회원 정보가 없습니다.");
 		}
-
 		return result;
 	}
 }

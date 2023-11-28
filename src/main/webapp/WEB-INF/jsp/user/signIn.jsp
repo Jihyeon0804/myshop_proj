@@ -78,6 +78,8 @@ $(document).ready(function() {
 			,success:function(data) {
 				if (data.code == 200) {
 					location.href="/site-name"
+				} else if (data.code == 00) {
+					location.href="/admin/main"
 				} else {
 					alert(data.errorMessage);
 				}

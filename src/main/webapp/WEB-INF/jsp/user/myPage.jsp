@@ -5,7 +5,7 @@
 	<div class="my-page-area d-flex">
 		<!-- 마이페이지 메뉴 영역 -->
 		<div class="my-page-menu-list">
-			<div><h3>마이페이지</h3></div>
+			<h3>마이페이지</h3>
 			<ul class="nav flex-column">
 				<li class="nav-item">
 					<button id="myOrder" class="nav-link btn">주문/배송 조회</button>
