@@ -19,7 +19,9 @@ public class AdminController {
 	private UserAdminBO userAdminBO;
 	
 	@RequestMapping("/main")
-	public String adminMainView() {
+	public String adminMainView(Model model) {
+		List<Map<String, Object>> userList = userAdminBO.getUserList();
+		model.addAttribute("userList", userList);
 		return "admin/admin";
 	}
 	

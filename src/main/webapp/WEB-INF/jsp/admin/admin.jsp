@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,66 +36,88 @@
 			</div>
 		</header>
 		<section class="d-flex">
-			<div class="admin-menu-list">
-				<h3>관리자 페이지</h3>
-				<ul class="nav flex-column">
-					<li class="nav-item">
-						<button id="userManagement" class="nav-link btn">회원 관리</button>
-					</li>
-					<li class="nav-item">
-						<button id="orderManagement" class="nav-link btn">주문 관리</button>
-					</li>
-					<li class="nav-item">
-						<button id="productManagement" class="nav-link btn">상품 관리</button>
-					</li>
-					<li class="nav-item">
-						<button id="clientManagement" class="nav-link btn">고객 문의</button>
-					</li>
-				</ul>
-			</div>
-			<div id="adminContents">
-				<div class="d-flex">
-					<div>
-						<div>회원 수</div>
-						<div>N</div>
-					</div>
-					<div>
-						<div>주문 건수</div>
-						<div>N</div>
-					</div>
-					<div>
-						<div>고객 문의</div>
-						<div>N</div>
-					</div>
-					<div>
-						<div>총 매출액</div>
-						<div>N</div>
-					</div>
+			<div class="admin-box">
+				<div class="admin-menu-list">
+					<span>관리자 페이지</span>
+					<ul class="nav flex-column">
+						<li class="nav-item">
+							<button id="userManagement" class="nav-link btn">회원 관리</button>
+						</li>
+						<li class="nav-item">
+							<button id="orderManagement" class="nav-link btn">주문 관리</button>
+						</li>
+						<li class="nav-item">
+							<button id="productManagement" class="nav-link btn">상품 관리</button>
+						</li>
+						<li class="nav-item">
+							<button id="clientManagement" class="nav-link btn">고객 문의</button>
+						</li>
+					</ul>
 				</div>
-				<div>
-					<h4>최근 주문 내역</h4>
-					<table class="table text-center">
-						<thead>
-							<tr>
-								<th>상품번호</th>
-								<th>주문자 아이디</th>
-								<th>주문자명</th>
-								<th>가격</th>
-								<th>요청사항</th>
-								<th>상태</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-							</tr>
-						</tbody>
-					</table>
+				<div id="adminContents">
+					<div class="d-flex site-info">
+						<div class="info-box">
+							<div>
+								<div>
+									<img src="/static/img/admin-user-icon.png" width="30">
+								</div>
+								<div class="info-title">회원 수</div>
+								<div class="info-amount">${fn:length(userList)}</div>
+							</div>
+						</div>
+						<div class="info-box">
+							<div>
+								<div>
+									<img src="/static/img/admin-order-icon.png" width="30">
+								</div>
+								<div class="info-title">주문 건수</div>
+								<div class="info-amount">N</div>
+							</div>
+						</div>
+						<div class="info-box">
+							<div>
+								<div>
+									<img src="/static/img/admin-inquiry-icon.png" width="30">
+								</div>
+								<div class="info-title">고객 문의</div>
+								<div class="info-amount">N</div>
+							</div>
+						</div>
+						<div class="info-box">
+							<div>
+								<div>
+									<img src="/static/img/admin-amount-icon.png" width="30">
+								</div>
+								<div class="info-title">총 매출액</div>
+								<div class="info-amount">N</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<h4>최근 주문 내역</h4>
+						<table class="table text-center">
+							<thead>
+								<tr>
+									<th>상품번호</th>
+									<th>주문자 아이디</th>
+									<th>주문자명</th>
+									<th>가격</th>
+									<th>요청사항</th>
+									<th>상태</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>1</td>
+									<td>1</td>
+									<td>1</td>
+									<td>1</td>
+									<td>1</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</section>
