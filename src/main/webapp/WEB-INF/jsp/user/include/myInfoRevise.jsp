@@ -25,8 +25,9 @@
 		
 		<label>주소</label>
 		<div class="d-flex">
-			<input class="form-control col-6" type="text">
-			<button class="btn btn-ligth border">우편번호 검색</button>
+			<input id="searchAddress" class="form-control col-6" type="text">
+			<input id="address_detail" name="address_detail" class="form-control col-6" type="text">
+			<button id="address" class="btn btn-ligth border">우편번호 검색</button>
 		</div>
 		
 		
@@ -35,19 +36,22 @@
 	</div>
 </div>
 
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script>
-$(document).ready(function() {
-	
-	// 생년월일 datepicker
-	$('#birth').datepicker({
-		dateFormat:"yy-mm-dd",
-	    changeMonth: true,
-	    changeYear: true,
-	    yearRange:'c-100:c+0',
-	    showMonthAfterYear: true,
-	    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	    dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
-	    maxDate: 0
+	$(document).ready(function() {
+		
+		// 생년월일 datepicker
+		$('#birth').datepicker({
+			dateFormat:"yy-mm-dd",
+		    changeMonth: true,
+		    changeYear: true,
+		    yearRange:'c-100:c+0',
+		    showMonthAfterYear: true,
+		    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		    dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+		    maxDate: 0
+		});
 	});
-});
 </script>
