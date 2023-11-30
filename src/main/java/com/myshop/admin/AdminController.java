@@ -10,11 +10,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.myshop.admin.user.bo.UserAdminBO;
+import com.myshop.category.bo.CategoryBO;
+import com.myshop.category.entity.CategoryEntity;
+import com.myshop.subclass.bo.SubclassBO;
+import com.myshop.subclass.entity.SubclassEntity;
 
 @RequestMapping("/admin")
 @Controller
 public class AdminController {
 
+	@Autowired
+	private SubclassBO subclassBO;
+	
+	@Autowired
+	private CategoryBO categoryBO;
+	
 	@Autowired
 	private UserAdminBO userAdminBO;
 	
@@ -36,7 +46,11 @@ public class AdminController {
 		return "admin/order";
 	}
 	@GetMapping("/product")
-	public String adminProductView() {
+	public String adminProductView(Model model) {
+		List<CategoryEntity> categoryList = categoryBO.getCategoryEntity();
+		List<SubclassEntity> subclassList = subclassBO.getSubclassEntity();
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("subclassList", subclassList);
 		return "admin/product";
 	}
 	@GetMapping("/inquiry")

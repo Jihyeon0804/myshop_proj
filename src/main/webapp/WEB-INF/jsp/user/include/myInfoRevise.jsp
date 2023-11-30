@@ -25,10 +25,6 @@
 			<div class="w-100">
 				<div class="d-flex justify-content-between">
 					<input id="zipNo" class="form-control col-7" type="text">
-					<!--
-					<a href="https://business.juso.go.kr/addrlink/addrLinkUrl.do?
-					confmKey=devU01TX0FVVEgyMDIzMTEyOTExNTEzMTExNDMxNzA%3D
-					&returnUrl=http://localhost/address/search" id="searchAddress" class="btn btn-light">주소 찾기</a>  -->
 					<button id="addressSearch" type="button" class="btn" onclick="goPopup();">주소 찾기</button>
 				</div>
 				<input id="roadAddrPart1" class="form-control" type="text">

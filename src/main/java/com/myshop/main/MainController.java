@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.myshop.aop.TimeTrace;
+
 @RequestMapping("/site-name")
 @Controller
 public class MainController {
@@ -18,6 +20,7 @@ public class MainController {
 		return "template/layout";
 	}
 	
+	@TimeTrace
 	@GetMapping("/sign-in-view")
 	public String signInView(Model model) {
 		model.addAttribute("viewName", "user/signIn");
