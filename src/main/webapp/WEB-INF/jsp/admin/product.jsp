@@ -46,11 +46,12 @@
         		<option data-id="${categoryList.id}">${categoryList.category}</option>
         	</c:forEach>
         </select>
-        <label>소분류</label>
-		<select id="subclass" class="product-subclass form-control">
-        	<option selected disabled>소분류</option>
-        	
-        </select>
+        <div class="subclass-box">
+	        <label>소분류</label>
+			<select id="subclass" class="product-subclass form-control">
+				<option selected disabled>소분류</option>
+	        </select>
+        </div>
         <label>정가</label><input type="text" class="form-control">
         <label>할인가</label><input type="text" class="form-control">
       </div>
@@ -73,6 +74,14 @@ $(document).ready(function() {
 			, data:{"categoryId":categoryId}
 		
 			, success:function(data) {
+				$('#subclass').empty();
+				$('#subclass').append($("<option selected disabled>소분류</option>"));
+				for (var i = 0; i < data.length; i++) {
+					if (data[i].categoryId == categoryId) {
+						var option = $("<option>" + data[i].subclass + "</option>");
+						$('#subclass').append(option);
+					}
+				}
 			}
 		});
 	});
