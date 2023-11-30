@@ -250,7 +250,19 @@ footer {
 	}
 	
 
-#carousel {width: 1200px; height: 400px;}
+#carousel {
+	width: 2000px;
+	height: 500px; 
+}
+
+.carousel-caption {
+	width: 40%;
+	height: 470px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0px;
+}
 
 .carousel-indicators li {border-radius: 50%; width: 10px; height: 10px; margin: 0px 5px;}
 .carousel-indicators .active {background-color: lemonchiffon;}
