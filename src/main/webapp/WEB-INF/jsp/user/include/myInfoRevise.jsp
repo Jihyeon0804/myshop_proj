@@ -24,15 +24,15 @@
 		<div class="address-box">
 			<div class="w-100">
 				<div class="d-flex justify-content-between">
-					<input id="zipCode" class="form-control col-7" type="text">
+					<input id="zipNo" class="form-control col-7" type="text">
 					<!--
 					<a href="https://business.juso.go.kr/addrlink/addrLinkUrl.do?
 					confmKey=devU01TX0FVVEgyMDIzMTEyOTExNTEzMTExNDMxNzA%3D
 					&returnUrl=http://localhost/address/search" id="searchAddress" class="btn btn-light">주소 찾기</a>  -->
-					<button id="addressSearch" type="button" class="btn" onclick="goPopup()">주소 찾기</button>
+					<button id="addressSearch" type="button" class="btn" onclick="goPopup();">주소 찾기</button>
 				</div>
-				<input id="address" class="form-control" type="text">
-				<input id="addressDetail" class="form-control" type="text">
+				<input id="roadAddrPart1" class="form-control" type="text">
+				<input id="addrDetail" class="form-control" type="text">
 			</div>
 		</div>
 		
@@ -58,18 +58,15 @@ $(document).ready(function() {
 	});
 	
 });
+</script>
+<script>
 function goPopup() {
-	//주소찾기 버튼을 누르면 절대경로로 팝업창을 오픈
-	var url = location.href;
-	var pop = window.open("https://business.juso.go.kr/addrlink/addrLinkUrl.do?"
-			+ "confmKey=devU01TX0FVVEgyMDIzMTEyOTExNTEzMTExNDMxNzA%3D" + "&returnUrl=" + url
-			,"pop","width=570,height=420, scrollbars=yes, resizable=yes"); 		
+	 var pop = window.open("/address/juso","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 }
 
-function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
-		//콜백 방식으로 받아온 데이터를 가입 폼에 자동 완성해주겠다.
-		docuement.getElementById('address').value = roadAddrPart1;
-		docuement.getElementById('addressDetail').value = addrDetail + roadAddrPart2;
-		docuement.getElementById('zipCode').value = zipNo;
+function jusoCallBack(roadAddrPart1, addrDetail, raodAddrPart2, zipNo) {
+	$('#zipNo').val(zipNo);
+	$('#roadAddrPart1').val(roadAddrPart1);
+	$('#addrDetail').val(addrDetail + ' ' + raodAddrPart2);
 }
 </script>
