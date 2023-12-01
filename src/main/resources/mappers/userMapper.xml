@@ -4,7 +4,17 @@
 
 <mapper namespace="com.myshop.user.mapper.UserMapper">
 	<select id="selectUserList" resultType="map">
-		select * from `user`;
+		SELECT
+			`id`,
+			`loginId`,
+			`name`,
+			`email`,
+			`phoneNumber`,
+			`birth`,
+			`createdAt`,
+			`updatedAt`
+		FROM 
+			`user`
 	</select>
 	
 	<select id="selectUserCountByLoginId" resultType="int">

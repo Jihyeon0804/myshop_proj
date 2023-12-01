@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="qna-area">
 	<div>
 		<div class="qna-btn-area mt-5">
@@ -8,7 +9,7 @@
 		</div>
 		
 		<div class="modal fade" id="inquireModal">
-		  <div class="modal-dialog modal-xl">
+		  <div class="modal-dialog modal-xl modal-dialog-centered">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <h5 class="modal-title" id="inquireTitle">문의하기</h5>
@@ -50,16 +51,24 @@
 		<!-- 문의 목록 -->
 		<div class="d-flex justify-content-center">
 			<div class="inquire-list-box">
+			<c:forEach items="${inquireList}" var="inquire">
+			<c:forEach items="${userList}" var="user">
+			<c:if test="${user.id eq inquire.userId}">
+				<div class="d-flex justify-content-between mt-3">
+					<div class="non-comment">답변 예정</div>
+					<div class="inquire-title">${inquire.title}</div>
+					<div>${user.loginId}</div>
+				</div>
+			</c:if>
+			</c:forEach>
+			</c:forEach>
+				
 				<div class="d-flex justify-content-between mt-3">
 					<div class="exist-comment">답변 완료</div>
 					<div class="inquire-title">문의 제목</div>
 					<div>작성자 아이디</div>
 				</div>
-				<div class="d-flex justify-content-between mt-3">
-					<div class="non-comment">답변 예정</div>
-					<div class="inquire-title">문의 제목</div>
-					<div>작성자 아이디</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>

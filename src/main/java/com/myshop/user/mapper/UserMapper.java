@@ -1,7 +1,6 @@
 package com.myshop.user.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -11,8 +10,7 @@ import com.myshop.user.domain.User;
 @Repository
 public interface UserMapper {
 
-	// 테스트용
-	public List<Map<String, Object>> selectUserList();
+	public List<User> selectUserList();
 	
 	// input : loginId
 	// output : int

@@ -24,4 +24,19 @@
 			, NOW()
 		)
 	</insert>
+	
+	<select id="selectInquire" resultType="map">
+		SELECT
+			`id`
+			,`userId`
+			,`productId`
+			,`type`
+			,`title`
+			,`content`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`inquire`
+		ORDER BY `id` DESC
+	</select>
 </mapper>

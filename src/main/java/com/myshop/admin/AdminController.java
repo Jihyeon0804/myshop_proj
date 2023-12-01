@@ -12,12 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.myshop.admin.user.bo.UserAdminBO;
 import com.myshop.category.bo.CategoryBO;
 import com.myshop.category.entity.CategoryEntity;
+import com.myshop.inquire.bo.InquireBO;
+import com.myshop.inquire.domain.Inquire;
 import com.myshop.subclass.bo.SubclassBO;
 import com.myshop.subclass.entity.SubclassEntity;
+import com.myshop.user.bo.UserBO;
+import com.myshop.user.domain.User;
 
 @RequestMapping("/admin")
 @Controller
 public class AdminController {
+	
+	@Autowired
+	private InquireBO inquireBO;
+	
+	@Autowired
+	private UserBO userBO;
 
 	@Autowired
 	private SubclassBO subclassBO;
@@ -54,7 +64,11 @@ public class AdminController {
 		return "admin/product";
 	}
 	@GetMapping("/inquiry")
-	public String adminInquiryView() {
+	public String adminInquiryView(Model model) {
+		List<Inquire> inquireList = inquireBO.getInquire();
+		List<User> userList = userBO.getUserList();
+		model.addAttribute("inquireList", inquireList);
+		model.addAttribute("userList", userList);
 		return "admin/clientInquiry";
 	}
 }

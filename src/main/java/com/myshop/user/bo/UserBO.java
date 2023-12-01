@@ -1,5 +1,7 @@
 package com.myshop.user.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,9 @@ public class UserBO {
 	// output : boolean
 	public User existUserByLoginIdAndPassword(String loginId, String password) {
 		return userMapper.selectUserByLoginIdAndPassword(loginId, password);
+	}
+	
+	public List<User> getUserList() {
+		return userMapper.selectUserList();
 	}
 }

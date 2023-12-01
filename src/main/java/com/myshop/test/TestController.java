@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.myshop.user.domain.User;
 import com.myshop.user.mapper.UserMapper;
 
 @Controller
@@ -45,7 +46,7 @@ public class TestController {
 	// 4. DB 연동 Response Body -> JSON
 	@ResponseBody
 	@GetMapping("/test4")
-	public List<Map<String, Object>> test4() {
+	public List<User> test4() {
 		return userMapper.selectUserList();
 	}
 }
