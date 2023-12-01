@@ -1,5 +1,6 @@
 package com.myshop.qna.domain;
 
+import com.myshop.answer.entity.AnswerEntity;
 import com.myshop.inquire.domain.Inquire;
 import com.myshop.user.domain.User;
 
@@ -12,7 +13,7 @@ public class Qna {
 	
 	private Inquire inquire;
 	
-	// private Answer answer;
+	private AnswerEntity answer;
 	
-	private boolean isAnswer;
+	private boolean answerStatus;
 }

@@ -41,4 +41,9 @@ public class UserBO {
 	public List<User> getUserList() {
 		return userMapper.selectUserList();
 	}
+	
+	
+	public User getUserById(int userId) {
+		return userMapper.selectUserById(userId);
+	}
 }

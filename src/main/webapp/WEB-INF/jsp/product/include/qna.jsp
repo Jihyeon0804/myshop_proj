@@ -49,26 +49,20 @@
 		</div>
 
 		<!-- 문의 목록 -->
-		<div class="d-flex justify-content-center">
+		<div class="d-flex justify-content-center inquire-list">
 			<div class="inquire-list-box">
-			<c:forEach items="${inquireList}" var="inquire">
-			<c:forEach items="${userList}" var="user">
-			<c:if test="${user.id eq inquire.userId}">
+			<c:forEach items="${qnaList}" var="qna">
 				<div class="d-flex justify-content-between mt-3">
-					<div class="non-comment">답변 예정</div>
-					<div class="inquire-title">${inquire.title}</div>
-					<div>${user.loginId}</div>
+					<c:if test="${not empty qna.answer}">
+						<div class="exist-comment">답변 완료</div>
+					</c:if>
+					<c:if test="${empty qna.answer}">
+						<div class="non-comment">답변 예정</div>
+					</c:if>
+					<div class="inquire-title">${qna.inquire.title}</div>
+					<div class="inquire-writer">${qna.user.loginId}</div>
 				</div>
-			</c:if>
 			</c:forEach>
-			</c:forEach>
-				
-				<div class="d-flex justify-content-between mt-3">
-					<div class="exist-comment">답변 완료</div>
-					<div class="inquire-title">문의 제목</div>
-					<div>작성자 아이디</div>
-				</div>
-				
 			</div>
 		</div>
 	</div>
