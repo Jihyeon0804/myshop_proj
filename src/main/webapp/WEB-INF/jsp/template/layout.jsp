@@ -18,8 +18,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/static/img/coffee-icon.png">
 </head>
 <body>
-	<div id="wrap" class="bg-primary">
-		<header class="bg-warning">
+	<div id="wrap">
+		<header>
 			<jsp:include page="../include/header.jsp" />
 		</header>
 		<div class="gnb-area d-flex justify-content-center">
