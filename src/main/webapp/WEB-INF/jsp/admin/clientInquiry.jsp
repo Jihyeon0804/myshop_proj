@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="admin-inquiry-box">
 	<h3>고객 문의 관리</h3>
 	<table class="table text-center mt-3">
@@ -17,19 +18,20 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${inquireList}" var="inquire" varStatus="status">
-		<c:forEach items="${userList}" var="user">
-		<c:if test="${user.id eq inquire.userId}">
+		<c:forEach items="${qnaList}" var="qna" varStatus="status">
 			<tr>
 				<td>${status.count}</td>
-				<td>${user.loginId}</td>
-				<td>${inquire.title}</td>
-				<td>${inquire.createdAt}</td>
+				<td>${qna.user.loginId}</td>
+				<td>${qna.inquire.title}</td>
+				<td><fmt:formatDate value="${qna.inquire.createdAt}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+			<c:if test="${not empty qna.answer}">
+				<td>Y</td>
+			</c:if>
+			<c:if test="${empty qna.answer}">
 				<td>N</td>
+			</c:if>
 				<td><input type="checkbox" name="check"></td>
 			</tr>
-		</c:if>
-		</c:forEach>
 		</c:forEach>
 		</tbody>
 	</table>

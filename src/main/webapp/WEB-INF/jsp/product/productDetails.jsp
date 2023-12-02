@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="d-flex justify-content-center">
 	<div class="product-box">
 		<div class="prod-info-area d-flex">
 			<!-- 상품 이미지 영역 -->
 			<div class="prod-image">
-				<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지"
-					width="450">
+				<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지" width="500">
 			</div>
 	
 			<!-- 상품 정보 영역 -->
@@ -14,23 +14,58 @@
 				<div class="prod-name">
 					<span>커피창고 원두커피 200g 3봉</span>
 				</div>
-				<div class="prod-price d-flex mt-2">
-					<span class="origin-price mr-2">
-						<strike class="origin-price">21,000</strike>
-						<span>원</span>
-					</span> <span class="discount-price"> <span><strong>18,900</strong>원</span>
-					</span>
-				</div>
+				<!-- 상품 정보 -->
+				<table class="product-info-table">
+					<tbody>
+						<tr>
+							<th>식품 유형</th>
+							<td>커피</td>
+						</tr>
+						<tr>
+							<th>배송비</th>
+							<td>3,000원(50,000원 이상 구매시 무료)</td>
+						</tr>
+						<tr>
+							<th>소비자가</th>
+							<td><strike>14,600원</strike></td>
+						</tr>
+						<tr>
+							<th>판매가</th>
+							<td>9,900원	</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- 옵션 선택 -->
+				<table class="product-option-table">
+					<tbody>
+						<tr>
+							<th>분쇄 선택</th>
+							<td>
+								<select class="form-control">
+									<option selected disabled>옵션을 선택해주세요</option>
+									<option>프렌치 브레스 분쇄</option>
+									<option>더치 분쇄</option>
+									<option>모카포트 분쇄</option>
+									<option>에스프레소 분쇄</option>
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!--  수량 버튼 -->
 				<div class="prod-amount-area">
 					<div class="prod-amount-box d-flex">
 						<div class="title">
 							<span>구매 수량</span>
 						</div>
 						<div class="d-flex">
+							<!--  수량 증가 (최대 10개) -->
 							<button type="button" class="btn btn-light amount-minus border">
 								<img src="/static/img/minus-icon.png" alt="minus" width="23">
 							</button>
+							<!-- 수량 -->
 							<input type="text" class="form-control" id="amount" value="1">
+							<!-- 수량 감소 -->
 							<button type="button" class="btn btn-light amount-plus border">
 								<img src="/static/img/plus-icon.png" alt="plus" width="23">
 							</button>
@@ -46,9 +81,23 @@
 						</div>
 					</div>
 					<div class="order-button-box d-flex">
-						<button type="button" id="addLikeBtn" class="btn">
-							<img src="/static/img/full-heart-icon.png" alt="is-product-like">
-						</button>
+						<!-- 찜하기 버튼 -->
+						<c:choose>
+							<%-- 좋아요를 누르지 않았을 경우(false) ; 빈하트 : 1) 비로그인 2) 좋아요를 누르지 않았을 경우&&로그인된 상태 --%>
+							<c:when test="${likeStatus eq false}">
+							<button type="button" id="addLikeBtn" class="btn" data-product-id="1">
+								<img src="/static/img/empty-heart-icon.png" alt="is-product-like">
+							</button>
+							</c:when>
+							
+							<%-- 좋아요를 눌렀을 경우(true) ; 꽉 찬 하트 : 좋아요를 누르지 않았을 경우&&로그인된 상태 --%>
+							<c:otherwise>
+							<button type="button" id="addLikeBtn" class="btn" data-product-id="1">
+								<img src="/static/img/full-heart-icon.png" alt="is-product-like">
+							</button>
+							</c:otherwise>
+						</c:choose>
+						
 						<button type="button" id="addCartBtn" class="btn btn-lg btn-light">장바구니 담기</button>
 						<button type="button" id="orderBtn" class="btn btn-lg btn-danger">결제하기</button>
 					</div>
@@ -108,6 +157,30 @@ $(document).ready(function() {
 		}
 	});
 	
+	// 찜하기 버튼 클릭 시
+	$('#addLikeBtn').on('click', function() {
+		let productId = $(this).data("product-id");
+		
+		$.ajax({
+			// request
+			url:"/like/" + productId
+			
+			// response
+			, success:function(data) {
+				if (data.code == 200) {
+					location.reload();
+				} else if (data.code == 500) {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(request, status, error) {
+				alert("다시 시도해 주세요");
+			}
+		});
+		
+	});
+	
+	
 	// 상품 설명 클릭 시
 	$('#descriptionBtn').on('click', function() {
 		
@@ -121,7 +194,7 @@ $(document).ready(function() {
 			}
 		});
 	});
-	// 상품 설명 클릭 시
+	// 리뷰 클릭 시
 	$('#reviewBtn').on('click', function() {
 		
 		$.ajax({
@@ -134,7 +207,7 @@ $(document).ready(function() {
 			}
 		});
 	});
-	// 상품 설명 클릭 시
+	// 상품 문의 클릭 시
 	$('#qnaBtn').on('click', function() {
 		
 		$.ajax({
@@ -147,6 +220,5 @@ $(document).ready(function() {
 			}
 		});
 	});
-
 });
 </script>

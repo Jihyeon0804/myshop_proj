@@ -3,6 +3,8 @@ package com.myshop.admin;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,22 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.myshop.admin.user.bo.UserAdminBO;
 import com.myshop.category.bo.CategoryBO;
 import com.myshop.category.entity.CategoryEntity;
-import com.myshop.inquire.bo.InquireBO;
-import com.myshop.inquire.domain.Inquire;
+import com.myshop.qna.bo.QnaBO;
+import com.myshop.qna.domain.Qna;
 import com.myshop.subclass.bo.SubclassBO;
 import com.myshop.subclass.entity.SubclassEntity;
-import com.myshop.user.bo.UserBO;
-import com.myshop.user.domain.User;
 
 @RequestMapping("/admin")
 @Controller
 public class AdminController {
 	
 	@Autowired
-	private InquireBO inquireBO;
-	
-	@Autowired
-	private UserBO userBO;
+	private QnaBO qnaBO;
 
 	@Autowired
 	private SubclassBO subclassBO;
@@ -64,11 +61,10 @@ public class AdminController {
 		return "admin/product";
 	}
 	@GetMapping("/inquiry")
-	public String adminInquiryView(Model model) {
-		List<Inquire> inquireList = inquireBO.getInquire();
-		List<User> userList = userBO.getUserList();
-		model.addAttribute("inquireList", inquireList);
-		model.addAttribute("userList", userList);
+	public String adminInquiryView(Model model, HttpSession session) {
+		Integer userId = (Integer)session.getAttribute("userId");
+		List<Qna> qnaList = qnaBO.generateQnaList(userId);
+		model.addAttribute("qnaList", qnaList);
 		return "admin/clientInquiry";
 	}
 }

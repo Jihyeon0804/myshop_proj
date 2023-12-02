@@ -2,6 +2,7 @@ package com.myshop.main;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,11 +10,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.myshop.aop.TimeTrace;
+import com.myshop.like.bo.LikeBO;
 
 @RequestMapping("/site-name")
 @Controller
 public class MainController {
-
+	
+	@Autowired
+	private LikeBO likeBO;
+	
 	@GetMapping("")
 	public String siteView(Model model) {
 		model.addAttribute("viewName", "main/main");
@@ -27,11 +32,13 @@ public class MainController {
 		return "template/layout";
 	}
 	
-	@GetMapping("/product")
-	public String productDetailView(Model model) {
+	@GetMapping("/product/{productId}")
+	public String productDetailView(Model model, @PathVariable int productId, HttpSession session) {
+		Integer userId = (Integer)session.getAttribute("userId");
+		boolean likeStatus = likeBO.likeStatus(productId, userId);
 		model.addAttribute("viewName", "product/productDetails");
 		model.addAttribute("detailviewName", "product/include/description");
-		
+		model.addAttribute("likeStatus", likeStatus);
 		return "template/layout";
 	}
 	
