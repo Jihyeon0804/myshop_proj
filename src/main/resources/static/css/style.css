@@ -79,7 +79,49 @@ header {
 	color: #999;
 }
 
+.util-area a:hover {
+	color: #999;
+	text-decoration: none;
+}
+
 .gnb-area {height: 45px; background-color: cadetblue;}
+
+.gnb-list a, .gnb-list a:hover  {
+	color: #000;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.gnb-list .nav-items {
+	display: flex;
+	align-items: center;
+	padding: 0px;
+}
+
+#cartegory {
+	display: flex;
+	align-items: center;
+}
+
+#cartegory:before {
+	content: "";
+    display: inline-block;
+    margin: 0 8px 0 0;
+    background: url(/static/img/list-icon.png) 0 14px no-repeat;
+    width: 24px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+#cartegory {
+  cursor: pointer;
+}
+
+
+.dropdown-content {
+	display: none;
+}
 
 section {
 	min-height: 900px;
@@ -252,7 +294,8 @@ footer {
 
 #carousel {
 	width: 2000px;
-	height: 500px; 
+	height: 500px;
+	z-index: 1;
 }
 
 .carousel-caption {
@@ -260,12 +303,32 @@ footer {
 	height: 470px;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	padding: 0px;
+	margin: 0px 0px 0px 100px;
 }
 
 .carousel-indicators li {border-radius: 50%; width: 10px; height: 10px; margin: 0px 5px;}
 .carousel-indicators .active {background-color: lemonchiffon;}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translate3d(0, 100%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translateZ(0);
+	}
+}
+
+.carousel-title {
+	position: relative;
+	animation: fadeInUp 2s;
+	display: flex;
+	justify-content: start;
+	margin: 10px 0px;
+	font-weight: bold;
+}
 
 .prod-list-area {width: 1200px; margin-top: 30px;}
 .prod-list-area ul {list-style: none; padding: 0px; display: grid; grid-template-columns: repeat(4, 1fr);}
@@ -277,7 +340,7 @@ footer {
 
 .prod-info-area {
 	width: 1500px;
-	height: 500px;
+	height: 800px;
 	margin: 30px 0px;
 	display: flex;
 	justify-content: center;
@@ -285,11 +348,27 @@ footer {
 }
 
 .prod-info {padding: 25px 0px 0px 0px;}
-.prod-image {margin: 0px 20px; display: flex; align-items: center;}
+.prod-image {margin: 25px 20px;}
 .prod-name {font-size: 25px; font-weight: bold;}
 .prod-price {width: 450px; height: 40px; align-items: end;}
 .origin-price {font-size: 20px; color: #aaa;}
 .discount-price {font-size: 28px; color: #e02020;}
+
+.product-info-table {
+    height: 250px;
+}
+
+.prod-info table th{
+    width: 100px;
+}
+
+.prod-info table td{
+    width: 300px;
+}
+
+.product-option-table {
+    height: 100px;
+}
 
 .prod-amount-area {
 	width: 450px;
@@ -302,8 +381,8 @@ footer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 10px 10px;
-	margin: 100px 0px 0px 0px;}
+	padding: 10px;
+	margin: 20px 0px 0px 0px;}
 .prod-amount-box {width: 410px; height: 30px; display: flex; justify-content: space-between;}
 .title {display: flex; align-items: center;}
 .amount-minus, .amount-plus {width: 32px; height: 32px; padding: 0px;}
@@ -314,7 +393,7 @@ footer {
 	display: flex;
 	justify-content: space-between;
 	padding: 0px 10px 10px 10px;
-	margin: 40px 0px 0px 0px;
+	margin: 30px 0px 0px 0px;
 	border-style: solid;
 	border-width: 0px 0px 2px 0px;
 	border-color: rgb(235, 65, 65);
@@ -330,7 +409,7 @@ footer {
 	height: 60px;
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0px 0px 0px;
+	margin: 15px 0px 0px 0px;
 }
 	
 #addLikeBtn {
@@ -357,6 +436,11 @@ footer {
 
 .description-button-area {display: flex; justify-content: center;}
 #descriptionBtn, #reviewBtn, #qnaBtn {width : 500px;}
+
+
+.description-img-box {
+	width: 900px;
+}
 
 .review-info-box {
 	width: 1100px;
