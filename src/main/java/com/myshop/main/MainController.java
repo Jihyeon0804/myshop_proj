@@ -1,5 +1,7 @@
 package com.myshop.main;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.myshop.aop.TimeTrace;
 import com.myshop.like.bo.LikeBO;
+import com.myshop.product.bo.ProductBO;
+import com.myshop.product.domain.Product;
 
 @RequestMapping("/site-name")
 @Controller
@@ -19,9 +23,14 @@ public class MainController {
 	@Autowired
 	private LikeBO likeBO;
 	
+	@Autowired
+	private ProductBO productBO;
+	
 	@GetMapping("")
 	public String siteView(Model model) {
+		List<Product> productList = productBO.getProductList();
 		model.addAttribute("viewName", "main/main");
+		model.addAttribute("productList", productList);
 		return "template/layout";
 	}
 	

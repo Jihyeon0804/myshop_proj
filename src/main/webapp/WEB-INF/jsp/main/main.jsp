@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<section class="bg-light">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<div>
 	<!-- 배너 영역 -->
-	<div class="d-flex justify-content-center">
+	<div class="d-flex justify-content-center banner-area">
 		<div id="carousel" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators m-0">
 				<li data-target="#carousel" data-slide-to="0" class="active"></li>
@@ -14,7 +16,7 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="/static/img/banner/banner1.jpg" alt="carousel1">
+					<img src="/static/img/banner/banner1.jpg" alt="carousel1" width="1500" height="400">
 					<div class="carousel-caption">
 						<div>
 							<h3 class="carousel-title">캐롤의 멜로디가 들리는</h3>
@@ -24,7 +26,7 @@
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="/static/img/banner/banner2.jpg" alt="carousel2">
+					<img src="/static/img/banner/banner2.jpg" alt="carousel2" width="1500" height="400">
 					<div class="carousel-caption">
 						<div>
 							<h3 class="carousel-title">이달의 쿠폰</h3>
@@ -34,7 +36,7 @@
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="/static/img/banner/banner3.gif" alt="carousel3">
+					<img src="/static/img/banner/banner3.gif" alt="carousel3" width="1500" height="400">
 					<div class="carousel-caption">
 						<div>
 							<h3 class="carousel-title">새해를 준비하는 마음가짐!</h3>
@@ -44,7 +46,7 @@
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="/static/img/banner/banner4.jpg" alt="carousel4">
+					<img src="/static/img/banner/banner4.jpg" alt="carousel4" width="1500" height="400">
 					<div class="carousel-caption">
 						<div>
 							<h3 class="carousel-title">이달의 원두</h3>
@@ -54,7 +56,7 @@
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="/static/img/banner/banner5.jpg" alt="carousel5">
+					<img src="/static/img/banner/banner5.jpg" alt="carousel5" width="1500" height="400">
 					<div class="carousel-caption">
 						<div>
 							<h3 class="carousel-title">이달의 생두</h3>
@@ -65,7 +67,7 @@
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="/static/img/banner/banner6.jpg" alt="carousel6">
+					<img src="/static/img/banner/banner6.jpg" alt="carousel6" width="1500" height="400">
 					<div class="carousel-caption">
 						<div>
 							<h3 class="carousel-title">장점만 쏙쏙 담았어요!</h3>
@@ -90,81 +92,27 @@
 	<div class="d-flex justify-content-center">
 		<div class="prod-list-area">
 			<ul>
-				<!-- 상품 1 -->
+			<!-- 상품 1 -->
+			<c:forEach items="${productList}" var="product" begin="1" end="15">
 				<li class="prod-area">
 					<div class="prod">
 						<div class="prod_thumbnail">
-							<a href="/site-name/product/1"> <img
-								src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지"
-								width="280">
+							<a href="/site-name/product/1">
+								<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지" width="280">
 							</a>
 						</div>
 						<div class="prod_detail">
-							<b>상품명</b> <span>가격</span> <span>리뷰 개수, 별점</span>
+							<b>${product.title}</b>
+							<span>
+								<fmt:formatNumber>${product.price}</fmt:formatNumber>원
+							</span>
+							<span>리뷰 개수, 별점</span>
 						</div>
 					</div>
 				</li>
-				<!-- 상품 2 -->
-				<li class="prod-area">
-					<div class="prod">
-						<div class="prod_thumbnail">
-							<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지"
-								width="280">
-						</div>
-						<div class="prod_detail">
-							<b>상품명</b> <span>가격</span> <span>리뷰 개수, 별점</span>
-						</div>
-					</div>
-				</li>
-				<!-- 상품 3 -->
-				<li class="prod-area">
-					<div class="prod">
-						<div class="prod_thumbnail">
-							<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지"
-								width="280">
-						</div>
-						<div class="prod_detail">
-							<b>상품명</b> <span>가격</span> <span>리뷰 개수, 별점</span>
-						</div>
-					</div>
-				</li>
-				<!-- 상품 4 -->
-				<li class="prod-area">
-					<div class="prod">
-						<div class="prod_thumbnail">
-							<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지"
-								width="280">
-						</div>
-						<div class="prod_detail">
-							<b>상품명</b> <span>가격</span> <span>리뷰 개수, 별점</span>
-						</div>
-					</div>
-				</li>
-				<!-- 상품 5 -->
-				<li class="prod-area">
-					<div class="prod">
-						<div class="prod_thumbnail">
-							<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지"
-								width="280">
-						</div>
-						<div class="prod_detail">
-							<b>상품명</b> <span>가격</span> <span>리뷰 개수, 별점</span>
-						</div>
-					</div>
-				</li>
-				<!-- 상품 6 -->
-				<li class="prod-area">
-					<div class="prod">
-						<div class="prod_thumbnail">
-							<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지"
-								width="280">
-						</div>
-						<div class="prod_detail">
-							<b>상품명</b> <span>가격</span> <span>리뷰 개수, 별점</span>
-						</div>
-					</div>
-				</li>
+			</c:forEach>
+			
 			</ul>
 		</div>
 	</div>
-</section>
+</div>
