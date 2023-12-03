@@ -22,9 +22,6 @@
 		<header>
 			<jsp:include page="../include/header.jsp" />
 		</header>
-		<div class="gnb-area d-flex justify-content-center">
-			<jsp:include page="../include/gnb.jsp" />
-		</div>
 		<section class="bg-white">
 			<jsp:include page="../${viewName}.jsp" />
 		</section>

@@ -1,19 +1,21 @@
 @charset "UTF-8";
-
 #wrap {
-	height: 1000px;
+	width: 100%;
+	min-width: 1200px;
 }
 
 header {
-	height: 130px;
+	display: flex;
+	justify-content: center;
+	height: 200px;
 }
 
 
 .header-area {
+	width: 1350px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	margin : 20px 650px 0px 100px;
+	gap: 150px;
 }
 
 .search-box {
@@ -26,6 +28,7 @@ header {
 	border-style: solid;
 	border-color: cadetblue;
 	border-width: 2px;
+	margin-left: 200px;
 }
 
 .input-box {
@@ -84,47 +87,97 @@ header {
 	text-decoration: none;
 }
 
-.gnb-area {height: 45px; background-color: cadetblue;}
-
-.gnb-list a, .gnb-list a:hover  {
+.header-menu-list a, .header-menu-list a:hover  {
 	color: #000;
 	text-decoration: none;
-	font-size: 16px;
-	font-weight: bold;
+	font-size: 20px;
 }
 
-.gnb-list .nav-items {
-	display: flex;
-	align-items: center;
-	padding: 0px;
-}
-
-#cartegory {
+#category {
 	display: flex;
 	align-items: center;
 }
 
-#cartegory:before {
+#category:before {
 	content: "";
     display: inline-block;
     margin: 0 8px 0 0;
     background: url(/static/img/list-icon.png) 0 14px no-repeat;
     width: 24px;
-    height: 40px;
+    height: 45px;
     vertical-align: middle;
 }
 
-#cartegory {
-  cursor: pointer;
+.header-menu-list {
+	height: 80px;
+	background-color: #fff;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 0px;
+	padding: 0px;
+}
+
+.header-menu-list-items {
+	display: inline-block;
 }
 
 
-.dropdown-content {
-	display: none;
+.header-menu-list-items-sub {
+	height: 0;
+	overflow: hidden;
+}
+
+
+.header-menu-list-items-sub {
+	display: flex;
+	justify-content: space-between;
+	position:absolute;
+
+}
+
+.header-menu-list-items-sub-items {
+	display: inline-block;
+}
+
+
+
+.header-menu-list-items:hover .header-menu-list-items-sub {
+	width: 95%;
+	height: 300px;
+	background-color: #fff;
+	z-index: 2;
+}
+
+
+
+.subclass-list {
+	height : inherit;
+	height: 0;
+	overflow: hidden;
+	position:absolute;
+}
+
+.header-menu-list-items-sub-items:hover .subclass-list {
+	list-style: none;
+	width: 200px;
+	height: fit-content;
+	background-color:#fff;
+	padding: 0px;
+}
+
+
+
+.banner-area {
+	 width: 1600px;
+	 position:relative;
+	 z-index: 1;
 }
 
 section {
 	min-height: 900px;
+	display: flex;
+	justify-content: center;
 }
 
 footer {
@@ -271,40 +324,24 @@ footer {
 
 .userInfo span {font-size: 20px; margin : 0px 11px 0px 11px;}
 
-.gnb-area nav {width: 1080px; height: 45px;}
-
-.gnb-area ul {
-    width: 100%;
-    height: 45px;
-    justify-content: space-around;
-}
-
-.gnb-area ul li {
-	list-style: none;
-    display: inline-block;
-    vertical-align: middle;
-    padding: 5px 0px 0px 0px;
-}
-
-.gnb-area ul li a {
-	vertical-align: middle;
-	
-	}
-	
 
 #carousel {
-	width: 2000px;
-	height: 500px;
+	width: 1350px;
+	height: 400px;
 	z-index: 1;
 }
 
+.carousel-control-prev, .carousel-control-next {
+	width: 150px;
+}
+
 .carousel-caption {
-	width: 40%;
-	height: 470px;
+	
+	height: 350px;
 	display: flex;
 	align-items: center;
 	padding: 0px;
-	margin: 0px 0px 0px 100px;
+	left: 150px;
 }
 
 .carousel-indicators li {border-radius: 50%; width: 10px; height: 10px; margin: 0px 5px;}
@@ -332,14 +369,14 @@ footer {
 
 .prod-list-area {width: 1200px; margin-top: 30px;}
 .prod-list-area ul {list-style: none; padding: 0px; display: grid; grid-template-columns: repeat(4, 1fr);}
-.prod-area {height: 390px; width: 300px;}
+.prod-area {height: 480px; width: 300px;}
 .prod {margin: 0px 10px; width: 280px;}
 .prod_detail {padding: 20px 0px;}
 .prod_detail > * {display: block;}
 
 
 .prod-info-area {
-	width: 1500px;
+	width: 1350px;
 	height: 800px;
 	margin: 30px 0px;
 	display: flex;
@@ -427,7 +464,7 @@ footer {
 }
 
 .prod-description-area {
-	width: 1500px;
+	width: 1350px;
 	min-height: 600px;
 	border-style: solid;
 	border-width: 2px 0px 0px 0px;
@@ -461,13 +498,13 @@ footer {
 .user-id-box, .review-created-date {color: #999;}
 
 .qna-area, .review-area, .description-area {
-	width: 1500px;
+	width: 1350px;
 	min-height: 600px;
 	display: flex;
 	justify-content: center;
 }
 .qna-btn-area {
-	width: 1500px;
+	width: 1350px;
 	margin: 10px 0px;
 	display: flex;
 	justify-content: center;
@@ -512,7 +549,7 @@ footer {
 }
 
 .inquire-list {
-	width: 1500px;
+	width: 1350px;
 }
 .inquire-list-box {
 	width: 1200px;
