@@ -2,8 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <div class="review-area">
+	<c:if test="${empty reviewList}">
+		<div class="empty-box">
+			<div class="text-center">
+				<img alt="없음" src="/static/img/empty-icon.png">
+				<div>등록된 리뷰가 없습니다.</div>
+			</div>
+		</div>
+	</c:if>
 	<div>
+	<c:if test="${not empty reviewList}">
 		<div>
 			<h2>상품 리뷰</h2>
 		</div>
@@ -50,7 +60,7 @@
 						</div>
 					</div>
 					<div class="review-created-date">
-						<fmt:formatDate value="${review.createdAt}" pattern="yyyy-MM-dd"/> 
+						${review.createdAt}"
 					</div>
 				</div>
 				<c:if test="${not empty review.imagePath}">
@@ -61,6 +71,7 @@
 			</div>
 			</c:forEach>
 		</div>
+		</c:if>
 	</div>
 </div>
 <script>
