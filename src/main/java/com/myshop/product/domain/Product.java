@@ -15,6 +15,8 @@ public class Product {
 	private String description;
 	private int price;
 	private int discountPrice;
+	private int stock;
+	private String productStatus;
 	private ZonedDateTime createdAt;
 	private ZonedDateTime updatedAt;
 }

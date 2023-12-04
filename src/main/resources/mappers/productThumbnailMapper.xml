@@ -1,0 +1,29 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myshop.product.mapper.ProductThumbnailMapper">
+	<select id="selectProductThumbnailByProductId"
+		parameterType="int"
+		resultType="com.myshop.product.domain.ProductThumbnail">
+		SELECT
+			`productId`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`product_thumbnail`
+		WHERE
+			`productId` = #{productId}
+	</select>
+	
+	<select id="selectProductThumbnailList"
+		resultType="map">
+		SELECT
+			`productId`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`product_thumbnail`
+	</select>
+</mapper>

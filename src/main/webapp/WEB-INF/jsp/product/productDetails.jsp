@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="d-flex justify-content-center">
 	<div class="product-box">
 		<div class="prod-info-area d-flex">
 			<!-- 상품 이미지 영역 -->
 			<div class="prod-image">
-				<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지" width="500">
+				<img src="${productComponent.productThumbnail.imagePath}" alt="썸네일 테스트 이미지" width="500">
 			</div>
 	
 			<!-- 상품 정보 영역 -->
 			<div class="prod-info">
 				<div class="prod-name">
-					<span>커피창고 원두커피 200g 3봉</span>
+					<span>${productComponent.product.title}</span>
 				</div>
 				<!-- 상품 정보 -->
 				<table class="product-info-table">
@@ -25,14 +26,22 @@
 							<th>배송비</th>
 							<td>3,000원(50,000원 이상 구매시 무료)</td>
 						</tr>
-						<tr>
-							<th>소비자가</th>
-							<td><strike>14,600원</strike></td>
-						</tr>
+						<c:if test="${productComponent.product.discountPrice ne 0}">
+							<tr>
+								<th>소비자가</th>
+								<td><strike><fmt:formatNumber>${productComponent.product.price}</fmt:formatNumber>원</strike></td>
+							</tr>
+							<tr>
+								<th>판매가</th>
+								<td><fmt:formatNumber>${productComponent.product.discountPrice}</fmt:formatNumber>원</td>
+							</tr>
+						</c:if>
+						<c:if test="${productComponent.product.discountPrice eq 0}">
 						<tr>
 							<th>판매가</th>
-							<td>9,900원	</td>
+							<td><fmt:formatNumber>${productComponent.product.price}</fmt:formatNumber>원</td>
 						</tr>
+						</c:if>
 					</tbody>
 				</table>
 				<!-- 옵션 선택 -->

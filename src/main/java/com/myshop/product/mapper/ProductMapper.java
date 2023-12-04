@@ -10,4 +10,6 @@ import com.myshop.product.domain.Product;
 public interface ProductMapper {
 
 	public List<Product> selectProductList();
+	
+	public Product selectProductById(int id);
 }

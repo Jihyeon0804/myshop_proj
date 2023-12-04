@@ -93,12 +93,14 @@
 		<div class="prod-list-area">
 			<ul>
 			<!-- 상품 1 -->
-			<c:forEach items="${productList}" var="product" begin="1" end="15">
+			<c:forEach items="${productList}" var="product" begin="0" end="15">
+			<c:forEach items="${productThumbnailList}" var="productTh" begin="0" end="15">
+				<c:if test="${productTh.productId eq product.id}">
 				<li class="prod-area">
 					<div class="prod">
 						<div class="prod_thumbnail">
-							<a href="/site-name/product/1">
-								<img src="/static/img/sample-thumbnail.jpg" alt="썸네일 테스트 이미지" width="280">
+							<a href="/site-name/product/${product.id}">
+								<img src="${productTh.imagePath}" alt="썸네일 테스트 이미지" width="280">
 							</a>
 						</div>
 						<div class="prod_detail">
@@ -110,8 +112,9 @@
 						</div>
 					</div>
 				</li>
+				</c:if>
 			</c:forEach>
-			
+			</c:forEach>
 			</ul>
 		</div>
 	</div>

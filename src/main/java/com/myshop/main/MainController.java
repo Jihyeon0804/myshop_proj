@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.myshop.aop.TimeTrace;
 import com.myshop.like.bo.LikeBO;
 import com.myshop.product.bo.ProductBO;
+import com.myshop.product.bo.ProductThumbnailBO;
 import com.myshop.product.domain.Product;
+import com.myshop.product.domain.ProductThumbnail;
+import com.myshop.productComponent.bo.ProductComponentBO;
+import com.myshop.productComponent.domain.ProductComponent;
 
 @RequestMapping("/site-name")
 @Controller
@@ -26,11 +30,20 @@ public class MainController {
 	@Autowired
 	private ProductBO productBO;
 	
+	@Autowired
+	private ProductThumbnailBO productThumbnailBO;
+	
+	@Autowired
+	private ProductComponentBO productComponentBO;
+	
 	@GetMapping("")
 	public String siteView(Model model) {
 		List<Product> productList = productBO.getProductList();
+		List<ProductThumbnail> productThumbnailList =  productThumbnailBO.getProductThumbnailList();
 		model.addAttribute("viewName", "main/main");
 		model.addAttribute("productList", productList);
+		model.addAttribute("productThumbnailList", productThumbnailList);
+		
 		return "template/layout";
 	}
 	
@@ -45,9 +58,11 @@ public class MainController {
 	public String productDetailView(Model model, @PathVariable int productId, HttpSession session) {
 		Integer userId = (Integer)session.getAttribute("userId");
 		boolean likeStatus = likeBO.likeStatus(productId, userId);
+		ProductComponent productComponent = productComponentBO.generateProductComponent(productId);
 		model.addAttribute("viewName", "product/productDetails");
 		model.addAttribute("detailviewName", "product/include/description");
 		model.addAttribute("likeStatus", likeStatus);
+		model.addAttribute("productComponent", productComponent);
 		return "template/layout";
 	}
 	
