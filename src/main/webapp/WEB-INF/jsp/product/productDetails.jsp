@@ -118,7 +118,7 @@
 		<div class="prod-description-area">
 			<div class="description-button-area">
 				<button type="button" id="descriptionBtn" class="btn btn-light btn-lg">상품 설명</button>
-				<button type="button" id="reviewBtn" class="btn btn-light btn-lg">리뷰</button>
+				<button type="button" id="reviewBtn" class="btn btn-light btn-lg" data-product-id="${productComponent.product.id}">리뷰</button>
 				<button type="button" id="qnaBtn" class="btn btn-light btn-lg">Q&amp;A</button>
 			</div>
 			
@@ -205,10 +205,11 @@ $(document).ready(function() {
 	});
 	// 리뷰 클릭 시
 	$('#reviewBtn').on('click', function() {
-		
+		let productId = $(this).data('product-id');
 		$.ajax({
 			// request
 			url:"/include/product-review-view"
+			, data:{"productId":productId}
 
 			// response
 			,success:function(data) {

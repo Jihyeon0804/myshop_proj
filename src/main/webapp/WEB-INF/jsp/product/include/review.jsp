@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="review-area">
 	<div>
 		<div>
@@ -19,14 +21,15 @@
 		<hr>
 		<div>
 			<div>리뷰</div>
-			<!-- 한 사용자의 리뷰 -->
 			<div>
 				<label>
-					<input type="checkbox">
+					<input type="checkbox" id="onlyPhoto">
 					사진 리뷰만 보기
 				</label>
 			</div>
-			<div>
+			<!-- 한 사용자의 리뷰 -->
+			<c:forEach items="${reviewList}" var="review">
+			<div class="prd-review">
 				<div class="d-flex justify-content-between">
 					<div class="d-flex">
 						<div class="mr-2 mt-1">
@@ -35,22 +38,39 @@
 						<div class="review-info d-flex">
 							<div>
 								<div class="d-flex">
+								<c:forEach begin="1" end="${review.point}">
 									<img src="/static/img/full-star-icon.png" alt="별점" width="30">
-									<img src="/static/img/full-star-icon.png" alt="별점" width="30">
-									<img src="/static/img/full-star-icon.png" alt="별점" width="30">
+								</c:forEach>
+								<c:forEach begin="1" end="${5-review.point}">
 									<img src="/static/img/empty-star-icon.png" alt="별점" width="30">
-									<img src="/static/img/empty-star-icon.png" alt="별점" width="30">
+								</c:forEach>
 								</div>
-								<div class="user-id-box">userId</div>
+								<div class="user-id-box">${review.userId}</div>
 							</div>
 						</div>
 					</div>
-					<div class="review-created-date">리뷰 작성 날짜</div>
+					<div class="review-created-date">
+						<fmt:formatDate value="${review.createdAt}" pattern="yyyy-MM-dd"/> 
+					</div>
 				</div>
-				<div>사진</div>
-				<div>리뷰 내용</div>
+				<c:if test="${not empty review.imagePath}">
+					<div class="review-image">${review.imagePath}</div>
+				</c:if>
+				<div>${review.content}</div>
 				<hr>
 			</div>
+			</c:forEach>
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function () {
+	$('#onlyPhoto').on('click', function() {
+		if ($(this).is(':checked')) {
+			$('div').has('review-image')
+		} else {
+			$('.prd-review').removeClass('d-none');
+		}
+	});
+});
+</script>
