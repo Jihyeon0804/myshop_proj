@@ -18,7 +18,7 @@
 	</select>
 	
 	<select id="selectProductThumbnailList"
-		resultType="map">
+		resultType="com.myshop.product.domain.ProductThumbnail">
 		SELECT
 			`productId`
 			, `imagePath`

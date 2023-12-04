@@ -3,7 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.myshop.product.mapper.ProductMapper">
-	<select id="selectProductList" resultType="map">
+	<select id="selectProductList" resultType="com.myshop.product.domain.Product">
 		SELECT
 			`id`
 			, `categoryId`

@@ -549,6 +549,16 @@ footer {
 	justify-content: center;
 }
 
+.empty-box {
+	height: 450px;
+	display: flex;
+	align-items: center;
+}
+
+.empty-box > div > div {
+	margin-top: 20px;
+}
+
 
 .non-comment {
 	width: 100px;

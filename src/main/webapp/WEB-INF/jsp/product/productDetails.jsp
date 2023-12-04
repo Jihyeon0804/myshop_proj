@@ -7,13 +7,13 @@
 		<div class="prod-info-area d-flex">
 			<!-- 상품 이미지 영역 -->
 			<div class="prod-image">
-				<img src="${productComponent.productThumbnail.imagePath}" alt="썸네일 테스트 이미지" width="500">
+				<img src="${productSet.productThumbnail.imagePath}" alt="썸네일 테스트 이미지" width="500">
 			</div>
 	
 			<!-- 상품 정보 영역 -->
 			<div class="prod-info">
 				<div class="prod-name">
-					<span>${productComponent.product.title}</span>
+					<span>${productSet.product.title}</span>
 				</div>
 				<!-- 상품 정보 -->
 				<table class="product-info-table">
@@ -26,20 +26,20 @@
 							<th>배송비</th>
 							<td>3,000원(50,000원 이상 구매시 무료)</td>
 						</tr>
-						<c:if test="${productComponent.product.discountPrice ne 0}">
+						<c:if test="${productSet.product.discountPrice ne 0}">
 							<tr>
 								<th>소비자가</th>
-								<td><strike><fmt:formatNumber>${productComponent.product.price}</fmt:formatNumber>원</strike></td>
+								<td><strike><fmt:formatNumber>${productSet.product.price}</fmt:formatNumber>원</strike></td>
 							</tr>
 							<tr>
 								<th>판매가</th>
-								<td><fmt:formatNumber>${productComponent.product.discountPrice}</fmt:formatNumber>원</td>
+								<td><fmt:formatNumber>${productSet.product.discountPrice}</fmt:formatNumber>원</td>
 							</tr>
 						</c:if>
-						<c:if test="${productComponent.product.discountPrice eq 0}">
+						<c:if test="${productSet.product.discountPrice eq 0}">
 						<tr>
 							<th>판매가</th>
-							<td><fmt:formatNumber>${productComponent.product.price}</fmt:formatNumber>원</td>
+							<td><fmt:formatNumber>${productSet.product.price}</fmt:formatNumber>원</td>
 						</tr>
 						</c:if>
 					</tbody>
@@ -118,8 +118,8 @@
 		<div class="prod-description-area">
 			<div class="description-button-area">
 				<button type="button" id="descriptionBtn" class="btn btn-light btn-lg">상품 설명</button>
-				<button type="button" id="reviewBtn" class="btn btn-light btn-lg" data-product-id="${productComponent.product.id}">리뷰</button>
-				<button type="button" id="qnaBtn" class="btn btn-light btn-lg">Q&amp;A</button>
+				<button type="button" id="reviewBtn" class="btn btn-light btn-lg" data-product-id="${productSet.product.id}">리뷰</button>
+				<button type="button" id="qnaBtn" class="btn btn-light btn-lg" data-product-id="${productSet.product.id}">Q&amp;A</button>
 			</div>
 			
 			<!-- 상품 상세 영역 -->
@@ -219,11 +219,12 @@ $(document).ready(function() {
 	});
 	// 상품 문의 클릭 시
 	$('#qnaBtn').on('click', function() {
-		
+		let productId = $(this).data('product-id');
 		$.ajax({
 			// request
 			url:"/include/product-qna-view"
-
+			, data:{"productId":productId}
+	
 			// response
 			,success:function(data) {
 				$('#includeArea').html(data);
