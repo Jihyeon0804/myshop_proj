@@ -17,5 +17,5 @@ public interface InquireMapper {
 			@Param("title") String title,
 			@Param("content") String content);
 	
-	public List<Inquire> selectInquire();
+	public List<Inquire> selectInquireByProductId(int productId);
 }

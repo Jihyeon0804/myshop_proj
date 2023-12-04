@@ -38,9 +38,8 @@ public class IncludeController {
 	}
 	
 	@GetMapping("/product-qna-view")
-	public String productQnaInclude(Model model, HttpSession session) {
-		Integer userId = (Integer)session.getAttribute("userId");
-		List<Qna> qnaList = qnaBO.generateQnaList(userId);
+	public String productQnaInclude(Model model, HttpSession session, int productId) {
+		List<Qna> qnaList = qnaBO.generateQnaList(productId);
 		model.addAttribute("qnaList", qnaList);
 		return "product/include/qna";
 	}

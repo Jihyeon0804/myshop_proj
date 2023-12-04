@@ -18,7 +18,7 @@ public class InquireBO {
 		inquireMapper.insertInquire(userId, productId, type, title, content);
 	}
 	
-	public List<Inquire> getInquire() {
-		return inquireMapper.selectInquire();
+	public List<Inquire> getInquireByProductId(int productId) {
+		return inquireMapper.selectInquireByProductId(productId);
 	}
 }

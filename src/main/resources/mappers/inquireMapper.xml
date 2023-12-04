@@ -3,7 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.myshop.inquire.mapper.InquireMapper">
-	<insert id="insertInquire" parameterType="map">
+	<insert id="insertInquire" parameterType="com.myshop.inquire.domain.Inquire">
 		INSERT INTO `inquire`
 		(
 			`userId`
@@ -25,8 +25,9 @@
 			, NOW()
 		)
 	</insert>
+
 	
-	<select id="selectInquire" resultType="com.myshop.inquire.domain.Inquire">
+	<select id="selectInquireByProductId" resultType="com.myshop.inquire.domain.Inquire">
 		SELECT
 			`id`
 			,`userId`
@@ -38,6 +39,7 @@
 			,`updatedAt`
 		FROM
 			`inquire`
-		ORDER BY `id` DESC
+		WHERE
+			`productId` = #{productId}
 	</select>
 </mapper>

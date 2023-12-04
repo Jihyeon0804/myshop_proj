@@ -52,8 +52,18 @@
 
 		<!-- 문의 목록 -->
 		<div class="d-flex justify-content-center inquire-list">
+			<c:if test="${empty qnaList}">
+				<div class="empty-box">
+					<div class="text-center">
+						<img alt="없음" src="/static/img/empty-icon.png">
+						<div>등록된 상품 문의가 없습니다.</div>
+					</div>
+				</div>
+			</c:if>
+			<c:if test="${not empty qnaList}">
 			<div class="inquire-list-box">
 				<c:forEach items="${qnaList}" var="qna">
+				
 					<div class="d-flex justify-content-between mt-3">
 						<c:if test="${not empty qna.answer}">
 							<div class="exist-comment">답변 완료</div>
@@ -66,63 +76,65 @@
 					</div>
 				</c:forEach>
 			</div>
+			</c:if>
 		</div>
 	</div>
 </div>
 
 <script>
-	$(document).ready(function() {
-		$('#RequestInquireBtn').on('click', function() {
-			let type = $('#qnaType').val();
-			let title = $('#qnaTitle').val();
-			let content = $('#qnaContent').val();
-			if (type == null) {
-				$('#qnaType').addClass('is-invalid');
-				return;
-			} else {
-				$('#qnaType').removeClass('is-invalid');
+$(document).ready(function() {
+	
+	$('#RequestInquireBtn').on('click', function() {
+		let type = $('#qnaType').val();
+		let title = $('#qnaTitle').val();
+		let content = $('#qnaContent').val();
+		if (type == null) {
+			$('#qnaType').addClass('is-invalid');
+			return;
+		} else {
+			$('#qnaType').removeClass('is-invalid');
+		}
+
+		if (title == '') {
+			$('#qnaTitle').addClass('is-invalid');
+			return;
+		} else {
+			$('#qnaType').removeClass('is-invalid');
+		}
+
+		if (content == '') {
+			$('#qnaContent').addClass('is-invalid');
+			return;
+		} else {
+			$('#qnaContent').removeClass('is-invalid');
+		}
+
+		// ajax
+		$.ajax({
+			// request
+			type : "post",
+			url : "/inquire/add",
+			data : {
+				"productId" : "1",
+				"type" : type,
+				"title" : title,
+				"content" : content
 			}
 
-			if (title == '') {
-				$('#qnaTitle').addClass('is-invalid');
-				return;
-			} else {
-				$('#qnaType').removeClass('is-invalid');
-			}
-
-			if (content == '') {
-				$('#qnaContent').addClass('is-invalid');
-				return;
-			} else {
-				$('#qnaContent').removeClass('is-invalid');
-			}
-
-			// ajax
-			$.ajax({
-				// request
-				type : "post",
-				url : "/inquire/add",
-				data : {
-					"productId" : "1",
-					"type" : type,
-					"title" : title,
-					"content" : content
+			// response
+			,
+			success : function(data) {
+				if (data.code == 200) {
+					location.reload();
+				} else {
+					alert("상품 문의 등록에 실패했습니다. 다시 시도해 주세요.")
 				}
 
-				// response
-				,
-				success : function(data) {
-					if (data.code == 200) {
-						location.reload();
-					} else {
-						alert("상품 문의 등록에 실패했습니다. 다시 시도해 주세요.")
-					}
-
-				},
-				error : function() {
-					alert("상품 문의 등록에 실패했습니다. 관리자에게 문의해주세요.");
-				}
-			});
+			},
+			error : function() {
+				alert("상품 문의 등록에 실패했습니다. 관리자에게 문의해주세요.");
+			}
 		});
 	});
+});
 </script>

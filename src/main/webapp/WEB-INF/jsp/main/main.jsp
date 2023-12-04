@@ -93,27 +93,23 @@
 		<div class="prod-list-area">
 			<ul>
 			<!-- 상품 1 -->
-			<c:forEach items="${productList}" var="product" begin="0" end="15">
-			<c:forEach items="${productThumbnailList}" var="productTh" begin="0" end="15">
-				<c:if test="${productTh.productId eq product.id}">
+			<c:forEach items="${productSetList}" var="productSet" begin="0" end="15">
 				<li class="prod-area">
 					<div class="prod">
 						<div class="prod_thumbnail">
-							<a href="/site-name/product/${product.id}">
-								<img src="${productTh.imagePath}" alt="썸네일 테스트 이미지" width="280">
+							<a href="/site-name/product/${productSet.product.id}">
+								<img src="${productSet.productThumbnail.imagePath}" alt="썸네일 테스트 이미지" width="280">
 							</a>
 						</div>
 						<div class="prod_detail">
-							<b>${product.title}</b>
+							<b>${productSet.product.title}</b>
 							<span>
-								<fmt:formatNumber>${product.price}</fmt:formatNumber>원
+								<fmt:formatNumber>${productSet.product.price}</fmt:formatNumber>원
 							</span>
 							<span>리뷰 개수, 별점</span>
 						</div>
 					</div>
 				</li>
-				</c:if>
-			</c:forEach>
 			</c:forEach>
 			</ul>
 		</div>

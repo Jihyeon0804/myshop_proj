@@ -26,10 +26,10 @@ public class QnaBO {
 	@Autowired
 	private AnswerBO answerBO;
 	
-	public List<Qna> generateQnaList(Integer userId) {
+	public List<Qna> generateQnaList(int productId) {
 		List<Qna> qnaList = new ArrayList<>();
 		
-		List<Inquire> inquireList = inquireBO.getInquire();
+		List<Inquire> inquireList = inquireBO.getInquireByProductId(productId);
 		for (Inquire inquire : inquireList) {
 			Qna qna = new Qna();
 			qna.setInquire(inquire);
