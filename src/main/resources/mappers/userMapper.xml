@@ -56,7 +56,7 @@
 			`id` = #{userId}
 	</select>
 
-	<insert id="insertUser" parameterType="com.myshop.user.domain.User">
+	<insert id="insertUser" parameterType="map">
 		INSERT INTO
 			`user`
 		(

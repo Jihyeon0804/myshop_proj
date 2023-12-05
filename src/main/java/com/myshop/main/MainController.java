@@ -67,7 +67,25 @@ public class MainController {
 	
 	@GetMapping("/my-page/{userName}")
 	public String myPageView(@PathVariable String userName, Model model, HttpSession session) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId == null) {
+			// 비로그인이면 로그인 페이지로 이동
+			return "redirect:/site-name/sign-in-view";
+		}
+		
 		model.addAttribute("viewName", "user/myPage");
+		return "template/layout";
+	}
+	
+	@GetMapping("/my-page/cart")
+	public String myCaryView(Model model, HttpSession session) {
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId == null) {
+			// 비로그인이면 로그인 페이지로 이동
+			return "redirect:/site-name/sign-in-view";
+		}
+		model.addAttribute("viewName", "user/cart");
 		return "template/layout";
 	}
 	

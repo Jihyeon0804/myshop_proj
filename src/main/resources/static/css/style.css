@@ -78,7 +78,7 @@ header {
 	content: "";
 }
 
-.util-area ul li a {
+.util-area ul li a{
 	padding: 0 10px;
 	color: #999;
 }
@@ -613,19 +613,19 @@ footer {
 }
 
 .my-page-area {
-	width: 1200px;
+	width: 1300px;
 	min-height: 900px;
-	padding: 50px 0px 0px 0px;
+	padding: 20px 0px 0px 0px;
 }
 
 .my-page-menu-list {
-	width: 250px;
-	padding: 30px 0px 0px 10px;
+	width: 300px;
+	padding: 30px 0px 0px 0px;
 }
 
 
 .my-page-content {
-	width: 950px;
+	width: 1000px;
 }
 
 .user-info-box {
@@ -645,13 +645,9 @@ footer {
 	min-height: 600px;
 }
 
-#cartTable {
-	text-align: center;
-}
 
 #cartTable td {
 	height: 130px;
-	text-align: center;
 	vertical-align: middle;
 }
 

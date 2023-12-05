@@ -50,7 +50,7 @@
 						<tr>
 							<th>분쇄 선택</th>
 							<td>
-								<select class="form-control">
+								<select class="form-control" id="productOption">
 									<option selected disabled>옵션을 선택해주세요</option>
 									<option>프렌치 브레스 분쇄</option>
 									<option>더치 분쇄</option>
@@ -94,20 +94,20 @@
 						<c:choose>
 							<%-- 좋아요를 누르지 않았을 경우(false) ; 빈하트 : 1) 비로그인 2) 좋아요를 누르지 않았을 경우&&로그인된 상태 --%>
 							<c:when test="${likeStatus eq false}">
-							<button type="button" id="addLikeBtn" class="btn" data-product-id="1">
+							<button type="button" id="addLikeBtn" class="btn" data-product-id="${productSet.product.id}">
 								<img src="/static/img/empty-heart-icon.png" alt="is-product-like">
 							</button>
 							</c:when>
 							
 							<%-- 좋아요를 눌렀을 경우(true) ; 꽉 찬 하트 : 좋아요를 누르지 않았을 경우&&로그인된 상태 --%>
 							<c:otherwise>
-							<button type="button" id="addLikeBtn" class="btn" data-product-id="1">
+							<button type="button" id="addLikeBtn" class="btn" data-product-id="${productSet.product.id}">
 								<img src="/static/img/full-heart-icon.png" alt="is-product-like">
 							</button>
 							</c:otherwise>
 						</c:choose>
 						
-						<button type="button" id="addCartBtn" class="btn btn-lg btn-light">장바구니 담기</button>
+						<button type="button" id="addCartBtn" class="btn btn-lg btn-light" data-product-id="${productSet.product.id}">장바구니 담기</button>
 						<button type="button" id="orderBtn" class="btn btn-lg btn-danger">결제하기</button>
 					</div>
 				</div>
@@ -203,6 +203,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
 	// 리뷰 클릭 시
 	$('#reviewBtn').on('click', function() {
 		let productId = $(this).data('product-id');
@@ -217,6 +218,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
 	// 상품 문의 클릭 시
 	$('#qnaBtn').on('click', function() {
 		let productId = $(this).data('product-id');
@@ -228,6 +230,34 @@ $(document).ready(function() {
 			// response
 			,success:function(data) {
 				$('#includeArea').html(data);
+			}
+		});
+	});
+	
+	// 장바구니 담기
+	$('#addCartBtn').on('click', function() {
+		let productId = $(this).data('product-id');
+		let option = $('#productOption').val();
+		let amount = $('#amount').val();
+		if (option == null) {
+			alert("옵션을 선택해주세요.");
+			return;
+		}
+		
+		$.ajax({
+			type:"post"
+			, url:"/cart/product-add"
+			, data:{"productId":productId, "option":option, "amount":amount}
+			
+			, success:function(data) {
+				if (data.code == 200) {
+					location.reload();
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(request, status, error) {
+				alert("장바구니 담기에 실패했습니다. 잠시후 다시 시도해주세요.");
 			}
 		});
 	});
