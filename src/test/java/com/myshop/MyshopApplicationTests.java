@@ -4,20 +4,56 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.ObjectUtils;
 
 import lombok.Getter;
 
 
-@SpringBootTest		// spring boot를 기동 (spring boot 기반 테스트를 진행할 경우 필요)
+//@SpringBootTest		// spring boot를 기동 (spring boot 기반 테스트를 진행할 경우 필요)
 class MyshopApplicationTests {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	public enum CalcType {		// java 7이하는 형태 다름
+		// 열거형 정의
+		CALC_A(value -> value),
+		CALC_B(value -> value * 10),
+		CALC_C(value -> value * 3),
+		CALC_ETC(value -> 0);
+		
+		// enum에 정의된 function Function<input type, output type>
+		private Function<Integer, Integer> expression;
+		
+		// 생성자
+		CalcType(Function<Integer, Integer> expression) {
+			this.expression = expression;
+		}
+		
+		// 계산 적용 메소드
+		public int calculate(int value) {
+			return expression.apply(value);
+		}
+	}
+	
+	@Test
+	void enum_test2() {
+		// given - 준비
+		CalcType type = CalcType.CALC_C;
+		
+		// when - 실행
+		int result = type.calculate(500);
+		
+		// then - 검증
+		assertEquals(result, 1500);
+	}
+	
+	
+	
 	
 	@Getter		// getting
 	public enum Status {
@@ -36,7 +72,7 @@ class MyshopApplicationTests {
 		}
 	}
 	
-	@Test
+	//@Test
 	void enum_test1() {
 		// given - 준비
 		Status status = Status.Y;
