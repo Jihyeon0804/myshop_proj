@@ -24,7 +24,7 @@
 						</tr>
 						<tr>
 							<th>배송비</th>
-							<td>3,000원(50,000원 이상 구매시 무료)</td>
+							<td>3,000원 (50,000원 이상 구매시 무료)</td>
 						</tr>
 						<c:if test="${productSet.product.discountPrice ne 0}">
 							<tr>
@@ -52,10 +52,10 @@
 							<td>
 								<select class="form-control" id="productOption">
 									<option selected disabled>옵션을 선택해주세요</option>
-									<option>프렌치 브레스 분쇄</option>
-									<option>더치 분쇄</option>
-									<option>모카포트 분쇄</option>
-									<option>에스프레소 분쇄</option>
+									<option value="1">프렌치 브레스 분쇄</option>
+									<option value="2">더치 분쇄</option>
+									<option value="3">모카포트 분쇄</option>
+									<option value="4">에스프레소 분쇄</option>
 								</select>
 							</td>
 						</tr>
@@ -85,7 +85,7 @@
 					<div class="prod-total-price d-flex">
 						<span class="pt-1">결제가격</span>
 						<div class="order-price">
-							<span id="price" data-price="12000">12000</span>
+							<span id="price" data-price="${productSet.product.price}"><fmt:formatNumber>${productSet.product.price}</fmt:formatNumber></span>
 							<span>원</span>
 						</div>
 					</div>
@@ -237,9 +237,10 @@ $(document).ready(function() {
 	// 장바구니 담기
 	$('#addCartBtn').on('click', function() {
 		let productId = $(this).data('product-id');
-		let option = $('#productOption').val();
+		let optionId = $('#productOption').val();
 		let amount = $('#amount').val();
-		if (option == null) {
+		
+		if (optionId == null) {
 			alert("옵션을 선택해주세요.");
 			return;
 		}
@@ -247,7 +248,7 @@ $(document).ready(function() {
 		$.ajax({
 			type:"post"
 			, url:"/cart/product-add"
-			, data:{"productId":productId, "option":option, "amount":amount}
+			, data:{"productId":productId, "optionId":optionId, "amount":amount}
 			
 			, success:function(data) {
 				if (data.code == 200) {

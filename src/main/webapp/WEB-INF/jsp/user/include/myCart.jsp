@@ -8,7 +8,7 @@
 			<thead>
 				<tr>
 					<th>
-						<input type="checkbox">
+						<input type="checkbox" id="checkedAll" name="check">
 					</th>
 					<th>상품명</th>
 					<th>옵션</th>
@@ -53,3 +53,16 @@
 		</table>
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+	// checkbox toggle
+	$('#checkedAll').on('click', function() {
+		if ($('#checkedAll').is(':checked')) {
+			$('input[name=check]').prop('checked', true);
+		} else {
+			$('input[name=check]').prop('checked', false);
+		}
+	});
+
+});
+</script>

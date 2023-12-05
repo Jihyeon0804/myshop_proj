@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.myshop.aop.TimeTrace;
+import com.myshop.cart.bo.CartSetBO;
+import com.myshop.cart.domain.CartSet;
 import com.myshop.like.bo.LikeBO;
 import com.myshop.productSet.bo.ProductSetBO;
 import com.myshop.productSet.domain.ProductSet;
@@ -26,6 +28,9 @@ public class MainController {
 
 	@Autowired
 	private ProductSetBO productSetBO;
+	
+	@Autowired
+	private CartSetBO cartSetBO;
 	
 	@GetMapping("")
 	public String siteView(Model model) {
@@ -85,6 +90,10 @@ public class MainController {
 			// 비로그인이면 로그인 페이지로 이동
 			return "redirect:/site-name/sign-in-view";
 		}
+		
+		List<CartSet> cartSetList =  cartSetBO.generateCartSet(userId);
+		model.addAttribute("cartSetList", cartSetList);
+		
 		model.addAttribute("viewName", "user/cart");
 		return "template/layout";
 	}

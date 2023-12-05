@@ -23,4 +23,27 @@
 			, NOW()
 		);
 	</insert>
+	
+	<select id="selectCartListByUserId" parameterType="int" resultType="com.myshop.cart.domain.Cart">
+		SELECT
+			`id`
+			,`userId`
+			, `productId`
+			, `optionId`
+			, `amount`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`cart`
+		WHERE
+			`userId` = #{userId}
+	</select>
+	
+	<delete id="deleteCartById" parameterType="int">
+		DELETE
+		FROM
+			`cart`
+		WHERE
+			`id` = #{cartId}
+	</delete>
 </mapper>
