@@ -28,7 +28,7 @@
 			<div>포토 N건</div>
 			<div>사진 리뷰</div>
 		</div>
-		<hr>
+		
 		<div>
 			<div>리뷰</div>
 			<div>
@@ -37,6 +37,7 @@
 					사진 리뷰만 보기
 				</label>
 			</div>
+			<hr>
 			<!-- 한 사용자의 리뷰 -->
 			<c:forEach items="${reviewList}" var="review">
 			<div class="prd-review">
@@ -60,11 +61,14 @@
 						</div>
 					</div>
 					<div class="review-created-date">
-						${review.createdAt}"
+						<fmt:parseDate value="${review.createdAt}" pattern="yyyy-MM-dd" var="parseDate"/> 
+						<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd"/> 
 					</div>
 				</div>
 				<c:if test="${not empty review.imagePath}">
-					<div class="review-image">${review.imagePath}</div>
+					<div class="review-image">
+						<img src="${review.imagePath}" width="200">
+					</div>
 				</c:if>
 				<div>${review.content}</div>
 				<hr>
@@ -76,11 +80,13 @@
 </div>
 <script>
 $(document).ready(function () {
+	
+	// 사진 리뷰만 보기 클릭 시
 	$('#onlyPhoto').on('click', function() {
 		if ($(this).is(':checked')) {
-			$('div').has('review-image')
+			$( '.prd-review:not(:has( .review-image ))' ).addClass('d-none');	// 체크 박스 선택 => 이미지가 없는 리뷰 display none
 		} else {
-			$('.prd-review').removeClass('d-none');
+			$( '.prd-review:not(:has( .review-image ))' ).removeClass('d-none'); // 체크 박스 해제 => 전체 리뷰 보기
 		}
 	});
 });
