@@ -106,8 +106,12 @@
 							</c:otherwise>
 						</c:choose>
 						
-						<button type="button" id="addCartBtn" class="btn btn-lg btn-light" data-product-id="${productSet.product.id}">장바구니 담기</button>
-						<button type="button" id="orderBtn" class="btn btn-lg btn-danger">결제하기</button>
+						<button type="button" id="addCartBtn" class="btn btn-lg btn-light" data-product-id="${productSet.product.id}">
+							장바구니 담기
+						</button>
+						<button type="button" id="orderBtn" class="btn btn-lg btn-danger" data-product-id="${productSet.product.id}">
+							결제하기
+						</button>
 					</div>
 				</div>
 			</div>
@@ -260,6 +264,14 @@ $(document).ready(function() {
 				alert("장바구니 담기에 실패했습니다. 잠시후 다시 시도해주세요.");
 			}
 		});
+	});
+	
+	// 결제하기 버튼 클릭 시
+	$('#orderBtn').on('click', function() {
+		let productId = $(this).data('product-id');
+		let optionId = '';
+		let amount = $('#amount').val();
+		let price = $('#price').val();
 	});
 });
 </script>

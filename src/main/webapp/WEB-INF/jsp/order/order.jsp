@@ -11,8 +11,8 @@
 					<tr>
 						<th>배송지 선택</th>
 						<td>
-							<label class="mr-3"><input type="radio" name="address" checked>기존 배송지</label>
-							<label><input type="radio" name="address">신규 배송지</label>
+							<label class="mr-3"><input type="radio" name="address" value="existAddress" checked>기존 배송지</label>
+							<label><input type="radio" name="address" value="newAddress">신규 배송지</label>
 						</td>
 					</tr>
 					<tr>
@@ -24,7 +24,7 @@
 					<tr>
 						<th>받는 분</th>
 						<td>
-							<input type="text" class="form-control col-5">
+							<input type="text" class="form-control col-5" id="orderName">
 						</td>
 					</tr>
 					<tr>
@@ -57,18 +57,20 @@
 					<tr>
 						<th>주소</th>
 						<td>
-							<div class="d-flex">
-								<input type="text" class="form-control col-2" id="zipCode">
-								<button class="btn border ml-2">주소 찾기</button>
+							<div class="d-flex address-input-box">
+								<input type="text" class="address-input form-control col-2" id="zipNo">
+								<button class="btn border ml-2" id="addressSearch" type="button" onclick="goPopup();">
+									주소 찾기
+								</button>
 							</div>
-							<input type="text" class="form-control col-5 my-2" id="address">
-							<input type="text" class="form-control col-5" id="addressDetail">
+							<input type="text" class="address-input form-control col-5 my-2" id="roadAddrPart1">
+							<input type="text" class="address-input form-control col-5" id="addrDetail">
 						</td>
 					</tr>
 					<tr>
 						<th>배송 메세지</th>
 						<td>
-							<input type="text" class="form-control col-5">
+							<input type="text" class="form-control col-5" id="message">
 						</td>
 					</tr>
 				</tbody>
@@ -113,7 +115,7 @@
 				<tbody>
 					<tr>
 						<th>총 상품 금액</th>
-						<td>99,999원</td>
+						<td><span>99,999원</span></td>
 					</tr>
 					<tr>
 						<th>할인 금액</th>
@@ -121,17 +123,43 @@
 					</tr>
 					<tr>
 						<th>배송비</th>
-						<td>3,000원</td>
+						<td id="deliveryPrice">3,000원</td>
 					</tr>
 					<tr>
 						<th>최종 결제 금액</th>
-						<td>22,222원</td>
+						<td><span id="totalPrice">22,222원</span></td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="d-flex justify-content-end">
-				<button class="btn btn-danger">결제하기</button>
+				<button class="btn btn-danger" id="paymentBtn">결제하기</button>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+	
+	// 신규 배송지 선택 시 주소에 있는 input들 초기화
+	$('input[name=address]').on('change', function() {
+		let addressOption = $('input[name=address]:checked').val();		// newAddress or existAddress
+		
+		if (addressOption == 'newAddress') {
+			$('#zipNo').val('');
+			$('#roadAddrPart1').val('');
+			$('#addrDetail').val('');
+		}
+	});
+});
+</script>
+<script>
+function goPopup() {
+	 var pop = window.open("/address/juso","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+}
+
+function jusoCallBack(roadAddrPart1, addrDetail, raodAddrPart2, zipNo) {
+	$('#zipNo').val(zipNo);
+	$('#roadAddrPart1').val(roadAddrPart1);
+	$('#addrDetail').val(addrDetail + ' ' + raodAddrPart2);
+}
+</script>
