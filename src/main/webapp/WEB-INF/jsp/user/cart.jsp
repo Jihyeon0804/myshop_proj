@@ -54,7 +54,7 @@
 										<div class="d-flex align-items-center ml-3">
 											<div>
 												<span>${cartSet.product.title}</span><br>
-												<span>${cartSet.cart.optionId}</span><button class="btn">옵션변경</button>
+												<span>${cartSet.option.option}</span><button class="btn">옵션변경</button>
 											</div>
 										</div>
 									</div>
@@ -74,13 +74,15 @@
 								<td>
 								<c:if test="${cartSet.product.discountPrice eq 0}">
 									<span id="cartPrice" data-price="${cartSet.product.price}">
-										<fmt:formatNumber value="${cartSet.product.price * cartSet.cart.amount}" type="number" />원
+										<fmt:formatNumber value="${cartSet.product.price * cartSet.cart.amount}" type="number" />
 									</span>
+									<span>원</span>
 								</c:if>
 								<c:if test="${cartSet.product.discountPrice ne 0}">
 									<span id="cartPrice" data-price="${cartSet.product.discountPrice}">
-										<fmt:formatNumber value="${cartSet.product.discountPrice * cartSet.cart.amount}" type="number" />원
+										<fmt:formatNumber value="${cartSet.product.discountPrice * cartSet.cart.amount}" type="number" />
 									</span>
+									<span>원</span>
 								</c:if>
 								</td>
 								<td>
@@ -109,8 +111,9 @@ $(document).ready(function() {
 	// 마이너스 버튼 클릭 시
 	$('.amount-minus').on('click', function() {
 		let amount = $(this).next().val();
-		let prodPrice = $('#price').data('price');
-		let changedPrice = $('#price').text();
+		let prodPrice = $('#cartPrice').data('price');
+		let changedPrice = $('#cartPrice').text();
+		let regexp = /\B(?=(\d{3})+(?!\d))/g;
 		if (amount > 1) {
 			// 수량 감소
 			amount--;
@@ -118,7 +121,8 @@ $(document).ready(function() {
 
 			// 가격 변동
 			changedPrice = prodPrice * amount
-			$('#price').text(changedPrice);
+			changedPrice = changedPrice.toString().replace(regexp, ',');
+			$('#cartPrice').text(changedPrice);
 
 		}
 	});
@@ -128,6 +132,7 @@ $(document).ready(function() {
 		let amount = $(this).prev().val();
 		let prodPrice = $('#cartPrice').data('price');
 		let changedPrice = $('#cartPrice').text();
+		let regexp = /\B(?=(\d{3})+(?!\d))/g;
 		if (amount < 10) {
 			// 수량 증가
 			amount++;
@@ -135,7 +140,8 @@ $(document).ready(function() {
 
 			// 가격 변동
 			changedPrice = prodPrice * amount
-			$('#price').text(changedPrice);
+			changedPrice = changedPrice.toString().replace(regexp, ',');
+			$('#cartPrice').text(changedPrice);
 		}
 	});
 	
