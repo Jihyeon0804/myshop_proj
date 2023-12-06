@@ -650,6 +650,10 @@ footer {
 	vertical-align: middle;
 }
 
+.order-section {
+	width: 1300px;
+}
+
 .admin-box {
 	width: 2000px;
 	min-height: 600px;

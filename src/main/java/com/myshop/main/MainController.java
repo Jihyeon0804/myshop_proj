@@ -15,6 +15,8 @@ import com.myshop.aop.TimeTrace;
 import com.myshop.cart.bo.CartSetBO;
 import com.myshop.cart.domain.CartSet;
 import com.myshop.like.bo.LikeBO;
+import com.myshop.option.bo.OptionBO;
+import com.myshop.option.entity.OptionEntity;
 import com.myshop.productSet.bo.ProductSetBO;
 import com.myshop.productSet.domain.ProductSet;
 
@@ -31,6 +33,9 @@ public class MainController {
 	
 	@Autowired
 	private CartSetBO cartSetBO;
+	
+	@Autowired
+	private OptionBO optionBO;
 	
 	@GetMapping("")
 	public String siteView(Model model) {
@@ -56,6 +61,10 @@ public class MainController {
 		ProductSet productSet = productSetBO.generateProductSet(productId);
 		model.addAttribute("productSet", productSet);
 		
+		int optionId = productSet.getProduct().getOptionId();
+		List<OptionEntity> optionList = optionBO.getOptionList(optionId);
+		model.addAttribute("optionList", optionList);
+		
 		model.addAttribute("viewName", "product/productDetails");
 		model.addAttribute("detailviewName", "product/include/description");
 		return "template/layout";
@@ -65,6 +74,12 @@ public class MainController {
 	@GetMapping("/sign-up-view")
 	public String signUpView(Model model) {
 		model.addAttribute("viewName", "user/signUp");
+		return "template/layout";
+	}
+	
+	@GetMapping("/order")
+	public String orderView(Model model) {
+		model.addAttribute("viewName", "order/order");
 		return "template/layout";
 	}
 	
@@ -93,7 +108,7 @@ public class MainController {
 		
 		List<CartSet> cartSetList =  cartSetBO.generateCartSet(userId);
 		model.addAttribute("cartSetList", cartSetList);
-		
+
 		model.addAttribute("viewName", "user/cart");
 		return "template/layout";
 	}

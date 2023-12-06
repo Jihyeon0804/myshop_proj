@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.myshop.cart.domain.Cart;
 import com.myshop.cart.domain.CartSet;
+import com.myshop.option.bo.OptionBO;
+import com.myshop.option.entity.OptionEntity;
 import com.myshop.product.bo.ProductBO;
 import com.myshop.product.bo.ProductThumbnailBO;
 import com.myshop.product.domain.Product;
@@ -25,6 +27,9 @@ public class CartSetBO {
 	@Autowired
 	private ProductThumbnailBO productThumbnailBO;
 	
+	@Autowired
+	private OptionBO optionBO;
+	
 	public List<CartSet> generateCartSet(int userId) {
 		List<CartSet> cartSetList = new ArrayList<>();
 		List<Cart> cartList =  cartBO.getCartListByUserId(userId);
@@ -37,6 +42,9 @@ public class CartSetBO {
 			
 			ProductThumbnail productThumbnail = productThumbnailBO.getProductThumbnailByProductId(cart.getProductId());
 			cartSet.setProductThumbnail(productThumbnail);
+			
+			OptionEntity option = optionBO.getOption(product.getOptionId());
+			cartSet.setOption(option);
 			
 			cartSetList.add(cartSet);
 		}
