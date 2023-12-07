@@ -75,27 +75,36 @@
         		<li class="review-photo">
         			<div>
         				<span>사진</span>
-        				<div class="d-flex justify-content-between">
-        					<div>
-	        					<input type="file" id="file" accept=".jpg, .png, .jpeg, .gif" class="d-none">
+        				<div class="d-flex justify-content-between post-area">
+        					<div class="photo-area">
+	        					<input type="file" accept=".jpg, .png, .jpeg, .gif" class="d-none fileInput">
 	        					<button class="add-btn">추가</button>
-	        					<img id="preview" src="">
+	        					<img class="preview" src="">
+	        					<button class="del-btn d-none">삭제</button>
         					</div>
-        					<div>
-	        					<input type="file" id="file" accept=".jpg, .png, .jpeg, .gif" class="d-none">
+        					<div class="photo-area">
+	        					<input type="file" accept=".jpg, .png, .jpeg, .gif" class="d-none fileInput">
 	        					<button class="add-btn">추가</button>
+	        					<img class="preview" src="">
+	        					<button class="del-btn d-none">삭제</button>
         					</div>
-        					<div>
-	        					<input type="file" id="file" accept=".jpg, .png, .jpeg, .gif" class="d-none">
+        					<div class="photo-area">
+	        					<input type="file" accept=".jpg, .png, .jpeg, .gif" class="d-none fileInput">
 	        					<button class="add-btn">추가</button>
+	        					<img class="preview" src="">
+	        					<button class="del-btn d-none">삭제</button>
         					</div>
-        					<div>
-	        					<input type="file" id="file" accept=".jpg, .png, .jpeg, .gif" class="d-none">
+        					<div class="photo-area">
+	        					<input type="file" accept=".jpg, .png, .jpeg, .gif" class="d-none fileInput">
 	        					<button class="add-btn">추가</button>
+	        					<img class="preview" src="">
+	        					<button class="del-btn d-none">삭제</button>
         					</div>
-        					<div>
-	        					<input type="file" id="file" accept=".jpg, .png, .jpeg, .gif" class="d-none">
+        					<div class="photo-area">
+	        					<input type="file" accept=".jpg, .png, .jpeg, .gif" class="d-none fileInput">
 	        					<button class="add-btn">추가</button>
+	        					<img class="preview" src="">
+	        					<button class="del-btn d-none">삭제</button>
         					</div>
         				</div>
         			</div>
@@ -135,35 +144,65 @@ $(document).ready(function() {
 		
 	});
 	
+	
 	// 사진 업로드 클릭 시
 	$('.add-btn').on('click', function() {
-		$(this).siblings('#file').click();
+		$(this).siblings('.fileInput').click();
 	});
 	
-	$('#file').on('change', function(e) {
+	$('.fileInput').on('change', function(e) {
+		let previewInput = $(this).siblings('.preview');
+		let addBtn = $(this).siblings('.add-btn');
+		let delBtn = $(this).siblings('.del-btn');
+		
 		// 파일명 가져오기
-		
-		let fileName = e.target.files[0].name;		// chess-8348280_640.jpg
-		console.log(fileName);
-		
-		 var reader = new FileReader();
-		 reader.onload = function(e) {
-			 $(this).siblings('#preview').attr('src', e.target.result);
-		 };
-		 reader.readAsDataURL(e.target.files[0]);
-		
+		let fileName = e.target.files[0].name;
+
 		// 확장자 유효성 확인
 		let ext = fileName.split(".").pop().toLowerCase();
 		
+		
 		if (ext != 'jpg' && ext != 'gif' && ext != 'png' && ext != 'jpeg') {
 			alert("이미지 파일만 업로드 할 수 있습니다.");
-			$('#file').val("");			// 파일 태그에 파일 제거(보이지 않지만 업로드 될 수 있으므로 주의)
-			$('#fileName').text("");	// 파일명 비우기
+			$('.fileInput').val("");			// 파일 태그에 파일 제거(보이지 않지만 업로드 될 수 있으므로 주의)
 			return;
 		}
 		
-		// 유효성 통과한 이미지는 업로드 된 파일명 노출
-		$('#fileName').text(fileName);
+		// 업로드한 이미지 미리보기
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			addBtn.addClass('d-none');
+			previewInput.attr('src', e.target.result);
+			previewInput.css('width', 85);
+			previewInput.css('height', 85);
+		 };
+		 reader.readAsDataURL(e.target.files[0]);
+		 delBtn.removeClass('d-none');
+	});
+	
+	
+	// 이미지 삭제 버튼 클릭 시
+	$('.del-btn').on('click', function() {
+		$(this).siblings('.fileInput').val('');
+		$(this).siblings('.preview').attr('src', '');
+		$(this).siblings('.preview').css('width', 0);
+		$(this).siblings('.preview').css('height' ,0);
+		$(this).siblings('.add-btn').removeClass('d-none');
+		$(this).addClass('d-none');
+	});
+	
+	// 등록하기 버튼 클릭 시 
+	$('#postReview').on('click', function() {
+		
+		let imageArray = [];
+		console.log(imageArray);
+		$.each($('.fileInput'), function (index ,el) {
+			if (el.files[0] != 'undefined' || el.files[0] != '' || el.files[0] != null) {
+				imageArray.push(el.files[0]);
+			}
+		});
+		console.log(imageArray);
+		console.log($('.fileInput')[3].files[0])
 	});
 });
 </script>
