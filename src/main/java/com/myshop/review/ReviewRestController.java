@@ -38,6 +38,7 @@ public class ReviewRestController {
 		Integer userId = (Integer)session.getAttribute("userId");
 		if (ObjectUtils.isEmpty(userId) == false) {
 			reviewBO.addReview(userId, productId, point, content);
+			
 			result.put("code", 200);
 			result.put("result", "성공");
 		} else {
