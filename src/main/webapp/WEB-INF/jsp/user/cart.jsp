@@ -54,7 +54,7 @@
 										<div class="d-flex align-items-center ml-3">
 											<div>
 												<span>${cartSet.product.title}</span><br>
-												<span>${cartSet.option.option}</span><button class="btn">옵션변경</button>
+¿												<!-- <span>${cartSet.option.option}</span><button class="btn">옵션변경</button> -->
 											</div>
 										</div>
 									</div>
@@ -129,6 +129,7 @@ $(document).ready(function() {
 
 	// 플러스 버튼 클릭 시
 	$('.amount-plus').on('click', function() {
+		let currentRow = $(this).closest('tr');
 		let amount = $(this).prev().val();
 		let prodPrice = $('#cartPrice').data('price');
 		let changedPrice = $('#cartPrice').text();

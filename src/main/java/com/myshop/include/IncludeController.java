@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.myshop.qna.bo.QnaBO;
 import com.myshop.qna.domain.Qna;
 import com.myshop.review.bo.ReviewBO;
-import com.myshop.review.domain.Review;
+import com.myshop.review.domain.ReviewSet;
 
 @RequestMapping("/include")
 @Controller
@@ -32,8 +32,10 @@ public class IncludeController {
 	
 	@GetMapping("/product-review-view")
 	public String productReviewInclude(Model model, int productId) {
-		List<Review> reviewList = reviewBO.getReviewListByProductId(productId);
-		model.addAttribute("reviewList", reviewList);
+		
+		List<ReviewSet> reviewSetList = reviewBO.generateReviewSetList(productId);
+//		List<Review> reviewList = reviewBO.getReviewListByProductId(productId);
+		model.addAttribute("reviewSetList", reviewSetList);
 		return "product/include/review";
 	}
 	

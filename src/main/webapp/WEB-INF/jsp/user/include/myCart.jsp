@@ -63,6 +63,68 @@ $(document).ready(function() {
 			$('input[name=check]').prop('checked', false);
 		}
 	});
+	
+	// 마이너스 버튼 클릭 시
+	$('.amount-minus').on('click', function() {
+		let amount = $(this).next().val();
+		let prodPrice = $('#cartPrice').data('price');
+		let changedPrice = $('#cartPrice').text();
+		let regexp = /\B(?=(\d{3})+(?!\d))/g;
+		if (amount > 1) {
+			// 수량 감소
+			amount--;
+			$(this).next().val(amount);
+
+			// 가격 변동
+			changedPrice = prodPrice * amount
+			changedPrice = changedPrice.toString().replace(regexp, ',');
+			$('#cartPrice').text(changedPrice);
+
+		}
+	});
+
+	// 플러스 버튼 클릭 시
+	$('.amount-plus').on('click', function() {
+		let amount = $(this).prev().val();
+		let prodPrice = $('#cartPrice').data('price');
+		let changedPrice = $('#cartPrice').text();
+		let regexp = /\B(?=(\d{3})+(?!\d))/g;
+		if (amount < 10) {
+			// 수량 증가
+			amount++;
+			$(this).prev().val(amount);
+
+			// 가격 변동
+			changedPrice = prodPrice * amount
+			changedPrice = changedPrice.toString().replace(regexp, ',');
+			$('#cartPrice').text(changedPrice);
+		}
+	});
+	
+	
+	// 장바구니 삭제
+	$('.del-cart-btn').on('click', function() {
+		let cartId = $(this).data('cart-id');
+		
+		$.ajax({
+			// request
+			type:"delete"
+			,url:"/cart/product-delete"
+			,data:{"cartId":cartId}
+			
+			// response
+			,success:function(data) {
+				if (data.code == 200) {
+					location.reload();
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(request, status, error) {
+				alert("장바구니 삭제를 실패했습니다. 잠시후 다시 시도해주세요.")
+			}
+		});
+	});
 
 });
 </script>
