@@ -12,7 +12,9 @@
 			</div>
 		</div>
 		<div>
-			<button class="btn btn-light" data-toggle="modal" data-target="#postReivewModal">리뷰 작성</button>
+			<button id="postReviewBtn" class="btn btn-light" data-toggle="modal" data-target="#postReivewModal" data-product-id="1">
+				리뷰 작성
+			</button>
 		</div>
 	</div>
 	<div class="d-flex justify-content-between mt-5">
@@ -132,18 +134,6 @@ $(document).ready(function() {
 	});
 	
 	
-	// 리뷰 등록하기 버튼 클릭 시
-	$('#postReview').on('click', function() {
-		let point = $('.on').length;		// 별점이 부여된(on 클래스가 있는) li 태그의 개수
-		let content = $('#reviewContent').val();
-		if (content.length < 10) {
-			alert("리뷰 내용은 최소 10자 이상으로 적어주세요.");
-			return;
-		}
-		console.log(content);
-		
-	});
-	
 	
 	// 사진 업로드 클릭 시
 	$('.add-btn').on('click', function() {
@@ -193,16 +183,53 @@ $(document).ready(function() {
 	
 	// 등록하기 버튼 클릭 시 
 	$('#postReview').on('click', function() {
-		
+		let productId = $('#postReviewBtn').data('product-id');
+		let point = $('#rating > .on').length; 		// 별점
+		let content = $('#reviewContent').val();	// 리뷰
+		if (content.length < 5) {
+			alert("리뷰 내용은 최소 5자 이상으로 적어주세요.");
+			return;
+		}
 		let imageArray = [];
 		console.log(imageArray);
 		$.each($('.fileInput'), function (index ,el) {
-			if (el.files[0] != 'undefined' || el.files[0] != '' || el.files[0] != null) {
+			if (typeof el.files[0] != 'undefined') {
 				imageArray.push(el.files[0]);
 			}
 		});
 		console.log(imageArray);
-		console.log($('.fileInput')[3].files[0])
+		
+
+		let formData = new FormData();
+		formData.append("productId", productId);
+		formData.append("point", point);
+		formData.append("content", content);
+		$.each(imageArray, function (index ,el) {
+			formData.append("files", el);
+		});
+		
+		
+		
+		$.ajax({
+			// request
+			type:"post"
+			, url:"/review/post"
+			, data:formData
+			, enctype:"multipart/formdata"
+			, processData:false
+			, contentType:false
+			
+			, success:function(data) {
+				if (data.code == 200) {
+					alert("success");
+				} else {
+					alert("fail");
+				}
+			}
+			, error:function(request, status, error) {
+				alert("fail");
+			}
+		});
 	});
 });
 </script>

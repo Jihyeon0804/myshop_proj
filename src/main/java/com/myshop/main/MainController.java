@@ -15,8 +15,6 @@ import com.myshop.aop.TimeTrace;
 import com.myshop.cart.bo.CartSetBO;
 import com.myshop.cart.domain.CartSet;
 import com.myshop.like.bo.LikeBO;
-import com.myshop.option.bo.OptionBO;
-import com.myshop.option.entity.OptionEntity;
 import com.myshop.productSet.bo.ProductSetBO;
 import com.myshop.productSet.domain.ProductSet;
 
@@ -34,8 +32,8 @@ public class MainController {
 	@Autowired
 	private CartSetBO cartSetBO;
 	
-	@Autowired
-	private OptionBO optionBO;
+//	@Autowired
+//	private OptionBO optionBO;
 	
 	@GetMapping("")
 	public String siteView(Model model) {
@@ -61,9 +59,9 @@ public class MainController {
 		ProductSet productSet = productSetBO.generateProductSet(productId);
 		model.addAttribute("productSet", productSet);
 		
-		int optionId = productSet.getProduct().getOptionId();
-		List<OptionEntity> optionList = optionBO.getOptionList(optionId);
-		model.addAttribute("optionList", optionList);
+//		int optionId = productSet.getProduct().getOptionId();
+//		List<OptionEntity> optionList = optionBO.getOptionList(optionId);
+//		model.addAttribute("optionList", optionList);
 		
 		model.addAttribute("viewName", "product/productDetails");
 		model.addAttribute("detailviewName", "product/include/description");

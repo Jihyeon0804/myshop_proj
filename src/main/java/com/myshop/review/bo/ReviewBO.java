@@ -21,6 +21,11 @@ public class ReviewBO {
 	@Autowired
 	private UserBO userBO;
 	
+	// insert
+	public void addReview(int userId, int productId, int point, String content) {
+		reviewMapper.insertReview(userId, productId, point, content);
+	}
+	
 	public List<Review> getReviewListByProductId(int productId) {
 		return reviewMapper.selectReviewListByProductId(productId);
 	}

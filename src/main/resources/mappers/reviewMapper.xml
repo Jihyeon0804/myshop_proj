@@ -9,7 +9,6 @@
 			, `productId`
 			, `point`
 			, `content`
-			, `imagePath`
 			, `createdAt`
 			, `updatedAt`
 		FROM
@@ -17,4 +16,25 @@
 		WHERE
 			`productId` = #{productId}
 	</select>
+	
+	<insert id="insertReview" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `review`
+		(
+			`userId`
+			, `productId`
+			, `point`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{userId}
+			, #{productId}
+			, #{point}
+			, #{content}
+			, NOW()
+			, NOW()
+		)
+	</insert>
 </mapper>

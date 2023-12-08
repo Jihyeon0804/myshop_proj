@@ -65,11 +65,11 @@
 						<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd"/> 
 					</div>
 				</div>
-				<c:if test="${not empty review.imagePath}">
+				<%-- <c:if test="${not empty review.imagePath}">
 					<div class="review-image">
 						<img src="${review.imagePath}" width="200">
 					</div>
-				</c:if>
+				</c:if> --%>
 				<div>${review.content}</div>
 				<hr>
 			</div>

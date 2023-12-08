@@ -52,9 +52,9 @@
 							<td>
 								<select class="form-control" id="productOption">
 									<option selected disabled>옵션을 선택해주세요</option>
-								<c:forEach items="${optionList}" var="option">
+								<%-- <c:forEach items="${optionList}" var="option">
 									<option value="${option.id}">${option.option}</option>
-								</c:forEach>
+								</c:forEach> --%>
 								</select>
 							</td>
 						</tr>

@@ -1,17 +1,15 @@
-package com.myshop.review.domain;
+package com.myshop.option.entity;
 
 import java.time.ZonedDateTime;
 
 import lombok.Data;
 
 @Data
-public class Review {
-
-	private int id;
-	private int userId;
+public class Option {
 	private int productId;
-	private int point;
-	private String content;
+	private String option;
+	private String option_name;
+	private int addPrice;
 	private ZonedDateTime createdAt;
 	private ZonedDateTime updatedAt;
 }
