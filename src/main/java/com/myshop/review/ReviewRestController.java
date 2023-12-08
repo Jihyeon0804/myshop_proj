@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.myshop.review.bo.ReviewBO;
+import com.myshop.review.bo.ReviewImageBO;
+import com.myshop.review.domain.Review;
 
 @RestController
 @RequestMapping("/review")
@@ -23,7 +25,8 @@ public class ReviewRestController {
 	@Autowired
 	private ReviewBO reviewBO;
 	
-	
+	@Autowired
+	private ReviewImageBO reviewImageBO;
 	
 	@PostMapping("/post")
 	public Map<String, Object> postReview(
@@ -37,8 +40,17 @@ public class ReviewRestController {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		if (ObjectUtils.isEmpty(userId) == false) {
-			reviewBO.addReview(userId, productId, point, content);
+			Review review = new Review();
+			review.setUserId(userId);
+			review.setProductId(productId);
+			review.setContent(content);
+			review.setPoint(point);
+			reviewBO.addReview(review);
 			
+			int reviewId =  review.getId();
+			for (MultipartFile file : files) {
+				reviewImageBO.addReviewImage(reviewId, file);
+			}
 			result.put("code", 200);
 			result.put("result", "성공");
 		} else {

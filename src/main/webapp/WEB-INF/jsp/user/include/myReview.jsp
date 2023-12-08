@@ -191,14 +191,13 @@ $(document).ready(function() {
 			return;
 		}
 		let imageArray = [];
-		console.log(imageArray);
+		//console.log(imageArray);
 		$.each($('.fileInput'), function (index ,el) {
 			if (typeof el.files[0] != 'undefined') {
 				imageArray.push(el.files[0]);
 			}
 		});
-		console.log(imageArray);
-		
+		//console.log(imageArray);
 
 		let formData = new FormData();
 		formData.append("productId", productId);
@@ -207,8 +206,6 @@ $(document).ready(function() {
 		$.each(imageArray, function (index ,el) {
 			formData.append("files", el);
 		});
-		
-		
 		
 		$.ajax({
 			// request

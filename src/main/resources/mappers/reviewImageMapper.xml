@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myshop.review.mapper.ReviewImageMapper">
+	<insert id="insertReviewImage" parameterType="map">
+		INSERT INTO `review_image`
+		(
+		`reviewId`
+		,`imagePath`
+		,`createdAt`
+		,`updatedAt`
+		)
+		VALUES
+		(
+		 #{reviewId}
+		 , #{imagePath}
+		 , NOW()
+		 , NOW()
+		)
+	</insert>
+	
+	<select id="selectReviewImageList" parameterType="int" resultType="com.myshop.review.domain.ReviewImage">
+		SELECT
+			`reviewId`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`review_image`
+		WHERE
+			`reviewId` = #{reviewId}
+	</select>
+</mapper>

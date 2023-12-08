@@ -17,7 +17,7 @@
 			`productId` = #{productId}
 	</select>
 	
-	<insert id="insertReview" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+	<insert id="insertReview" parameterType="com.myshop.review.domain.Review" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO `review`
 		(
 			`userId`

@@ -141,6 +141,7 @@ $(document).ready(function() {
 		let amount = $('#amount').val();
 		let prodPrice = $('#price').data('price');
 		let changedPrice = $('#price').text();
+		let regexp = /\B(?=(\d{3})+(?!\d))/g;
 		if (amount > 1) {
 			// 수량 감소
 			amount--;
@@ -148,6 +149,7 @@ $(document).ready(function() {
 
 			// 가격 변동
 			changedPrice = prodPrice * amount
+			changedPrice = changedPrice.toString().replace(regexp, ',');
 			$('#price').text(changedPrice);
 
 		}
@@ -158,6 +160,7 @@ $(document).ready(function() {
 		let amount = $('#amount').val();
 		let prodPrice = $('#price').data('price');
 		let changedPrice = $('#price').text();
+		let regexp = /\B(?=(\d{3})+(?!\d))/g;
 		if (amount < 10) {
 			// 수량 증가
 			amount++;
@@ -165,6 +168,7 @@ $(document).ready(function() {
 
 			// 가격 변동
 			changedPrice = prodPrice * amount
+			changedPrice = changedPrice.toString().replace(regexp, ',');
 			$('#price').text(changedPrice);
 		}
 	});

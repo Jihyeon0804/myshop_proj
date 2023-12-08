@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="review-area">
-	<c:if test="${empty reviewList}">
+	<c:if test="${empty reviewSetList}">
 		<div class="empty-box">
 			<div class="text-center">
 				<img alt="없음" src="/static/img/empty-icon.png">
@@ -13,7 +13,7 @@
 		</div>
 	</c:if>
 	<div>
-	<c:if test="${not empty reviewList}">
+	<c:if test="${not empty reviewSetList}">
 		<div>
 			<h2>상품 리뷰</h2>
 		</div>
@@ -26,7 +26,13 @@
 		</div>
 		<div class="photo-review">
 			<div>포토 N건</div>
-			<div>사진 리뷰</div>
+			<div>
+			<c:forEach items="${reviewSetList}" var="reviewList">
+				<c:forEach items="${reviewList.reviewImageList}" var="review">
+						<img src="${review.imagePath}" width="80" height="80" class="mr-3">
+				</c:forEach>
+			</c:forEach>
+			</div>
 		</div>
 		
 		<div>
@@ -39,7 +45,7 @@
 			</div>
 			<hr>
 			<!-- 한 사용자의 리뷰 -->
-			<c:forEach items="${reviewList}" var="review">
+			<c:forEach items="${reviewSetList}" var="reviewList">
 			<div class="prd-review">
 				<div class="d-flex justify-content-between">
 					<div class="d-flex">
@@ -49,28 +55,30 @@
 						<div class="review-info d-flex">
 							<div>
 								<div class="d-flex">
-								<c:forEach begin="1" end="${review.point}">
+								<c:forEach begin="1" end="${reviewList.review.point}">
 									<img src="/static/img/full-star-icon.png" alt="별점" width="30">
 								</c:forEach>
-								<c:forEach begin="1" end="${5-review.point}">
+								<c:forEach begin="1" end="${5-reviewList.review.point}">
 									<img src="/static/img/empty-star-icon.png" alt="별점" width="30">
 								</c:forEach>
 								</div>
-								<div class="user-id-box">${review.userId}</div>
+								<div class="user-id-box">${reviewList.user.loginId.substring(0,3)}*****</div>
 							</div>
 						</div>
 					</div>
 					<div class="review-created-date">
-						<fmt:parseDate value="${review.createdAt}" pattern="yyyy-MM-dd" var="parseDate"/> 
+						<fmt:parseDate value="${reviewList.review.createdAt}" pattern="yyyy-MM-dd" var="parseDate"/> 
 						<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd"/> 
 					</div>
 				</div>
-				<%-- <c:if test="${not empty review.imagePath}">
-					<div class="review-image">
-						<img src="${review.imagePath}" width="200">
-					</div>
-				</c:if> --%>
-				<div>${review.content}</div>
+				<c:if test="${not empty reviewList.reviewImageList}">
+					<c:forEach items="${reviewList.reviewImageList}" var="reviewImage">
+						<div class="review-image my-2">
+							<img src="${reviewImage.imagePath}" width="200">
+						</div>
+					</c:forEach>
+				</c:if>
+				<div>${reviewList.review.content}</div>
 				<hr>
 			</div>
 			</c:forEach>

@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import com.myshop.review.domain.Review;
+import com.myshop.review.domain.ReviewImage;
 import com.myshop.review.domain.ReviewSet;
 import com.myshop.review.mapper.ReviewMapper;
 import com.myshop.user.bo.UserBO;
@@ -21,9 +23,12 @@ public class ReviewBO {
 	@Autowired
 	private UserBO userBO;
 	
+	@Autowired
+	private ReviewImageBO reviewImageBO;
+	
 	// insert
-	public void addReview(int userId, int productId, int point, String content) {
-		reviewMapper.insertReview(userId, productId, point, content);
+	public void addReview(Review review) {
+		reviewMapper.insertReview(review);
 	}
 	
 	public List<Review> getReviewListByProductId(int productId) {
@@ -42,8 +47,17 @@ public class ReviewBO {
 			ReviewSet reviewSet = new ReviewSet();
 			reviewSet.setReview(review);
 			
+			List<ReviewImage> reviewImageList = reviewImageBO.getReviewImageList(review.getId());
+			if (ObjectUtils.isEmpty(reviewImageList) == false) {
+				reviewSet.setReviewImageList(reviewImageList);
+			} else {
+				reviewSet.setReviewImageList(null);
+			}
+
 			User user = userBO.getUserById(review.getUserId());
 			reviewSet.setUser(user);
+			
+			reviewSetList.add(reviewSet);
 
 		}
 		return reviewSetList;
