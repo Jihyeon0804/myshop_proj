@@ -54,7 +54,7 @@
 										<div class="d-flex align-items-center ml-3">
 											<div>
 												<span>${cartSet.product.title}</span><br>
-¿												<!-- <span>${cartSet.option.option}</span><button class="btn">옵션변경</button> -->
+												<span>${cartSet.cart.option}</span>
 											</div>
 										</div>
 									</div>
@@ -167,6 +167,77 @@ $(document).ready(function() {
 			}
 			, error:function(request, status, error) {
 				alert("장바구니 삭제를 실패했습니다. 잠시후 다시 시도해주세요.")
+			}
+		});
+	});
+	
+$('#myOrder').on('click', function() {
+		
+		$.ajax({
+			// request
+			url : "/site-name/my-page/order-view"
+			
+			// response
+			, success:function(data) {
+				$('#myPageContents').html(data);
+			}
+		});
+	});
+	
+	// 장바구니 버튼 클릭 시
+	$('#myCart').on('click', function() {
+		
+		$.ajax({
+			// request
+			url : "/site-name/my-page/cart-view"
+			
+			// response
+			, success:function(data) {
+				$('#myPageContents').html(data);
+			}
+		});
+	});
+	
+	
+	// 찜한 상품 버튼 클릭 시
+	$('#myPick').on('click', function() {
+		
+		$.ajax({
+			// request
+			url : "/site-name/my-page/like-view"
+			
+			// response
+			, success:function(data) {
+				$('#myPageContents').html(data);
+			}
+		});
+	});
+	
+	
+	// 나의 리뷰 버튼 클릭 시
+	$('#myReview').on('click', function() {
+		
+		$.ajax({
+			// request
+			url : "/site-name/my-page/review-view"
+			
+			// response
+			, success:function(data) {
+				$('#myPageContents').html(data);
+			}
+		});
+	});
+	
+	// 내 정보 수정 버튼 클릭 시
+	$('#myInfoRevise').on('click', function() {
+		
+		$.ajax({
+			// request
+			url : "/site-name/my-page/info-revise-view"
+			
+			// response
+			, success:function(data) {
+				$('#myPageContents').html(data);
 			}
 		});
 	});
