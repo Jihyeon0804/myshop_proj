@@ -1,8 +1,11 @@
 package com.myshop.like.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myshop.like.domain.Like;
 import com.myshop.like.mapper.LikeMapper;
 
 @Service
@@ -32,5 +35,13 @@ public class LikeBO {
 		} else {
 			return false;
 		}
+	}
+	
+	public List<Like> getLikeList(int userId) {
+		return likeMapper.selectLikeListByUserId(userId);
+	}
+	
+	public void deleteLikeByProductIdUserId(int productId, int userId) {
+		likeMapper.deleteLikeByProductIdUserId(productId, userId);
 	}
 }

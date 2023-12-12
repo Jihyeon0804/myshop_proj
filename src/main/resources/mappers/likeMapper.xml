@@ -34,5 +34,17 @@
 		WHERE
 			`productId` = #{productId} AND `userId` = #{userId}
 	</delete>
+	
+	<select id="selectLikeListByUserId" parameterType="int" resultType="com.myshop.like.domain.Like">
+		SELECT
+			`productId`
+			, `userId`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`like`
+		WHERE
+			`userId` = #{userId}
+	</select>
 </mapper>
 	
