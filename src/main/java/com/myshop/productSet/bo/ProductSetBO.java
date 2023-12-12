@@ -63,6 +63,61 @@ public class ProductSetBO {
 	}
 	
 	
+	
+	public List<ProductSet> generateProductSetListByCategoryId(int categoryId) {
+		List<ProductSet> productSetList = new ArrayList<>();
+		
+		List<Product> productList = productBO.getProductByCategoryId(categoryId);
+		for (Product product : productList) {
+			ProductSet productSet = new ProductSet();
+			productSet.setProduct(product);
+			
+			// 상품 썸네일
+			ProductThumbnail productThumbnail = productThumbnailBO.getProductThumbnailByProductId(product.getId());
+			productSet.setProductThumbnail(productThumbnail);
+			
+			// 상품에 해당하는 리뷰-작성자 묶음
+			List<ReviewSet> reviewSetList = reviewBO.generateReviewSetList(product.getId());
+			productSet.setReviewSetList(reviewSetList);
+			
+			// 상품에 해당하는 QnA 묶음
+			List<Qna> qnaList = qnaBO.generateQnaList(product.getId());
+			productSet.setQnaList(qnaList);
+			
+			productSetList.add(productSet);
+		}
+		return productSetList;
+	}
+	
+	
+	public List<ProductSet> generateProductSetListByCategoryIdSubclassId(int categoryId, int subclassId) {
+		List<ProductSet> productSetList = new ArrayList<>();
+		
+		List<Product> productList = productBO.getProductByCategoryIdSubclassId(categoryId, subclassId);
+		for (Product product : productList) {
+			ProductSet productSet = new ProductSet();
+			productSet.setProduct(product);
+			
+			// 상품 썸네일
+			ProductThumbnail productThumbnail = productThumbnailBO.getProductThumbnailByProductId(product.getId());
+			productSet.setProductThumbnail(productThumbnail);
+			
+			// 상품에 해당하는 리뷰-작성자 묶음
+			List<ReviewSet> reviewSetList = reviewBO.generateReviewSetList(product.getId());
+			productSet.setReviewSetList(reviewSetList);
+			
+			// 상품에 해당하는 QnA 묶음
+			List<Qna> qnaList = qnaBO.generateQnaList(product.getId());
+			productSet.setQnaList(qnaList);
+			
+			productSetList.add(productSet);
+		}
+		return productSetList;
+	}
+	
+	
+	
+	
 	public ProductSet generateProductSet(int productId) {
 		ProductSet productSet = new ProductSet();
 		Product product = productBO.getProductById(productId);

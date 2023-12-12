@@ -15,6 +15,8 @@ import com.myshop.aop.TimeTrace;
 import com.myshop.cart.bo.CartSetBO;
 import com.myshop.cart.domain.CartSet;
 import com.myshop.like.bo.LikeBO;
+import com.myshop.like.bo.LikeSetBO;
+import com.myshop.like.domain.LikeSet;
 import com.myshop.productSet.bo.ProductSetBO;
 import com.myshop.productSet.domain.ProductSet;
 
@@ -32,8 +34,9 @@ public class MainController {
 	@Autowired
 	private CartSetBO cartSetBO;
 	
-//	@Autowired
-//	private OptionBO optionBO;
+	@Autowired
+	private LikeSetBO likeSetBO;
+
 	
 	@GetMapping("")
 	public String siteView(Model model) {
@@ -49,6 +52,24 @@ public class MainController {
 		model.addAttribute("viewName", "user/signIn");
 		return "template/layout";
 	}
+	
+	@GetMapping("/product/category/{categoryId}")
+	public String productCategory(Model model, @PathVariable int categoryId, HttpSession session) {
+		List<ProductSet> productList = productSetBO.generateProductSetListByCategoryId(categoryId);
+		model.addAttribute("productList", productList);
+		model.addAttribute("viewName", "main/category");
+		return "template/layout";
+	}
+	
+	@GetMapping("/product/category/{categoryId}/{subclassId}")
+	public String productCategory(Model model, @PathVariable int categoryId,
+			@PathVariable int subclassId, HttpSession session) {
+		List<ProductSet> productList = productSetBO.generateProductSetListByCategoryIdSubclassId(categoryId, subclassId);
+		model.addAttribute("productList", productList);
+		model.addAttribute("viewName", "main/subclass");
+		return "template/layout";
+	}
+	
 	
 	@GetMapping("/product/{productId}")
 	public String productDetailView(Model model, @PathVariable int productId, HttpSession session) {
@@ -113,12 +134,28 @@ public class MainController {
 	}
 	
 	@GetMapping("/my-page/cart-view")
-	public String cartView() {
+	public String cartView(Model model, HttpSession session) {
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId == null) {
+			// 비로그인이면 로그인 페이지로 이동
+			return "redirect:/site-name/sign-in-view";
+		}
+		
+		List<CartSet> cartSetList =  cartSetBO.generateCartSet(userId);
+		model.addAttribute("cartSetList", cartSetList);
 		return "user/include/myCart";
 	}
 	
 	@GetMapping("/my-page/like-view")
-	public String likeView() {
+	public String likeView(Model model, HttpSession session) {
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId == null) {
+			// 비로그인이면 로그인 페이지로 이동
+			return "redirect:/site-name/sign-in-view";
+		}
+		
+		List<LikeSet> likeSetList =  likeSetBO.generateLikeSet(userId);
+		model.addAttribute("likeSetList", likeSetList);
 		return "user/include/myPick";
 	}
 	

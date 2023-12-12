@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
 	<div class="util-area">
 		<ul>
@@ -34,77 +34,77 @@
 				<li class="header-menu-list-items"><a href="#" id="category"><span>카테고리</span></a>
 					<ul class="header-menu-list-items-sub">
 						<li class="header-menu-list-items-sub-items">
-							<a href="#">원두커피</a>
+							<a href="/site-name/product/category/1">원두커피</a>
 							<div>
 								<ul class="subclass-list">
-									<li class="subclass-items"><a href="#">블랜드</a></li>
-									<li class="subclass-items"><a href="#">싱글 오리진</a></li>
-									<li class="subclass-items"><a href="#">디카페인</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/1/1">블랜드</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/1/2">싱글 오리진</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/1/3">디카페인</a></li>
 								</ul>
 							</div>
 						</li>
 						<li class="header-menu-list-items-sub-items">
-							<a href="#">간편커피</a>
+							<a href="/site-name/product/category/2">간편커피</a>
 							<div>
 								<ul class="subclass-list">
-									<li class="subclass-items"><a href="#">드립백 커피</a></li>
-									<li class="subclass-items"><a href="#">콜드브루</a></li>
-									<li class="subclass-items"><a href="#">캡슐커피 &amp; 티</a></li>
-									<li class="subclass-items"><a href="#">스틱커피</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/2/1">드립백 커피</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/2/2">콜드브루</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/2/3">캡슐커피 &amp; 티</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/2/4">스틱커피</a></li>
 								</ul>
 							</div>
 						</li>
 						<li class="header-menu-list-items-sub-items">
-							<a href="#">생두</a>
+							<a href="/site-name/product/category/3">생두</a>
 							<div>
 								<ul class="subclass-list">
-									<li class="subclass-items"><a href="#">아프리카</a></li>
-									<li class="subclass-items"><a href="#">남아메리카</a></li>
-									<li class="subclass-items"><a href="#">북중앙아메리카</a></li>
-									<li class="subclass-items"><a href="#">아시아 &amp; 기타</a></li>
-									<li class="subclass-items"><a href="#">디카페인</a></li>
-									<li class="subclass-items"><a href="#">수입사</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/3/1">아프리카</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/3/2">남아메리카</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/3/3">북중앙아메리카</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/3/4">아시아 &amp; 기타</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/3/5">디카페인</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/3/6">수입사</a></li>
 								</ul>
 							</div>
 						</li>
 						<li class="header-menu-list-items-sub-items">
-							<a href="#">로스팅 용품</a>
+							<a href="/site-name/product/category/4">로스팅 용품</a>
 						</li>
 						<li class="header-menu-list-items-sub-items">
-							<a href="#">머신</a>
+							<a href="/site-name/product/category/5">머신</a>
 							<div>
 								<ul class="subclass-list">
-									<li class="subclass-items"><a href="#">에스프레소머신</a></li>
-									<li class="subclass-items"><a href="#">그라인더</a></li>
-									<li class="subclass-items"><a href="#">로스터기</a></li>
-									<li class="subclass-items"><a href="#">블렌더</a></li>
-									<li class="subclass-items"><a href="#">드립포트</a></li>
-									<li class="subclass-items"><a href="#">드립머신</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/5/1">에스프레소머신</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/5/2">그라인더</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/5/3">로스터기</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/5/4">블렌더</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/5/5">드립포트</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/5/6">드립머신</a></li>
 								</ul>
 							</div>
 						</li>
 						<li class="header-menu-list-items-sub-items">
-							<a href="#">커피용품</a>
+							<a href="/site-name/product/category/6">커피용품</a>
 							<div>
 								<ul class="subclass-list">
-									<li class="subclass-items"><a href="#">홈카페세트</a></li>
-									<li class="subclass-items"><a href="#">핸드드립추출기구</a></li>
-									<li class="subclass-items"><a href="#">커피추출기구</a></li>
-									<li class="subclass-items"><a href="#">바리스타용품</a></li>
-									<li class="subclass-items"><a href="#">테이블웨어</a></li>
-									<li class="subclass-items"><a href="#">위생용품</a></li>
-									<li class="subclass-items"><a href="#">보관용품</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/6/1">홈카페세트</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/6/2">핸드드립추출기구</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/6/3">커피추출기구</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/6/4">바리스타용품</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/6/5">테이블웨어</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/6/6">위생용품</a></li>
+									<li class="subclass-items"><a href="/site-name/product/category/6/7">보관용품</a></li>
 								</ul>
 							</div>
 						</li>
 						<li class="header-menu-list-items-sub-items">
-							<a href="#">시럽/소스/파우더</a>
+							<a href="/site-name/product/category/7">시럽/소스/파우더</a>
 						</li>
 						<li class="header-menu-list-items-sub-items">
-							<a href="#">TEA/농축액/시리얼</a>
+							<a href="/site-name/product/category/8">TEA/농축액/시리얼</a>
 						</li>
 						<li class="header-menu-list-items-sub-items">
-							<a href="#">음료/탄산수/유제품</a>
+							<a href="/site-name/product/category/9">음료/탄산수/유제품</a>
 						</li>
 					</ul>
 				</li>

@@ -25,7 +25,7 @@
 		<section class="bg-white">
 			<jsp:include page="../${viewName}.jsp" />
 		</section>
-		<footer class="bg-success">
+		<footer class="d-flex justify-content-center align-items-center">
 			<jsp:include page="../include/footer.jsp" />
 		</footer>
 	</div>

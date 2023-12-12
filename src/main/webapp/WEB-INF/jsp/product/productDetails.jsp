@@ -54,7 +54,7 @@
 								${option.option}
 							</th>
 							<td>
-								<select class="form-control" id="selectedOption${status.index}">
+								<select class="form-control optionSelect" id="selectedOption${status.index}">
 									<option selected disabled>옵션을 선택해주세요</option>
 								<c:forEach items="${productSet.optionList}" var="options">
 								<c:if test="${option.option eq options.option}">
@@ -255,33 +255,38 @@ $(document).ready(function() {
 		});
 	});
 	
-	// 장바구니 담기
-	$('#addCartBtn').on('click', function() {
-		let productId = $(this).data('product-id');
+	// 옵션 선택
+	$('.optionSelect').on('change', function() {
 		let selectLength = $('select').length;
-		let option = []
-		
-		<%--
-		if (optionId1 == null || optionId2 == null || optionId3 == null) {
-			alert("옵션을 선택해주세요.");
-			return;
-		}
-		--%>
-		
+		let option = [];
 		for (let i = 0; i < selectLength; i++) {
 			let selector = '#selectedOption'+ i +' option:selected'
 			let selected = $(selector).text();
 			option.push(selected);
 		}
-		alert(option);
+		if (option.includes('옵션을 선택해주세요') == false && option.length == selectLength) {
+			$('.title > span').text(option);
+		}
+		
+	});
+	
+	// 장바구니 담기
+	$('#addCartBtn').on('click', function() {
+		let productId = $(this).data('product-id');
+		let selectLength = $('select').length;
 		let amount = $('#amount').val();
+		let option = $('.title > span').text();
 		
+
+		if (option == '구매 수량') {
+			alert("옵션을 선택해주세요.");
+			return;
+		}
 		
-		<%--
 		$.ajax({
 			type:"post"
 			, url:"/cart/product-add"
-			, data:{"productId":productId, "optionId":optionId1, "amount":amount}
+			, data:{"productId":productId, "option":option, "amount":amount}
 			
 			, success:function(data) {
 				if (data.code == 200) {
@@ -293,7 +298,7 @@ $(document).ready(function() {
 			, error:function(request, status, error) {
 				alert("장바구니 담기에 실패했습니다. 잠시후 다시 시도해주세요.");
 			}
-		});--%>
+		});
 	});
 	
 	// 결제하기 버튼 클릭 시

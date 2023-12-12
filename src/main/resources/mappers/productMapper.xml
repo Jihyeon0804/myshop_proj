@@ -41,4 +41,45 @@
 		WHERE
 			`id` = #{id}
 	</select>
+	
+	
+	<select id="selectProductByCategoryId" parameterType="int" resultType="com.myshop.product.domain.Product">
+		SELECT
+			`id`
+			, `categoryId`
+			, `subclassId`
+			, `optionId`
+			, `title`
+			, `description`
+			, `price`
+			, `discountPrice`
+			, `stock`
+			, `productStatus`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+		 `product`
+		 WHERE
+			`categoryId` = #{categoryId}
+	</select>
+	
+	<select id="selectProductByCategoryIdSubclassId" parameterType="map" resultType="com.myshop.product.domain.Product">
+		SELECT
+			`id`
+			, `categoryId`
+			, `subclassId`
+			, `optionId`
+			, `title`
+			, `description`
+			, `price`
+			, `discountPrice`
+			, `stock`
+			, `productStatus`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+		 `product`
+		 WHERE
+			`categoryId` = #{categoryId} AND `subclassId` = #{subclassId}
+	</select>
 </mapper>

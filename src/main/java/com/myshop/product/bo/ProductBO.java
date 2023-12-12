@@ -22,4 +22,16 @@ public class ProductBO {
 	public Product getProductById(int id) {
 		return productMapper.selectProductById(id);
 	}
+	
+	
+	public List<Product> getProductByCategoryId(int categoryId) {
+		return productMapper.selectProductByCategoryId(categoryId);
+	}
+	
+	public List<Product> getProductByCategoryIdSubclassId(int categoryId, int subclassId) {
+		return productMapper.selectProductByCategoryIdSubclassId(categoryId, subclassId);
+	}
+	
+	
+	
 }
