@@ -14,8 +14,8 @@ public class CartBO {
 	@Autowired
 	private CartMapper cartMapper;
 	
-	public void addCart(int userId, int productId, Integer optionId, int amount) {
-		cartMapper.insertCart(userId, productId, optionId, amount);
+	public void addCart(int userId, int productId, String option, int amount) {
+		cartMapper.insertCart(userId, productId, option, amount);
 	}
 	
 	

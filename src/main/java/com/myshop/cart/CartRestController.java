@@ -1,9 +1,10 @@
-package com.myshop.cart;
+ package com.myshop.cart;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -22,10 +23,11 @@ public class CartRestController {
 	@Autowired
 	private CartBO cartBO;
 	
+	@Transactional
 	@PostMapping("/product-add")
 	public Map<String, Object> addCartProduct(
 			@RequestParam("productId") int productId
-			, @RequestParam("optionId") Integer optionId
+			, @RequestParam("option") String option
 			, @RequestParam("amount") int amount
 			, HttpSession session) {
 		Map<String, Object> result = new HashMap<>();
@@ -35,7 +37,7 @@ public class CartRestController {
 			result.put("code", 500);
 			result.put("errorMessage", "로그인을 해주세요.");
 		} else {
-			cartBO.addCart(userId, productId, optionId, amount);
+			cartBO.addCart(userId, productId, option, amount);
 			result.put("code", 200);
 			result.put("result", "장바구니 담기 성공");
 		}

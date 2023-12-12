@@ -13,7 +13,7 @@ public interface CartMapper {
 	public void insertCart(
 			@Param("userId") int userId,
 			@Param("productId") int productId,
-			@Param("optionId") Integer optionId,
+			@Param("option") String option,
 			@Param("amount") int amount);
 	
 	
