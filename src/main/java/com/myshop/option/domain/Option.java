@@ -1,4 +1,4 @@
-package com.myshop.option.entity;
+package com.myshop.option.domain;
 
 import java.time.ZonedDateTime;
 
@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class Option {
+
 	private int productId;
 	private String option;
 	private String option_name;

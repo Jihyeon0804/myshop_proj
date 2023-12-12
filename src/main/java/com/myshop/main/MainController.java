@@ -59,10 +59,6 @@ public class MainController {
 		ProductSet productSet = productSetBO.generateProductSet(productId);
 		model.addAttribute("productSet", productSet);
 		
-//		int optionId = productSet.getProduct().getOptionId();
-//		List<OptionEntity> optionList = optionBO.getOptionList(optionId);
-//		model.addAttribute("optionList", optionList);
-		
 		model.addAttribute("viewName", "product/productDetails");
 		model.addAttribute("detailviewName", "product/include/description");
 		return "template/layout";

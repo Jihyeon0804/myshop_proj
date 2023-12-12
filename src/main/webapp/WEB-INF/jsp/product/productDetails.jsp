@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div class="d-flex justify-content-center">
 	<div class="product-box">
 		<div class="prod-info-area d-flex">
@@ -47,17 +48,23 @@
 				<!-- 옵션 선택 -->
 				<table class="product-option-table">
 					<tbody>
+						<c:forEach items="${productSet.optionName}" var="option" varStatus="status">
 						<tr>
-							<th>분쇄 선택</th>
+							<th>
+								${option.option}
+							</th>
 							<td>
-								<select class="form-control" id="productOption">
+								<select class="form-control" id="selectedOption${status.index}">
 									<option selected disabled>옵션을 선택해주세요</option>
-								<%-- <c:forEach items="${optionList}" var="option">
-									<option value="${option.id}">${option.option}</option>
-								</c:forEach> --%>
+								<c:forEach items="${productSet.optionList}" var="options">
+								<c:if test="${option.option eq options.option}">
+									<option value="#">${options.option_name}</option>
+								</c:if>
+								</c:forEach>
 								</select>
 							</td>
 						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<!--  수량 버튼 -->
@@ -80,6 +87,13 @@
 						</div>
 					</div>
 				</div>
+				<!-- 선택된 옵션 영역 -->
+				<div>
+					<div class="selected-option-area">
+						
+					</div>
+				</div>
+				<!-- 상품 가격 + 찜 + 장바구니 + 결제 영역 -->
 				<div class="prod-order-area">
 					<div class="prod-total-price d-flex">
 						<span class="pt-1">결제가격</span>
@@ -244,18 +258,30 @@ $(document).ready(function() {
 	// 장바구니 담기
 	$('#addCartBtn').on('click', function() {
 		let productId = $(this).data('product-id');
-		let optionId = $('#productOption').val();
-		let amount = $('#amount').val();
+		let selectLength = $('select').length;
+		let option = []
 		
-		if (optionId == null) {
+		<%--
+		if (optionId1 == null || optionId2 == null || optionId3 == null) {
 			alert("옵션을 선택해주세요.");
 			return;
 		}
+		--%>
 		
+		for (let i = 0; i < selectLength; i++) {
+			let selector = '#selectedOption'+ i +' option:selected'
+			let selected = $(selector).text();
+			option.push(selected);
+		}
+		alert(option);
+		let amount = $('#amount').val();
+		
+		
+		<%--
 		$.ajax({
 			type:"post"
 			, url:"/cart/product-add"
-			, data:{"productId":productId, "optionId":optionId, "amount":amount}
+			, data:{"productId":productId, "optionId":optionId1, "amount":amount}
 			
 			, success:function(data) {
 				if (data.code == 200) {
@@ -267,7 +293,7 @@ $(document).ready(function() {
 			, error:function(request, status, error) {
 				alert("장바구니 담기에 실패했습니다. 잠시후 다시 시도해주세요.");
 			}
-		});
+		});--%>
 	});
 	
 	// 결제하기 버튼 클릭 시

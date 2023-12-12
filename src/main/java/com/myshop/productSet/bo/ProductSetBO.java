@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myshop.option.bo.OptionBO;
+import com.myshop.option.domain.Option;
 import com.myshop.product.bo.ProductBO;
 import com.myshop.product.bo.ProductThumbnailBO;
 import com.myshop.product.domain.Product;
@@ -30,6 +32,9 @@ public class ProductSetBO {
 	
 	@Autowired
 	private QnaBO qnaBO;
+	
+	@Autowired
+	private OptionBO optionBO;
 	
 	public List<ProductSet> generateProductSetList() {
 		List<ProductSet> productSetList = new ArrayList<>();
@@ -66,6 +71,14 @@ public class ProductSetBO {
 		// 상품 썸네일
 		ProductThumbnail productThumbnail = productThumbnailBO.getProductThumbnailByProductId(product.getId());
 		productSet.setProductThumbnail(productThumbnail);
+		
+		// 상품 옵션
+		List<Option> optionList = optionBO.getOptionListByProductId(productId);
+		productSet.setOptionList(optionList);
+		
+		// 상품 옵션 이름
+		List<String> optionNameList = optionBO.getOptionNameListByProductId(productId);
+		productSet.setOptionName(optionNameList);
 		
 		// 상품에 해당하는 리뷰-작성자 묶음
 		List<ReviewSet> reviewSetList = reviewBO.generateReviewSetList(product.getId());

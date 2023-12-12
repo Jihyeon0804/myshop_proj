@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.myshop.option.mapper.OptionMapper">
+	<select id="selectOptionListByProductId" parameterType="int" resultType="com.myshop.option.domain.Option">
+		SELECT
+			`productId`
+			,`option`
+			,`option_name`
+			,`addPrice`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`product_option`
+		WHERE
+			`productId` = #{productId}
+	</select>
+	
+	<select id="selectOptionNameListByProductId" parameterType="int" resultType="map">
+		SELECT
+			DISTINCT(`option`)
+		FROM
+			`product_option`
+		WHERE
+			`productId` = #{productId}
+	</select>
+</mapper>
