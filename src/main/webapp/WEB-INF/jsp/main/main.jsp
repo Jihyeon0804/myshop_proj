@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div>
 	<!-- 배너 영역 -->
 	<div class="d-flex justify-content-center banner-area">
@@ -106,7 +107,7 @@
 							<span>
 								<fmt:formatNumber>${productSet.product.price}</fmt:formatNumber>원
 							</span>
-							<span>리뷰 개수, 별점</span>
+							<span>리뷰(${fn:length(productSet.reviewSetList)})</span>
 						</div>
 					</div>
 				</li>

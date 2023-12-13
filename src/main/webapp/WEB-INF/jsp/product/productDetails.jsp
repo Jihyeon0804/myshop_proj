@@ -304,9 +304,21 @@ $(document).ready(function() {
 	// 결제하기 버튼 클릭 시
 	$('#orderBtn').on('click', function() {
 		let productId = $(this).data('product-id');
-		let optionId = '';
+		let option = $('.title > span').text();
 		let amount = $('#amount').val();
 		let price = $('#price').val();
+		
+		if (option == '구매 수량') {
+			alert("옵션을 선택해주세요.");
+			return;
+		}
+		
+		
+		$.ajax({
+			type:"post"
+			, url:"/order/pay"
+			, data:{"productId":productId, "option":option, "amount":amount, "price":price}
+		});
 	});
 });
 </script>
