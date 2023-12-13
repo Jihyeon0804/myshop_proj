@@ -119,7 +119,8 @@ public class MainController {
 		Product product = productBO.getProductById(Integer.parseInt(cookieMap.get("productId").toString()));
 		ProductThumbnail productThumbnail = productThumbnailBO.getProductThumbnailByProductId(Integer.parseInt(cookieMap.get("productId").toString()));
 		
-		logger.info("$$$$$$$$$$$$$$$$$ productId : {}", cookieMap.get("productId"));
+//		logger.info("$$$$$$$$$$$$$$$$$ productId : {}", cookieMap.get("productId"));
+		model.addAttribute("amount", cookieMap.get("amount"));
 		model.addAttribute("option", cookieMap.get("option"));
 		model.addAttribute("product", product);
 		model.addAttribute("productThumbnail", productThumbnail);

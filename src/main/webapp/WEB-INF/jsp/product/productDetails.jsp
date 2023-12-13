@@ -307,7 +307,7 @@ $(document).ready(function() {
 		let option = $('.title > span').text();
 		let amount = $('#amount').val();
 		let price = $('#price').data('price')
-		alert(price);
+
 		if (option == '구매 수량') {
 			alert("옵션을 선택해주세요.");
 			return;

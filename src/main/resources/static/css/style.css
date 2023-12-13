@@ -748,6 +748,12 @@ li .del-btn {
     border: none;
 }
 
+.required-items {
+	color: #e02020;
+	font-weight: bolder;
+	font-size: 20px;
+}
+
 
 .admin-box {
 	width: 2000px;
