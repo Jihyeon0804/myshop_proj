@@ -1,50 +1,51 @@
 package com.myshop.order;
 
-import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myshop.order.domain.Order;
-import com.myshop.product.bo.ProductBO;
-import com.myshop.product.bo.ProductThumbnailBO;
-import com.myshop.product.domain.Product;
-import com.myshop.product.domain.ProductThumbnail;
-
 @RestController
 @RequestMapping("/order")
 public class OrderRestController {
-	
-	@Autowired
-	private ProductBO productBO;
-	
-	@Autowired
-	private ProductThumbnailBO productThumbnailBO;
 
 	@PostMapping("/pay")
-	public String payment(
-			Model model, HttpSession session,
+	public Map<String, Object> payment(
+			Model model,
 			@RequestParam("productId") int productId,
 			@RequestParam("option") String option,
 			@RequestParam("amount") int amount,
-			@RequestParam("price") int price
-			) {
+			@RequestParam("price") int price,
+			HttpServletResponse response) {
+		option = option.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9,. ]", "");
+		option = option.replace(",", "/");
+		option = option.replace(" ", "-");
+		Cookie cookie = new Cookie("productId", Integer.toString(productId));
+		Cookie cookie2 = new Cookie("option", option);
+		Cookie cookie3 = new Cookie("amount", Integer.toString(amount));
+		Cookie cookie4 = new Cookie("price", Integer.toString(price));
+		cookie.setPath("/");
+		cookie2.setPath("/");
+		cookie3.setPath("/");
+		cookie4.setPath("/");
+		response.addCookie(cookie);
+		response.addCookie(cookie2);
+		response.addCookie(cookie3);
+		response.addCookie(cookie4);
 		
-		Order order = new Order();
-		Product product = productBO.getProductById(productId);
-		ProductThumbnail productThumbnail = productThumbnailBO.getProductThumbnailByProductId(productId);
-		order.setProduct(product);
-		order.setProductThumbnail(productThumbnail);
-		order.setOption(option);
-		order.setAmount(amount);
-		order.setPrice(price);
 		
-		model.addAttribute("order", order);
-		model.addAttribute("viewName", "order/order");
-		return "template/layout";
+		Map<String, Object> result = new HashMap<>();
+		
+		result.put("code", 200);
+		result.put("result", "성공");
+		return result;
 	}
+
 }

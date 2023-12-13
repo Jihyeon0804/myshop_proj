@@ -306,8 +306,8 @@ $(document).ready(function() {
 		let productId = $(this).data('product-id');
 		let option = $('.title > span').text();
 		let amount = $('#amount').val();
-		let price = $('#price').val();
-		
+		let price = $('#price').data('price')
+		alert(price);
 		if (option == '구매 수량') {
 			alert("옵션을 선택해주세요.");
 			return;
@@ -318,6 +318,16 @@ $(document).ready(function() {
 			type:"post"
 			, url:"/order/pay"
 			, data:{"productId":productId, "option":option, "amount":amount, "price":price}
+			, success:function(data) {
+				if (data.code == 200) {
+					location.href="/site-name/order"
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(request, status, error) {
+				alert("잠시후 다시 시도해주세요.");
+			}
 		});
 	});
 });

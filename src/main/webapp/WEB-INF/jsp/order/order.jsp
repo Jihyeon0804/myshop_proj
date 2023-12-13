@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div class="order-section">
 	<div class="order-area">
 		<h3>주문/결제</h3>
@@ -95,15 +98,15 @@
 								<img src="/static/img/sample-thumbnail.jpg" alt="주문 상품 썸네일 이미지" width="100">
 								<div class="d-flex align-items-center ml-3">
 									<div>
-										<span>상품명</span><br>
-										<span>옵션명</span>
+										<span>${product.title}</span><br>
+										<span>${option}</span>
 									</div>
 								</div>
 							</div>
 						</td>
-						<td>판매 가격</td>
+						<td>${product.price}</td>
 						<td>수량</td>
-						<td>구매 가격</td>
+						<td>${product.price}</td>
 					</tr>
 				</tbody>
 			</table>
