@@ -69,7 +69,7 @@ public class OrderRestController {
 			@RequestParam("phoneNumber") String phoneNumber,
 			@RequestParam("amount") int amount,
 			@RequestParam("totalPrice") int totalPrice,
-			@RequestParam("amount") int deliveryPrice,
+			@RequestParam("deliveryPrice") Integer deliveryPrice,
 			HttpSession session, HttpServletResponse response
 			) {
 		Cookie cookie = new Cookie("productId", null);
@@ -88,7 +88,11 @@ public class OrderRestController {
 	    cookie4.setMaxAge(0);
 	    cookie4.setPath("/");
 	    response.addCookie(cookie4);
+	    
 		int userId = (int)session.getAttribute("userId");
+		if (deliveryPrice == null) {
+			deliveryPrice = 0;
+		}
 		Order order = new Order();
 		order.setUserId(userId);
 		order.setOrderName(orderName);

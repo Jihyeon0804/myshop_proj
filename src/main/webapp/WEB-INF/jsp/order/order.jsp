@@ -200,18 +200,15 @@ $(document).ready(function() {
 		// 전체 상품 수량
 		let amount = $('#cartTable > tbody > tr').length;
 		// 배송비
-		let deliveryPrice = $('#deliveryPrice').text();
+		let deliveryPrice = $('#deliveryPrice').text().replace(',', '');
 		// 총 결제 금액
 		let totalPrice = $('#totalPrice').text().replace(',', '');
-		console.log(productId);
+/* 		console.log(productId);
 		console.log(option);
 		console.log(orderName);
 		console.log(address);
 		console.log(amount);
-		console.log(totalPrice);
-		
-		
-		
+		console.log(totalPrice); */
 		
 		if (orderName == '') {
 			alert("받는 분 성함을 입력해주세요.");
