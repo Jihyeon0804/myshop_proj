@@ -5,16 +5,14 @@ import java.time.ZonedDateTime;
 import lombok.Data;
 
 @Data
-public class Order {
+public class OrderDetail {
+
 	private int id;
-	private int userId;
-	private String orderName;
-	private String address;
-	private String message;
-	private String phoneNumber;
+	private int orderId;
+	private int productId;
+	private String option;
+	private int price;
 	private int amount;
-	private int totalPrice;
-	private int deliveryPrice;
 	private ZonedDateTime createdAt;
 	private ZonedDateTime updatedAt;
 }

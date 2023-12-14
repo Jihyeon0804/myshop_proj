@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<!-- 아임포트 라이브러리 -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <div class="order-section">
 	<div class="order-area">
@@ -104,8 +106,8 @@
 								<img src="/static/img/sample-thumbnail.jpg" alt="주문 상품 썸네일 이미지" width="100">
 								<div class="d-flex align-items-center ml-3">
 									<div>
-										<span id="productTitle">${product.title}</span><br>
-										<span>${option}</span>
+										<span id="productTitle" data-product-id="${product.id}">${product.title}</span><br>
+										<span id="productOption">${option}</span>
 									</div>
 								</div>
 							</div>
@@ -183,6 +185,10 @@ $(document).ready(function() {
 	});
 	
 	$('#paymentBtn').on('click', function() {
+		// 주문 상품 번호
+		let productId = $('#productTitle').data('product-id');
+		// 선택 옵션
+		let option = $('#productOption').text();
 		// 받는 사람 이름
 		let orderName = $('#orderName').val();
 		// 주소
@@ -190,13 +196,22 @@ $(document).ready(function() {
 		// 휴대폰 번호
 		let phoneNumber = $('#phoneNumber1 option:selected').val() + $('#phoneNumber2').val() + $('#phoneNumber3').val();
 		// 배송 메세지
-		let message = $('#message').val();
+		//let message = $('#message').val();
 		// 전체 상품 수량
 		let amount = $('#cartTable > tbody > tr').length;
 		// 배송비
 		let deliveryPrice = $('#deliveryPrice').text();
 		// 총 결제 금액
-		let totalPrice = $('#totalPrice').text();
+		let totalPrice = $('#totalPrice').text().replace(',', '');
+		console.log(productId);
+		console.log(option);
+		console.log(orderName);
+		console.log(address);
+		console.log(amount);
+		console.log(totalPrice);
+		
+		
+		
 		
 		if (orderName == '') {
 			alert("받는 분 성함을 입력해주세요.");
@@ -230,25 +245,44 @@ $(document).ready(function() {
             buyer_postcode: $('#zipNo').val()
         }, function (rsp) {
             console.log(rsp);
+            $.ajax({
+                type: "post" 
+               	, url: "/order/payment"
+               	, data: {
+               		"productId" : productId,
+               		"option" : option,
+                	"orderName" : orderName,
+                	"address" : address,
+                	"phoneNumber" : phoneNumber,
+                    "amount" : amount,
+                    "totalPrice" : totalPrice,
+                    "deliveryPrice" : deliveryPrice
+                }
+            	, success:function(data) {
+            		if (data.code == 200) {
+            			
+            		} else {
+            			alert("잠시후 다시 시도해주세요.");
+            		}
+            	}
+            	, error:function(request, status, error) {
+    				alert("잠시후 다시 시도해주세요.");
+    			}
+            });
+
             if (rsp.success) {
                 var msg = '결제가 완료되었습니다.';
                 msg += '고유ID : ' + rsp.imp_uid;
                 msg += '상점 거래ID : ' + rsp.merchant_uid;
                 msg += '결제 금액 : ' + rsp.paid_amount;
                 msg += '카드 승인번호 : ' + rsp.apply_num;
-                $.ajax({
-                    type: "post", 
-                    url: "/payment",
-                    data: {
-                        "amount" : totalPrice
-                    },
-                });
+                alert("결제가 완료되었습니다.");
+                
+                location.herf = "/test3"
             } else {
-                var msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
+                alert(rsp.error_msg)
             }
-            alert(msg);
-            document.location.href="/test3"; //alert창 확인 후 이동할 url 설정
+            location.href="/site-name";  //alert창 확인 후 이동할 url 설정
         });
 	});
 });
