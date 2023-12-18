@@ -17,7 +17,7 @@
 	</div>
 	<div class="header-area">
 		<div class="logo-area">
-			<a href="/site-name" id="logoTitle">LOGO</a>
+			<a href="/site-name" id="logoTitle">JCOFFEE</a>
 		</div>
 		<div class="search-box">
 			<input type="text" placeholder="검색어를 입력하세요." class="input-box">
