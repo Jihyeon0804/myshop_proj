@@ -20,7 +20,7 @@ public class EncryptUtilsTest {
 	void aes테스트() {
 		Logger logger = LoggerFactory.getLogger(this.getClass());
 		try {
-			String encode = encryptUtils.encrypt("kakao1122");
+			String encode = encryptUtils.encrypt("coenffl0115!");
 			String decode = encryptUtils.decrypt(encode);
 			logger.info("$$$$$$$$$$$$$$$$$$$$$$$ encode: {}", encode);
 			logger.info("$$$$$$$$$$$$$$$$$$$$$$$ decode: {}", decode);

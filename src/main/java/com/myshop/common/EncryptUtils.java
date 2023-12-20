@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class EncryptUtils {
 
 	public static String alg = "AES/CBC/PKCS5Padding";
-	private final String key = "12345678910111213";
+	private final String key = "abcdefgh01234567abcdefgh01234567";
 	private final String iv = key.substring(0, 16); // 16byte
 
 	public String encrypt(String text) throws Exception {
