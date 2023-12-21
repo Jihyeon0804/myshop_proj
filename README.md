@@ -89,16 +89,3 @@
     * 수정하기 버튼 클릭 시 User 테이블 Update 후 변경되었다는 alert 창을 띄운 후 location.reload()
     * 취소 버튼 클릭 시 마이페이지 메인 화면으로 이동<br><br>
     ![마이페이지 내정보수정](https://github.com/Jihyeon0804/myshop_proj/assets/80299604/ae4ea64a-e688-434b-98ab-6ecce37c796c)
-
-
-
-
-
-
-<h2>주요 기능</h2>
-
-<div>💡장바구니 담기</div>
-<br>
-
-<div>💡주문하기</div>
-<div>💡결제하기</div>
