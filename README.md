@@ -32,6 +32,17 @@
   <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
 </div>
 
+## 웹 크롤링
+  * 상품 이미지<br><br>
+  ![상품 이미지 크롤링](https://github.com/Jihyeon0804/myshop_proj/assets/80299604/ffb0c52d-5d20-4eae-8a88-1ecceecf030e)
+
+  * 상품 정보 (상품명, 소비자가, 판매가)<br><br>
+  ![상품 정보 크롤링](https://github.com/Jihyeon0804/myshop_proj/assets/80299604/e9962922-2f09-4b62-9c85-d028fbe29da0)
+
+  * 상품 옵션<br><br>
+  ![상품 옵션 크롤링](https://github.com/Jihyeon0804/myshop_proj/assets/80299604/e4b14d82-ebf8-43ea-b990-b2ae58f20f9a)
+
+
 ## 화면
   * 메인<br><br>
   ![메인화면](https://github.com/Jihyeon0804/myshop_proj/assets/80299604/5855f7f6-85b5-4ed9-ba0f-2f95fe2284ef)
@@ -39,7 +50,7 @@
   * 상품 상세<br><br>
     * 결제하기 버튼 클릭 시 결제 화면으로 이동
     * 장바구니 담기 클릭 시 완료 창을 alert으로 띄우고 location.reload()
-    * 장바구니 목록은 마이페이지 장바구니 또는 우측 상단 장바구니 버튼을 통해 이동 가능
+    * 장바구니 목록은 마이페이지 장바구니 또는 우측 상단 장바구니 버튼을 통해 이동 가능<br><br>
   ![상품상세](https://github.com/Jihyeon0804/myshop_proj/assets/80299604/801d919d-e3cf-4e5c-86a6-90e1c28a23aa)
   * 상품 상세 설명<br><br>
   ![상품 상세설명](https://github.com/Jihyeon0804/myshop_proj/assets/80299604/c45ca5a8-70fc-4145-906b-fd0522fec2cc)
