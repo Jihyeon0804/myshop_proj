@@ -1,6 +1,7 @@
 # 쇼핑몰 개인 프로젝트
 ## ☕ 프로젝트 소개
   * <a href="https://coffeecg.com/">커피창고</a> 사이트를 참고하여 만든 커피 쇼핑몰입니다.
+  * 기획서 링크 : https://ovenapp.io/view/OTRgCJpRjbA0GFhhQeA9n1jeId6TWYbG/
 <br><br>
   * 프로젝트 메인 화면
 <div align="center">
