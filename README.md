@@ -95,6 +95,11 @@
     * 삭제 버튼 클릭 시 찜하기 목록에서 삭제 되도록 구현
     * Like 테이블에서 userId와 productId로 Delete 후 location.reload()<br><br>
     ![마이페이지 찜하기](https://github.com/Jihyeon0804/myshop_proj/assets/80299604/96769434-050a-4be4-878d-f1462b4bb68e)
+ * 마이페이지 - 나의 리뷰
+    * 리뷰 작성 시 이미지는 최대 5개로 제한
+    * 이미지 등록 후 이미지 우측 상단에 있는 엑스 버튼 클릭 시 이미지 삭제되도록 구현<br><br>
+    ![리뷰 작성](https://github.com/Jihyeon0804/myshop_proj/assets/80299604/8a2cd305-727b-4773-897c-a864a88eff79)
+
  * 마이페이지 - 내 정보 수정
     * 이름과 아이디는 변경할 수 없도록 구현
     * 수정하기 버튼 클릭 시 User 테이블 Update 후 변경되었다는 alert 창을 띄운 후 location.reload()
