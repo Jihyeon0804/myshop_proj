@@ -1,7 +1,11 @@
 package com.myshop.order.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import com.myshop.order.domain.OrderDetail;
 
 @Repository
 public interface OrderDetailMapper {
@@ -12,4 +16,6 @@ public interface OrderDetailMapper {
 			@Param("option") String option,
 			@Param("price") int price,
 			@Param("amount") int amount);
+	
+	public List<OrderDetail> selectOrderDetailList(int orderId);
 }

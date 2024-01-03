@@ -70,30 +70,25 @@ public class OrderRestController {
 			@RequestParam("amount") int amount,
 			@RequestParam("totalPrice") int totalPrice,
 			@RequestParam("deliveryPrice") Integer deliveryPrice,
-			HttpSession session, HttpServletResponse response
+			HttpSession session
 			) {
-		Cookie cookie = new Cookie("productId", null);
-		Cookie cookie2 = new Cookie("option", null);
-		Cookie cookie3 = new Cookie("amount", null);
-		Cookie cookie4 = new Cookie("price", null);
-		cookie.setMaxAge(0);
-		cookie.setPath("/");
-	    response.addCookie(cookie);
-	    cookie2.setMaxAge(0);
-	    cookie2.setPath("/");
-	    response.addCookie(cookie2);
-	    cookie3.setMaxAge(0);
-	    cookie3.setPath("/");
-	    response.addCookie(cookie3);
-	    cookie4.setMaxAge(0);
-	    cookie4.setPath("/");
-	    response.addCookie(cookie4);
+
+		Map<String, Object> result = new HashMap<>();
 	    
-		int userId = (int)session.getAttribute("userId");
+	    Order order = new Order();
+	    Integer userId = (Integer)session.getAttribute("userId");
+	    if (userId == null) {
+	    	result.put("code", 500);
+			result.put("result", "실패");
+			return result;
+	    }
+	    
 		if (deliveryPrice == null) {
 			deliveryPrice = 0;
+		} else {
+			order.setDeliveryPrice(deliveryPrice);
 		}
-		Order order = new Order();
+		
 		order.setUserId(userId);
 		order.setOrderName(orderName);
 		order.setAddress(address);
@@ -101,13 +96,12 @@ public class OrderRestController {
 		order.setPhoneNumber(phoneNumber);
 		order.setAmount(amount);
 		order.setTotalPrice(totalPrice);
-		order.setDeliveryPrice(deliveryPrice);
 		orderBO.addOrder(order);
 		
 		int orderId = order.getId();
 		orderDetailBO.addOrderDetail(orderId, productId, option, totalPrice, amount);
 
-		Map<String, Object> result = new HashMap<>();
+		
 		
 		result.put("code", 200);
 		result.put("result", "성공");

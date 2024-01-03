@@ -21,7 +21,7 @@
 					<div class="carousel-caption">
 						<div>
 							<h3 class="carousel-title">캐롤의 멜로디가 들리는</h3>
-							<h1 class="carousel-title">커피창고 12월의 이벤트</h1>
+							<h1 class="carousel-title">제이커피 12월의 이벤트</h1>
 							<p class="carousel-title">다양한 이벤트를 만나보세요</p>
 						</div>
 					</div>
@@ -31,7 +31,7 @@
 					<div class="carousel-caption">
 						<div>
 							<h3 class="carousel-title">이달의 쿠폰</h3>
-							<h1 class="carousel-title">커피창고 PICK 5</h1>
+							<h1 class="carousel-title">제이커피 PICK 5</h1>
 							<p class="carousel-title">매달 1일 쿠폰받고 원하던 상품 PICK!</p>
 						</div>
 					</div>
@@ -41,7 +41,7 @@
 					<div class="carousel-caption">
 						<div>
 							<h3 class="carousel-title">새해를 준비하는 마음가짐!</h3>
-							<h1 class="carousel-title">2024 커피창고 굿즈 증정</h1>
+							<h1 class="carousel-title">2024 제이커피 굿즈 증정</h1>
 							<p class="carousel-title">예쁨 가득! 사랑 가득!</p>
 						</div>
 					</div>
@@ -98,7 +98,7 @@
 				<li class="prod-area">
 					<div class="prod">
 						<div class="prod_thumbnail">
-							<a href="/site-name/product/${productSet.product.id}">
+							<a href="/j-coffee/product/${productSet.product.id}">
 								<img src="${productSet.productThumbnail.imagePath}" alt="썸네일 테스트 이미지" width="280">
 							</a>
 						</div>

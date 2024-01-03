@@ -1,43 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div>
-	<h4>내 정보 수정</h4>
-	<label for="confirmPassword">비밀번호 확인</label>
-	<div class="d-flex">
-		<input class="form-control col-6" type="password" id="confirmPassword">
-		<button class="btn btn-primary">확인</button>
-	</div>
-	<div>
-		<label>이름</label>
-		<input class="form-control col-6" type="text" disabled value="${userName}">
-		
-		<label>아이디</label>
-		<input class="form-control col-6" type="text" disabled value="${userLoginId}">
-		
-		<label>생년월일</label>
-		<input id="birth" class="form-control col-6">
-		
-		<label>전화번호</label>
-		<input class="form-control col-6" type="text">
-		
-		<label>주소</label>
-		<div class="address-box">
-			<div class="w-100">
-				<div class="d-flex justify-content-between">
-					<input id="zipNo" class="form-control col-7" type="text">
-					<button id="addressSearch" type="button" class="btn" onclick="goPopup();">주소 찾기</button>
+<div class="d-flex justify-content-center">
+	<div class="info-box-area">
+		<h4>내 정보 수정</h4>
+		<!-- <label for="confirmPassword">비밀번호 확인</label>
+		<div class="d-flex">
+			<input class="form-control col-6" type="password" id="confirmPassword">
+			<button class="btn btn-primary">확인</button>
+		</div> -->
+		<div>
+			<label>이름</label>
+			<input class="form-control col-6 mb-3" type="text" disabled value="${userName}">
+			
+			<label>아이디</label>
+			<input class="form-control col-6 mb-3" type="text" disabled value="${userLoginId}">
+			
+			<label>생년월일</label>
+			<input id="birth" class="form-control col-6 mb-3">
+			
+			<label>전화번호</label>
+			<input class="form-control col-6 mb-3" type="text">
+			
+			<label>주소</label>
+			<div class="address-box">
+				<div class="w-100">
+					<div class="d-flex justify-content-between">
+						<input id="zipNo" class="form-control col-7" type="text">
+						<button id="addressSearch" type="button" class="btn btn-primary" onclick="goPopup();">주소 찾기</button>
+					</div>
+					<input id="roadAddrPart1" class="form-control" type="text">
+					<input id="addrDetail" class="form-control mb-3" type="text">
 				</div>
-				<input id="roadAddrPart1" class="form-control" type="text">
-				<input id="addrDetail" class="form-control" type="text">
+			</div>
+			
+			<div class="d-flex justify-content-end mt-5 col-7 p-0">
+				<button id="cancelBtn" class="btn btn-secondary mr-2">취소</button>
+				<button id="reviseBtn" class="btn btn-danger">수정하기</button>
 			</div>
 		</div>
-		
-		
-		<button id="cancelBtn" class="btn btn-secondary">취소</button>
-		<button id="reviseBtn" class="btn btn-danger">수정하기</button>
 	</div>
 </div>
-
 <script>
 $(document).ready(function() {
 		

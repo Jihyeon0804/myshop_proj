@@ -23,6 +23,8 @@ import com.myshop.cart.domain.CartSet;
 import com.myshop.like.bo.LikeBO;
 import com.myshop.like.bo.LikeSetBO;
 import com.myshop.like.domain.LikeSet;
+import com.myshop.order.bo.OrderSetBO;
+import com.myshop.order.domain.OrderSet;
 import com.myshop.product.bo.ProductBO;
 import com.myshop.product.bo.ProductThumbnailBO;
 import com.myshop.product.domain.Product;
@@ -30,7 +32,7 @@ import com.myshop.product.domain.ProductThumbnail;
 import com.myshop.productSet.bo.ProductSetBO;
 import com.myshop.productSet.domain.ProductSet;
 
-@RequestMapping("/site-name")
+@RequestMapping("/j-coffee")
 @Controller
 public class MainController {
 
@@ -53,6 +55,9 @@ public class MainController {
 	
 	@Autowired
 	private ProductThumbnailBO productThumbnailBO;
+	
+	@Autowired
+	private OrderSetBO orderSetBO;
 	
 	@GetMapping("")
 	public String siteView(Model model) {
@@ -134,7 +139,7 @@ public class MainController {
 		Integer userId = (Integer) session.getAttribute("userId");
 		if (userId == null) {
 			// 비로그인이면 로그인 페이지로 이동
-			return "redirect:/site-name/sign-in-view";
+			return "redirect:/j-coffee/sign-in-view";
 		}
 
 		model.addAttribute("viewName", "user/myPage");
@@ -146,7 +151,7 @@ public class MainController {
 		Integer userId = (Integer) session.getAttribute("userId");
 		if (userId == null) {
 			// 비로그인이면 로그인 페이지로 이동
-			return "redirect:/site-name/sign-in-view";
+			return "redirect:/j-coffee/sign-in-view";
 		}
 
 		List<CartSet> cartSetList = cartSetBO.generateCartSet(userId);
@@ -157,7 +162,11 @@ public class MainController {
 	}
 
 	@GetMapping("/my-page/order-view")
-	public String orderView() {
+	public String orderView(Model model, HttpSession session) {
+		int userId = (int)session.getAttribute("userId");
+		
+		List<OrderSet> orderSetList = orderSetBO.generateOrderSetList(userId);
+		model.addAttribute("orderSetList", orderSetList);
 		return "user/include/myOrder";
 	}
 
@@ -166,7 +175,7 @@ public class MainController {
 		Integer userId = (Integer) session.getAttribute("userId");
 		if (userId == null) {
 			// 비로그인이면 로그인 페이지로 이동
-			return "redirect:/site-name/sign-in-view";
+			return "redirect:/j-coffee/sign-in-view";
 		}
 
 		List<CartSet> cartSetList = cartSetBO.generateCartSet(userId);
@@ -179,7 +188,7 @@ public class MainController {
 		Integer userId = (Integer) session.getAttribute("userId");
 		if (userId == null) {
 			// 비로그인이면 로그인 페이지로 이동
-			return "redirect:/site-name/sign-in-view";
+			return "redirect:/j-coffee/sign-in-view";
 		}
 
 		List<LikeSet> likeSetList = likeSetBO.generateLikeSet(userId);

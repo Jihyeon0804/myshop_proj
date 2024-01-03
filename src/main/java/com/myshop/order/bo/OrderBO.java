@@ -1,5 +1,7 @@
 package com.myshop.order.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,9 @@ public class OrderBO {
 	
 	public void addOrder(Order order) {
 		orderMapper.insertOrder(order);
+	}
+	
+	public List<Order> getOrderList(int userId) {
+		return orderMapper.selectOrderListByUserId(userId);
 	}
 }

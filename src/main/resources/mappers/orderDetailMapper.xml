@@ -24,4 +24,20 @@
 			, NOW()
 		);
 	</insert>
+	
+	<select id="selectOrderDetailList" parameterType="int" resultType="com.myshop.order.domain.OrderDetail">
+		SELECT
+			`id`
+			, `orderId`
+			, `productId`
+			, `option`
+			, `price`
+			, `amount`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`order_detail`
+		WHERE
+			`orderId` = #{orderId}
+	</select>
 </mapper>

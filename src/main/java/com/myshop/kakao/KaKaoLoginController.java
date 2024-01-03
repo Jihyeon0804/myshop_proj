@@ -86,6 +86,6 @@ public class KaKaoLoginController {
 			session.setAttribute("address", user.getAddress());
 			session.setAttribute("grade", user.getGrade());
 		}
-		return "redirect:/site-name";
+		return "redirect:/j-coffee";
 	}
 }

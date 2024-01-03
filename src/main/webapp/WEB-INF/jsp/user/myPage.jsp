@@ -95,7 +95,7 @@ $(document).ready(function() {
 		
 		$.ajax({
 			// request
-			url : "/site-name/my-page/order-view"
+			url : "/j-coffee/my-page/order-view"
 			
 			// response
 			, success:function(data) {
@@ -109,7 +109,7 @@ $(document).ready(function() {
 		
 		$.ajax({
 			// request
-			url : "/site-name/my-page/cart-view"
+			url : "/j-coffee/my-page/cart-view"
 			
 			// response
 			, success:function(data) {
@@ -124,7 +124,7 @@ $(document).ready(function() {
 		
 		$.ajax({
 			// request
-			url : "/site-name/my-page/like-view"
+			url : "/j-coffee/my-page/like-view"
 			
 			// response
 			, success:function(data) {
@@ -139,7 +139,7 @@ $(document).ready(function() {
 		
 		$.ajax({
 			// request
-			url : "/site-name/my-page/review-view"
+			url : "/j-coffee/my-page/review-view"
 			
 			// response
 			, success:function(data) {
@@ -153,7 +153,7 @@ $(document).ready(function() {
 		
 		$.ajax({
 			// request
-			url : "/site-name/my-page/info-revise-view"
+			url : "/j-coffee/my-page/info-revise-view"
 			
 			// response
 			, success:function(data) {

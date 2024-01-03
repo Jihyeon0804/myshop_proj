@@ -31,4 +31,23 @@
 			, NOW()
 		);
 	</insert>
+	
+	<select id="selectOrderListByUserId" parameterType="int" resultType="com.myshop.order.domain.Order">
+		SELECT
+			`id`
+			, `userId`
+			, `orderName`
+			, `address`
+			, `message`
+			, `phoneNumber`
+			, `amount`
+			, `totalPrice`
+			, `deliveryPrice`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`order`
+		WHERE
+			`userId` = #{userId}
+	</select>
 </mapper>

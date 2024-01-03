@@ -103,7 +103,7 @@
 					<tr>
 						<td>
 							<div class="d-flex">
-								<img src="/static/img/sample-thumbnail.jpg" alt="주문 상품 썸네일 이미지" width="100">
+								<img src="https://www.coffeecg.com/web/product/medium/202311/9fc4668022f46bbbaab335eec5db1a2b.jpg" alt="주문 상품 썸네일 이미지" width="100">
 								<div class="d-flex align-items-center ml-3">
 									<div>
 										<span id="productTitle" data-product-id="${product.id}">${product.title}</span><br>
@@ -279,7 +279,7 @@ $(document).ready(function() {
             } else {
                 alert(rsp.error_msg)
             }
-            location.href="/site-name";  //alert창 확인 후 이동할 url 설정
+            location.href="/j-coffee";  //alert창 확인 후 이동할 url 설정
         });
 	});
 });

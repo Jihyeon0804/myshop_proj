@@ -1,56 +1,78 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<div>
-	<h4>장바구니</h4>
-	<div>
-		<table class="table" id="cartTable">
-			<thead>
-				<tr>
-					<th>
-						<input type="checkbox" id="checkedAll" name="check">
-					</th>
-					<th>상품명</th>
-					<th>옵션</th>
-					<th>수량</th>
-					<th>가격</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<input type="checkbox">
-					</td>
-					<td>
-						<img src="/static/img/sample-thumbnail.jpg" alt="장바구니 테스트 이미지" width="100">
-						<span>커피창고 원두커피 200g 3봉</span>
-					</td>
-					<td>
-						<select class="form-control">
-							<option></option>
-						</select>
-					</td>
-					<td>
-						<div class="d-flex">
-							<button type="button" class="btn btn-light amount-minus border">
-								<img src="/static/img/minus-icon.png" alt="minus" width="23">
-							</button>
-							<input type="text" class="form-control" id="amount" value="1">
-							<button type="button" class="btn btn-light amount-plus border">
-								<img src="/static/img/plus-icon.png" alt="plus" width="23">
-							</button>
-						</div>
-					</td>
-					<td>
-						<fmt:formatNumber value="12000" type="number" />원
-					</td>
-					<td>
-						<button class="btn btn-lg">&times;</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+<div class="d-flex justify-content-center">
+	<div class="my-page-area d-flex">
+		<div id="myPageContents" class="my-page-content">
+			<div>
+				<h4>장바구니</h4>
+				<div>
+					<table class="table" id="cartTable">
+						<thead class="text-center">
+							<tr>
+								<th>
+									<input type="checkbox" id="checkedAll">
+								</th>
+								<th>상품명</th>
+								<th>수량</th>
+								<th>가격</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						<c:forEach items="${cartSetList}" var="cartSet">
+							<tr>
+								<td>
+									<input type="checkbox" name="check">
+								</td>
+								<td>
+									<div class="d-flex">
+										<img src="${cartSet.productThumbnail.imagePath}" alt="장바구니 테스트 이미지" width="100">
+										<div class="d-flex align-items-center ml-3">
+											<div>
+												<span>${cartSet.product.title}</span><br>
+												<span>${cartSet.cart.option}</span>
+											</div>
+										</div>
+									</div>
+									
+								</td>
+								<td>
+									<div class="d-flex">
+										<button type="button" class="btn btn-light amount-minus border">
+											<img src="/static/img/minus-icon.png" alt="minus" width="23">
+										</button>
+										<input type="text" class="form-control" id="amount" value="${cartSet.cart.amount}">
+										<button type="button" class="btn btn-light amount-plus border">
+											<img src="/static/img/plus-icon.png" alt="plus" width="23">
+										</button>
+									</div>
+								</td>
+								<td>
+								<c:if test="${cartSet.product.discountPrice eq 0}">
+									<span id="cartPrice" data-price="${cartSet.product.price}">
+										<fmt:formatNumber value="${cartSet.product.price * cartSet.cart.amount}" type="number" />
+									</span>
+									<span>원</span>
+								</c:if>
+								<c:if test="${cartSet.product.discountPrice ne 0}">
+									<span id="cartPrice" data-price="${cartSet.product.discountPrice}">
+										<fmt:formatNumber value="${cartSet.product.discountPrice * cartSet.cart.amount}" type="number" />
+									</span>
+									<span>원</span>
+								</c:if>
+								</td>
+								<td>
+									<button class="btn btn-lg del-cart-btn" data-cart-id="${cartSet.cart.id}">&times;</button>
+								</td>
+							</tr>
+						</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <script>
@@ -63,7 +85,7 @@ $(document).ready(function() {
 			$('input[name=check]').prop('checked', false);
 		}
 	});
-	
+
 	// 마이너스 버튼 클릭 시
 	$('.amount-minus').on('click', function() {
 		let amount = $(this).next().val();
@@ -85,6 +107,7 @@ $(document).ready(function() {
 
 	// 플러스 버튼 클릭 시
 	$('.amount-plus').on('click', function() {
+		let currentRow = $(this).closest('tr');
 		let amount = $(this).prev().val();
 		let prodPrice = $('#cartPrice').data('price');
 		let changedPrice = $('#cartPrice').text();
@@ -125,6 +148,76 @@ $(document).ready(function() {
 			}
 		});
 	});
-
+	
+$('#myOrder').on('click', function() {
+		
+		$.ajax({
+			// request
+			url : "/j-coffee/my-page/order-view"
+			
+			// response
+			, success:function(data) {
+				$('#myPageContents').html(data);
+			}
+		});
+	});
+	
+	// 장바구니 버튼 클릭 시
+	$('#myCart').on('click', function() {
+		
+		$.ajax({
+			// request
+			url : "/j-coffee/my-page/cart-view"
+			
+			// response
+			, success:function(data) {
+				$('#myPageContents').html(data);
+			}
+		});
+	});
+	
+	
+	// 찜한 상품 버튼 클릭 시
+	$('#myPick').on('click', function() {
+		
+		$.ajax({
+			// request
+			url : "/j-coffee/my-page/like-view"
+			
+			// response
+			, success:function(data) {
+				$('#myPageContents').html(data);
+			}
+		});
+	});
+	
+	
+	// 나의 리뷰 버튼 클릭 시
+	$('#myReview').on('click', function() {
+		
+		$.ajax({
+			// request
+			url : "/j-coffee/my-page/review-view"
+			
+			// response
+			, success:function(data) {
+				$('#myPageContents').html(data);
+			}
+		});
+	});
+	
+	// 내 정보 수정 버튼 클릭 시
+	$('#myInfoRevise').on('click', function() {
+		
+		$.ajax({
+			// request
+			url : "/j-coffee/my-page/info-revise-view"
+			
+			// response
+			, success:function(data) {
+				$('#myPageContents').html(data);
+			}
+		});
+	});
 });
 </script>

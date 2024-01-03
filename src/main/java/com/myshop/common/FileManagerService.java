@@ -18,7 +18,8 @@ public class FileManagerService {
 
 	// 게시된 이미지를 저장할 폴더의 경로
 	// workspace/images/userId_ms 형태로 저장할 것임
-	public static final String FILE_UPLOAD_PATH = "D:\\김지현\\project\\workspace\\images/";
+//	public static final String FILE_UPLOAD_PATH = "D:\\김지현\\project\\workspace\\images/";
+	public static final String FILE_UPLOAD_PATH = "C:\\Users\\cam08\\Desktop\\project\\workspace\\images/";
 
 	public String saveFile(int userId, MultipartFile file) {
 		// 폴더명 지정

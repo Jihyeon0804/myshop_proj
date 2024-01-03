@@ -298,7 +298,7 @@ $(document).ready(function() {
 			// response
 			, success:function(data) {
 				if (data.code == 200) {
-					location.href = "/site-name/sign-in-view"
+					location.href = "/j-coffee/sign-in-view"
 				}
 			}
 		});

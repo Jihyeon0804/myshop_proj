@@ -819,6 +819,10 @@ li .del-btn {
 	font-weight: bold;
 }
 
+.info-box-area {
+	width: 800px;
+}
+
 .admin-user-box, .admin-order-box, .admin-product-box, .admin-inquiry-box {
 	margin: 30px 10px;
 }

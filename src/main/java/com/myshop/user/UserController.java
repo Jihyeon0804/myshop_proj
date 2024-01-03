@@ -19,7 +19,7 @@ public class UserController {
 		session.removeAttribute("birth");
 		session.removeAttribute("address");
 		session.removeAttribute("grade");
-		return "redirect:/site-name";
+		return "redirect:/j-coffee";
 	}
 
 	

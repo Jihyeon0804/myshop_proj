@@ -25,7 +25,7 @@
 				<ul>
 					<li><a href="#">아이디 찾기</a></li>
 					<li><a href="#">비밀번호 찾기</a></li>
-					<li><a href="/site-name/sign-up-view">회원가입</a></li>
+					<li><a href="/j-coffee/sign-up-view">회원가입</a></li>
 				</ul>
 			</div>
 			<div class="hr-sect">또는</div>
@@ -77,7 +77,7 @@ $(document).ready(function() {
 			// response
 			,success:function(data) {
 				if (data.code == 200) {
-					location.href="/site-name"
+					location.href="/j-coffee"
 				} else if (data.code == 00) {
 					location.href="/admin/main"
 				} else {

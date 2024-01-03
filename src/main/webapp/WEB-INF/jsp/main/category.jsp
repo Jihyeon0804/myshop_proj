@@ -12,7 +12,7 @@
 			<li class="prod-area">
 				<div class="prod">
 					<div class="prod_thumbnail">
-						<a href="/site-name/product/${productSet.product.id}">
+						<a href="/j-coffee/product/${productSet.product.id}">
 							<img src="${productSet.productThumbnail.imagePath}" alt="썸네일 테스트 이미지" width="280">
 						</a>
 					</div>

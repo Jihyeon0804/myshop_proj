@@ -320,7 +320,7 @@ $(document).ready(function() {
 			, data:{"productId":productId, "option":option, "amount":amount, "price":price}
 			, success:function(data) {
 				if (data.code == 200) {
-					location.href="/site-name/order"
+					location.href="/j-coffee/order"
 				} else {
 					alert(data.errorMessage);
 				}
